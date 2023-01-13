@@ -1,42 +1,32 @@
-import * as dotenv from 'dotenv'
-import { Client, Intents, Message, MessageEmbed } from 'discord.js'
-import { TarkovTimer } from './tarkov/TarkovTimer'
-import { command556x45 } from './commands/ammo/556x45'
+import { Message } from 'discord.js'
+import type { TextChannel } from 'discord.js'
+import { prefix, channels, client } from './bootstrap'
+import { getRaidTimes } from './tarkov/RaidTimer' 
 
-dotenv.config()
-const cmdPrefix: string = (process.env.PREFIX as string)
+client.on('ready', () => {
+    console.log('ready')
 
-const client = new Client({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
+    // Tarkov raid time loop, posts to #raid-timer every 5 minutes
+    setInterval(async () => {
+        const channel = <TextChannel>await client.channels.fetch(channels.raidTimer)
+
+        channel.send({ embeds: [getRaidTimes({
+            embed: true
+        })] })
+    }, 300000)
 })
-
-const timer = new TarkovTimer()
- 
-client.on('ready', () => console.log('ready'))
  
 client.on('messageCreate', (message: Message) => {
-    if (!message.content.startsWith(cmdPrefix) || message.author.bot) {
+    if (!message.content.startsWith(prefix) || message.author.bot) {
         return
     }
 
-    // Tarkov time
-    if (message.content === `${cmdPrefix}time`) {
-        const left = timer.getTarkovTime(true)
-        const right = timer.getTarkovTime(false)
-
-        const embed = new MessageEmbed()
-            .setColor(0x3498DB)
-            .setTitle("Tarkov Time")
-            .setDescription('Local Raid Times')
-            .addField('Left', left, true)
-            .addField('Right', right, true)
-        
-        message.channel.send({ embeds: [embed] })
+    // Tarkov raid time (!time)
+    if (message.content === `${prefix}time`) {
+        message.channel.send({ embeds: [getRaidTimes({
+            embed: true
+        })] })
     }
-
-
-    // Ammo commands 
-    command556x45(cmdPrefix, message)
 })
  
 client.login((process.env.TOKEN as string))
