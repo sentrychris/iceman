@@ -1,4 +1,3 @@
-import e from 'cors'
 import type { Request, Response } from 'express'
 import { client } from '../database'
 
