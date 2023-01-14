@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./dist/index.js",
+    "serve:bot": "node ./dist/bot/index.js",
+    "serve:api": "node ./dist/server/index.js",
     "watch": "tsc --watch"
   },
   "author": "",

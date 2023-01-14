@@ -1,36 +1,34 @@
 import type { Request, Response } from 'express'
-import { mongo } from '../database'
+import { client } from '../database'
 
 export default class AmmoController
 {
     async index(req: Request, res: Response) {
         try {
-            const data = await mongo.getCollection('ammo')
-            res.send(data)
+            const collection = await client.getCollection('ammo')
+            const result = await collection.aggregate().toArray()
+            res.send(result)
         } catch (error) {
             console.log(error)
         }
     }
 
-
-    async show(req: Request, res: Response) {
+    async search(req: Request, res: Response) {
         try {
-            const ammo = await mongo.getCollection('ammo')
-            ammo.findOne({
-                'name': {
+            const collection = await client.getCollection('ammo')
+            const result = await collection.find({
+                'Name': {
                     $regex: req.query.name
                 }
-            })
+            }).toArray()
 
-            if (!ammo) {
-                res.send(404)
-            } else {
-                res.send(ammo)
+            if (!result || result.length === 0) {
+                res.send(`Nothing found for ${req.query.type}`).status(404)
             }
+
+            res.send(result)
         } catch (error) {
             console.log(error)
         }
     }
-    
-    async store(req: Request, res: Response) {}
 }

@@ -1,5 +1,6 @@
 import { config } from 'dotenv'
 import { Client, Intents } from 'discord.js'
+import { client as mongo } from '../server/database'
 
 config()
 
@@ -17,6 +18,7 @@ const client = new Client({
 export {
     prefix,
     channels,
-    client
+    client,
+    mongo
 }
  

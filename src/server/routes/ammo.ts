@@ -4,7 +4,6 @@ import AmmoController from '../controllers/AmmoController'
 const controller = new AmmoController
 
 export const useAmmoRoutes = (router: Router) => {
-    router.get('/ammo', controller.index);
-    router.get('/ammo/:slug', controller.show);
-    router.post('/ammo/:slug', controller.store);
+    router.get('/ammo', controller.index)
+    router.get('/ammo/search', controller.search)
 }

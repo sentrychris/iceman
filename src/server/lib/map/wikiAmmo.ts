@@ -1,3 +1,4 @@
+// Values correspond to slug for wiki url
 export const rifleAmmo = [
     '5.45x39mm',
     '5.56x45mm_NATO',

@@ -1,7 +1,8 @@
 import { Message } from 'discord.js'
 import type { TextChannel } from 'discord.js'
-import { prefix, channels, client } from './bootstrap'
+import { prefix, channels, client, mongo } from './bootstrap'
 import { getRaidTimes } from './local/RaidTimer'
+
 
 client.on('ready', () => {
     console.log('ready')
@@ -29,10 +30,16 @@ client.on('messageCreate', (message: Message) => {
     }
 
     // Tarkov raid time (!time)
-    if (message.content === `${prefix}testammo`) {
-        message.channel.send({ embeds: [getRaidTimes({
-            embed: true
-        })] })
+    if (message.content.startsWith(`${prefix}5.45x39`)) {
+        mongo.getCollection('ammo').then(async (collection) => {
+            const matches = collection.find({
+                'Name': {
+                    $regex: message.content.substring(message.content.indexOf(prefix))
+                }
+            })
+
+            console.log(matches)
+        })
     }
 })
  

@@ -1,5 +1,5 @@
 import { JSDOM } from 'jsdom'
-import { deepCopy } from '../../utilities'
+import { deepCopy } from '../../../utilities'
 
 export class AmmoParser
 {
