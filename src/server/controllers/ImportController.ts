@@ -3,6 +3,7 @@ import type { Repository } from '../interfaces/Repository'
 import type { AmmoKey } from '../types/keys'
 import type { ImportKey } from '../types/keys'
 import { AmmoRepository } from '../lib/ammo/AmmoRepository'
+import { mappedAmmo } from '../lib/map/wikiAmmo'
 
 
 export default class ImportController
@@ -17,8 +18,10 @@ export default class ImportController
 
             if (key === 'ammo') {
                 const ammo = <unknown>req.query.subKey as AmmoKey
-                this.repos[key].storeToJson(ammo)
+                await this.repos[key].storeToJson(ammo)
             }
+
+            res.send(201)
         } catch (error) {
             console.log(error)
         }
@@ -30,10 +33,12 @@ export default class ImportController
 
             if (key === 'ammo') {
                 const ammo = <unknown>req.query.subKey as AmmoKey
-                for (const ammoType of ammo) {
-                    this.repos[key].storeJsonToMongoDb(ammoType)
+                for (const ammoType of mappedAmmo[ammo]) {
+                    await this.repos[key].storeJsonToMongoDb(ammoType)
                 }
             }
+
+            res.send(201)
         } catch (error) {
             console.log(error)
         }

@@ -1,4 +1,19 @@
 // Values correspond to slug for wiki url
+
+export const pistolAmmo = [
+    '7.62x25mm_Tokarev',
+    '9x18mm_Makarov',
+    '9x19mm_Parabellum',
+    '9x21mm_Gyurza',
+    '.357_Magnum',
+    '.45_ACP'
+]
+
+export const pdwAmmo = [
+    '4.6x30mm_HK',
+    '5.7x28mm_FN'
+]
+
 export const rifleAmmo = [
     '5.45x39mm',
     '5.56x45mm_NATO',
@@ -19,7 +34,16 @@ export const shotgunAmmo = [
     '23x75mm'
 ]
 
+export const grenadeLauncherAmmo = [
+    '30x29mm',
+    '40x46mm',
+    '40x53mm'
+]
+
 export const mappedAmmo = {
+    pistol: pistolAmmo,
+    pdw: pdwAmmo,
     rifle: rifleAmmo,
-    shotgun: shotgunAmmo
+    shotgun: shotgunAmmo,
+    grenadeLauncher: grenadeLauncherAmmo
 }

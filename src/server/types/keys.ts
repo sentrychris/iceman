@@ -1,2 +1,2 @@
 export type ImportKey = 'ammo' | 'consumables'
-export type AmmoKey = 'rifle' | 'shotgun'
+export type AmmoKey = 'pistol' | 'pdw' | 'rifle' | 'shotgun' | 'grenadeLauncher'

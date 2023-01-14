@@ -1,13 +1,13 @@
 import type { Repository } from '../../interfaces/Repository'
 import type { AmmoKey } from '../../types/keys'
-import { mappedAmmo } from '../map/wikiAmmo'
 import { ammoParser } from './AmmoParser'
+import { mappedAmmo } from '../map/wikiAmmo'
 import { client } from '../../database'
 import * as fs from 'fs'
 
 export class AmmoRepository implements Repository
 {
-    public path: string  = `${__dirname}/../../storage`
+    public path: string  = `C:\\Users\\chris\\workspace\\tarkov-thingy\\storage`
 
     async storeToJson(key: AmmoKey) {
         for (const ammoType of mappedAmmo[key]) {
