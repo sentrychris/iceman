@@ -153,6 +153,43 @@ Response:
 
 ## Fetching data from the Tarkov wiki
 
-There is a parser - `src/server/lib/ammo/AmmoParser.ts`- which contains logic for fetching and parsing the ammo tables from the Tarkov wiki. To see how this parser is used, check out `src/server/lib/ammo/AmmoDataStore.ts`, you will notice the `storeFetchedAmmoToJson` method. This method loops through each ammo type and uses the parser's `getData` method to fetch the HTML table before calling `parseData` to parse it into a JSON array, which is then written to a file in `src/server/storage`.
+There is a parser - `src/server/lib/ammo/AmmoParser.ts`- which contains logic for fetching and parsing the ammo tables from the Tarkov wiki.
 
-NOTE: I use the JSON files to insert/update the mongoDB collection using another `AmmoDataStore` method (`storeJsonAmmoToMongoDb`) rather than updating the collection directly from the fetch response
+To see how this parser is used, check out `src/server/lib/ammo/AmmoDataStore.ts`, you will notice the `storeFetchedAmmoToJson` method.
+
+```ts
+async storeFetchedAmmoToJson() {
+    for (const ammoType of rifleAmmo) {
+        ammoParser.getData(ammoType).then(async (ammo) => {
+            const data = await ammo.parseData()
+            if (data) {
+                fs.writeFileSync(`${this.path}/ammo/${ammoType}.json`, JSON.stringify(data, null, 4), {
+                    encoding: 'utf-8'
+                })
+            }
+        })
+    }
+}
+```
+
+This method loops through each ammo type and uses the parser's `getData` method to fetch the HTML table before calling `parseData` to parse it into a JSON array, which is then written to a file in `src/server/storage`.
+
+
+NOTE: I use the JSON files to insert/update the mongoDB collection using another `AmmoDataStore` method (`storeJsonAmmoToMongoDb`) rather than updating the collection directly from the fetch response.
+
+```ts
+async storeJsonAmmoToMongoDb(ammoType: string) {
+    try {
+        if (ammoType) {
+            const data = fs.readFileSync(`${this.path}/ammo/${ammoType}.json`, {
+                encoding: 'utf-8',
+            })
+
+            const collection = await client.getCollection('ammo')                
+            await collection.insertMany(JSON.parse(data))
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+```
