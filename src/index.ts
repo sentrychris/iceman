@@ -9,7 +9,6 @@ client.on('ready', () => {
 
     ammoParser.getData('5.45x39mm').then(async (ammo) => {
         await ammo.parseData()
-        console.log(ammo.json)
     })
 
     // Tarkov raid time loop, posts to #raid-timer every 5 minutes
