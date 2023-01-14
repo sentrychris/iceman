@@ -54,13 +54,11 @@ export class AmmoParser
         }
         
         const headers = row.querySelectorAll('th')
-        const data = rows.map(row => {
+        this.json = rows.map(row => {
             const parse = (arr: Array<HTMLElement|NodeList>, round: number) => {
                 return arr.reduce((acc, cell, i) => {
-                    if (round === 2) {
-                        i = i+2
-                    }
-                    
+                    i = round === 2 ? i+2 : i
+
                     if (!headers[i]) {
                         return false
                     }
@@ -76,14 +74,11 @@ export class AmmoParser
                 }, {})
             }
 
-            const dest = parse([...row.querySelectorAll('th')], 1)
-            const source = parse([...row.querySelectorAll('td')], 2)
+            const source = parse([...row.querySelectorAll('th')], 1)
+            const dest = parse([...row.querySelectorAll('td')], 2)
 
-            console.log("hi")
-            console.log(deepCopy(dest, source))
+            return deepCopy(source, dest)
         })
-        
-        // this.json = data
     }
 }
 
