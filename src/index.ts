@@ -3,6 +3,7 @@ import type { TextChannel } from 'discord.js'
 import { prefix, channels, client } from './bootstrap'
 import { getRaidTimes } from './tarkov/RaidTimer'
 import { ammoParser } from './tarkov/ammo/AmmoParser'
+import { rifleAmmo } from './tarkov/wiki/slugs'
 
 client.on('ready', () => {
     console.log('ready')

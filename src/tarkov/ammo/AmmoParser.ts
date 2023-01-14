@@ -28,7 +28,7 @@ export class AmmoParser
     * Parse data
     * @returns 
     */
-    async parseData() {
+    async parseData(): Promise<Array<Record<string, string>> | boolean> {
         if (!this.data) {
             return false
         }
@@ -79,6 +79,8 @@ export class AmmoParser
 
             return deepCopy(source, dest)
         })
+
+        return this.json
     }
 }
 

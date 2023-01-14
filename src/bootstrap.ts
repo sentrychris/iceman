@@ -1,7 +1,8 @@
-import * as dotenv from 'dotenv'
+import { config } from 'dotenv'
 import { Client, Intents } from 'discord.js'
 
-dotenv.config()
+config()
+
 const prefix = <string>process.env.PREFIX
 
 const channels = {
