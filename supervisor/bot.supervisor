@@ -1,0 +1,8 @@
+# -*- conf -*-
+
+[program:tarkov-bot-discord]
+process_name = tarkov-bot-discord-%(process_num)s
+command = node /home/pi/tarkov-bot-discord/dist/index.js --daemon
+stdout_logfile=/var/log/supervisor/%(program_name)s-%(process_num)s.log
+numprocs = 1
+numprocs_start = 9005
