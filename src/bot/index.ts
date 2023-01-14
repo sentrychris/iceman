@@ -1,16 +1,10 @@
 import { Message } from 'discord.js'
 import type { TextChannel } from 'discord.js'
 import { prefix, channels, client } from './bootstrap'
-import { getRaidTimes } from './tarkov/RaidTimer'
-import { ammoParser } from './tarkov/ammo/AmmoParser'
-import { rifleAmmo } from './tarkov/wiki/slugs'
+import { getRaidTimes } from './local/RaidTimer'
 
 client.on('ready', () => {
     console.log('ready')
-
-    ammoParser.getData('5.45x39mm').then(async (ammo) => {
-        await ammo.parseData()
-    })
 
     // Tarkov raid time loop, posts to #raid-timer every 5 minutes
     setInterval(async () => {

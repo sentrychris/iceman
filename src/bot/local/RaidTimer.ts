@@ -1,4 +1,4 @@
-import {formatTime, hours} from '../utilities'
+import {formatTime, hours} from '../../utilities'
 import { MessageEmbed } from 'discord.js'
 
 export class TarkovTimer
