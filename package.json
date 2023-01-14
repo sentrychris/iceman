@@ -14,8 +14,7 @@
     "@types/node": "^18.0.3",
     "discord.js": "^13.8.1",
     "dotenv": "^16.0.1",
-    "jsdom": "^21.0.0",
-    "node-fetch": "^3.3.0"
+    "jsdom": "^21.0.0"
   },
   "devDependencies": {
     "@types/jsdom": "^20.0.1",
