@@ -1,4 +1,4 @@
-export interface ConnectionInterface<T> {
+export interface Connection<T> {
     cluster: string;
     username: string;
     password: string;

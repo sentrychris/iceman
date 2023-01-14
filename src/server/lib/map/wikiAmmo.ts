@@ -12,3 +12,14 @@ export const rifleAmmo = [
     '12.7x55mm_STs-130',
     '12.7x108mm'
 ]
+
+export const shotgunAmmo = [
+    '12x70mm',
+    '20x70mm',
+    '23x75mm'
+]
+
+export const mappedAmmo = {
+    rifle: rifleAmmo,
+    shotgun: shotgunAmmo
+}

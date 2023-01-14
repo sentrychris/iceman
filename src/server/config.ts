@@ -1,9 +1,9 @@
 import { config } from 'dotenv'
-import type { ConfigInterface } from './interfaces/ConfigInterface'
+import type { Configuration } from './interfaces/Configuration'
 
 config()
 
-export const settings: ConfigInterface = {
+export const settings: Configuration = {
     app: {
         url: process.env.APP_URL ?? '',
         port: process.env.PORT ?? 3000,

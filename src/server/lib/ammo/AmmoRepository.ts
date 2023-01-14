@@ -1,14 +1,16 @@
-import * as fs from 'fs'
+import type { Repository } from '../../interfaces/Repository'
+import type { AmmoKey } from '../../types/keys'
+import { mappedAmmo } from '../map/wikiAmmo'
 import { ammoParser } from './AmmoParser'
-import { rifleAmmo } from '../map/wikiAmmo'
 import { client } from '../../database'
+import * as fs from 'fs'
 
-class AmmoDataStore
+export class AmmoRepository implements Repository
 {
-    protected path: string  = `${__dirname}/../../storage`
+    public path: string  = `${__dirname}/../../storage`
 
-    async storeFetchedAmmoToJson() {
-        for (const ammoType of rifleAmmo) {
+    async storeToJson(key: AmmoKey) {
+        for (const ammoType of mappedAmmo[key]) {
             ammoParser.getData(ammoType).then(async (ammo) => {
                 const data = await ammo.parseData()
                 if (data) {
@@ -20,10 +22,10 @@ class AmmoDataStore
         }
     }
 
-    async storeJsonAmmoToMongoDb(ammoType: string) {
+    async storeJsonToMongoDb(key: string | null = null) {
         try {
-            if (ammoType) {
-                const data = fs.readFileSync(`${this.path}/ammo/${ammoType}.json`, {
+            if (key) {
+                const data = fs.readFileSync(`${this.path}/ammo/${key}.json`, {
                     encoding: 'utf-8',
                 })
 
