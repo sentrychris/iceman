@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": "7.62x39mm BP gzh",
         "Damage": "58",
         "Penetration Power": "47",
         "Armor Damage %": "63",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "730",
         "Special Effects": "",
-        "Obtainable by": "Workbench LV3",
-        "Icon": "",
-        "Name": "7.62x39mm BP gzh"
+        "Obtainable by": "Workbench LV3"
     },
     {
+        "Icon": "",
+        "Name": "7.62x39mm HP",
         "Damage": "87",
         "Penetration Power": "15",
         "Armor Damage %": "35",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "+15",
         "Projectile Speed (m/s)": "754",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL1Jaeger LL1",
-        "Icon": "",
-        "Name": "7.62x39mm HP"
+        "Obtainable by": "Prapor LL1Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "7.62x39mm MAI AP",
         "Damage": "46",
         "Penetration Power": "58",
         "Armor Damage %": "76",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "+10",
         "Projectile Speed (m/s)": "730",
         "Special Effects": "",
-        "Obtainable by": "Loot only",
-        "Icon": "",
-        "Name": "7.62x39mm MAI AP"
+        "Obtainable by": "Loot only"
     },
     {
+        "Icon": "",
+        "Name": "7.62x39mm PS gzh",
         "Damage": "57",
         "Penetration Power": "35",
         "Armor Damage %": "52",
@@ -59,11 +61,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "700",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL2",
-        "Icon": "",
-        "Name": "7.62x39mm PS gzh"
+        "Obtainable by": "Prapor LL2"
     },
     {
+        "Icon": "",
+        "Name": "7.62x39mm T-45M1 gzh",
         "Damage": "64",
         "Penetration Power": "30",
         "Armor Damage %": "46",
@@ -75,11 +77,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "720",
         "Special Effects": "Tracer (red)",
-        "Obtainable by": "Prapor LL2",
-        "Icon": "",
-        "Name": "7.62x39mm T-45M1 gzh"
+        "Obtainable by": "Prapor LL2"
     },
     {
+        "Icon": "",
+        "Name": "7.62x39mm US gzh",
         "Damage": "56",
         "Penetration Power": "29",
         "Armor Damage %": "42",
@@ -91,8 +93,6 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "300",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL3",
-        "Icon": "",
-        "Name": "7.62x39mm US gzh"
+        "Obtainable by": "Prapor LL3"
     }
 ]

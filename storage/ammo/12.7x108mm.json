@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": "12.7x108mm B-32",
         "Damage": "182",
         "Penetration Power": "88",
         "Armor Damage %": "88",
@@ -8,11 +10,11 @@
         "Light Bleeding Chance %": "",
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "818",
-        "Special Effects": "",
-        "Icon": "",
-        "Name": "12.7x108mm B-32"
+        "Special Effects": ""
     },
     {
+        "Icon": "",
+        "Name": "12.7x108mm BZT-44M",
         "Damage": "199",
         "Penetration Power": "80",
         "Armor Damage %": "95",
@@ -21,8 +23,6 @@
         "Light Bleeding Chance %": "",
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "818",
-        "Special Effects": "Explosive Tracer (green)",
-        "Icon": "",
-        "Name": "12.7x108mm BZT-44M"
+        "Special Effects": "Explosive Tracer (green)"
     }
 ]

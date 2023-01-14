@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": ".300 Blackout AP",
         "Damage": "51",
         "Penetration Power": "48",
         "Armor Damage %": "65",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "+15",
         "Projectile Speed (m/s)": "635",
         "Special Effects": "",
-        "Obtainable by": "Workbench LV3",
-        "Icon": "",
-        "Name": ".300 Blackout AP"
+        "Obtainable by": "Workbench LV3"
     },
     {
+        "Icon": "",
+        "Name": ".300 Blackout BCP FMJ",
         "Damage": "60",
         "Penetration Power": "30",
         "Armor Damage %": "36",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "605",
         "Special Effects": "",
-        "Obtainable by": "Skier LL2",
-        "Icon": "",
-        "Name": ".300 Blackout BCP FMJ"
+        "Obtainable by": "Skier LL2"
     },
     {
+        "Icon": "",
+        "Name": ".300 Blackout M62 Tracer",
         "Damage": "54",
         "Penetration Power": "36",
         "Armor Damage %": "40",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "442",
         "Special Effects": "Tracer (red)",
-        "Obtainable by": "Peacekeeper LL3",
-        "Icon": "",
-        "Name": ".300 Blackout M62 Tracer"
+        "Obtainable by": "Peacekeeper LL3"
     },
     {
+        "Icon": "",
+        "Name": ".300 Blackout V-Max",
         "Damage": "72",
         "Penetration Power": "20",
         "Armor Damage %": "25",
@@ -59,11 +61,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "723",
         "Special Effects": "",
-        "Obtainable by": "Skier LL4",
-        "Icon": "",
-        "Name": ".300 Blackout V-Max"
+        "Obtainable by": "Skier LL4"
     },
     {
+        "Icon": "",
+        "Name": ".300 Whisper",
         "Damage": "90",
         "Penetration Power": "14",
         "Armor Damage %": "19",
@@ -75,8 +77,6 @@
         "Heavy Bleeding Chance %": "+20",
         "Projectile Speed (m/s)": "853",
         "Special Effects": "",
-        "Obtainable by": "Skier LL3",
-        "Icon": "",
-        "Name": ".300 Whisper"
+        "Obtainable by": "Skier LL3"
     }
 ]

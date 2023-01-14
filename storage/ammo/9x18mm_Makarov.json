@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": "9x18mm PM BZhT gzh",
         "Damage": "53",
         "PenetrationPower": "18",
         "Armor Damage %": "28",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "325",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL2",
-        "Icon": "",
-        "Name": "9x18mm PM BZhT gzh"
+        "Obtainable by": "Prapor LL2"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PM P gzh",
         "Damage": "50",
         "PenetrationPower": "5",
         "Armor Damage %": "16",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "302",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL1",
-        "Icon": "",
-        "Name": "9x18mm PM P gzh"
+        "Obtainable by": "Prapor LL1"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PM PBM gzh",
         "Damage": "40",
         "PenetrationPower": "28",
         "Armor Damage %": "30",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "519",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL2 after Glory to CPSUWorkbench LV2",
-        "Icon": "",
-        "Name": "9x18mm PM PBM gzh"
+        "Obtainable by": "Prapor LL2 after Glory to CPSUWorkbench LV2"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PM PPe gzh",
         "Damage": "61",
         "PenetrationPower": "7",
         "Armor Damage %": "15",
@@ -59,11 +61,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "297",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL1",
-        "Icon": "",
-        "Name": "9x18mm PM PPe gzh"
+        "Obtainable by": "Prapor LL1"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PM PPT gzh",
         "Damage": "59",
         "PenetrationPower": "8",
         "Armor Damage %": "22",
@@ -75,11 +77,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "301",
         "Special Effects": "SubsonicTracer (red)",
-        "Obtainable by": "Prapor LL1",
-        "Icon": "",
-        "Name": "9x18mm PM PPT gzh"
+        "Obtainable by": "Prapor LL1"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PM PRS gs",
         "Damage": "58",
         "PenetrationPower": "6",
         "Armor Damage %": "16",
@@ -91,11 +93,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "302",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL1",
-        "Icon": "",
-        "Name": "9x18mm PM PRS gs"
+        "Obtainable by": "Prapor LL1"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PM PS gs PPO",
         "Damage": "55",
         "PenetrationPower": "6",
         "Armor Damage %": "16",
@@ -107,11 +109,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "330",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL1",
-        "Icon": "",
-        "Name": "9x18mm PM PS gs PPO"
+        "Obtainable by": "Prapor LL1"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PM PSO gzh",
         "Damage": "54",
         "PenetrationPower": "5",
         "Armor Damage %": "13",
@@ -123,11 +125,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "315",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL1",
-        "Icon": "",
-        "Name": "9x18mm PM PSO gzh"
+        "Obtainable by": "Prapor LL1"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PM Pst gzh",
         "Damage": "50",
         "PenetrationPower": "12",
         "Armor Damage %": "26",
@@ -139,11 +141,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "298",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL1",
-        "Icon": "",
-        "Name": "9x18mm PM Pst gzh"
+        "Obtainable by": "Prapor LL1"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PM PSV",
         "Damage": "69",
         "PenetrationPower": "3",
         "Armor Damage %": "5",
@@ -155,11 +157,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "280",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Jaeger LL1",
-        "Icon": "",
-        "Name": "9x18mm PM PSV"
+        "Obtainable by": "Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PM RG028 gzh",
         "Damage": "65",
         "PenetrationPower": "13",
         "Armor Damage %": "26",
@@ -171,11 +173,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "330",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL2",
-        "Icon": "",
-        "Name": "9x18mm PM RG028 gzh"
+        "Obtainable by": "Prapor LL2"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PM SP7 gzh",
         "Damage": "77",
         "PenetrationPower": "2",
         "Armor Damage %": "5",
@@ -187,11 +189,11 @@
         "Heavy Bleeding Chance %": "+10",
         "Projectile Speed (m/s)": "420",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL2 after Glory to CPSU",
-        "Icon": "",
-        "Name": "9x18mm PM SP7 gzh"
+        "Obtainable by": "Prapor LL2 after Glory to CPSU"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PM SP8 gzh",
         "Damage": "67",
         "PenetrationPower": "1",
         "Armor Damage %": "2",
@@ -203,11 +205,11 @@
         "Heavy Bleeding Chance %": "+10",
         "Projectile Speed (m/s)": "250",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL2",
-        "Icon": "",
-        "Name": "9x18mm PM SP8 gzh"
+        "Obtainable by": "Prapor LL2"
     },
     {
+        "Icon": "",
+        "Name": "9x18mm PMM PstM gzh",
         "Damage": "58",
         "PenetrationPower": "24",
         "Armor Damage %": "33",
@@ -219,8 +221,6 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "420",
         "Special Effects": "Overpressure[1]",
-        "Obtainable by": "Prapor LL2Workbench LV1",
-        "Icon": "",
-        "Name": "9x18mm PMM PstM gzh"
+        "Obtainable by": "Prapor LL2Workbench LV1"
     }
 ]

@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": "7.62x54mm R BS gs",
         "Damage": "72",
         "Penetration Power": "70",
         "Armor Damage %": "88",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "785",
         "Special Effects": "",
-        "Obtainable by": "Loot only",
-        "Icon": "",
-        "Name": "7.62x54mm R BS gs"
+        "Obtainable by": "Loot only"
     },
     {
+        "Icon": "",
+        "Name": "7.62x54mm R BT gzh",
         "Damage": "78",
         "Penetration Power": "55",
         "Armor Damage %": "87",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "875",
         "Special Effects": "Tracer (green)",
-        "Obtainable by": "Prapor LL4 after The Punisher - Part 3",
-        "Icon": "",
-        "Name": "7.62x54mm R BT gzh"
+        "Obtainable by": "Prapor LL4 after The Punisher - Part 3"
     },
     {
+        "Icon": "",
+        "Name": "7.62x54mm R LPS gzh",
         "Damage": "81",
         "Penetration Power": "42",
         "Armor Damage %": "78",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "865",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL1",
-        "Icon": "",
-        "Name": "7.62x54mm R LPS gzh"
+        "Obtainable by": "Prapor LL1"
     },
     {
+        "Icon": "",
+        "Name": "7.62x54mm R PS gzh",
         "Damage": "84",
         "Penetration Power": "45",
         "Armor Damage %": "84",
@@ -59,11 +61,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "875",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL3",
-        "Icon": "",
-        "Name": "7.62x54mm R PS gzh"
+        "Obtainable by": "Prapor LL3"
     },
     {
+        "Icon": "",
+        "Name": "7.62x54mm R SNB gzh",
         "Damage": "75",
         "Penetration Power": "62",
         "Armor Damage %": "87",
@@ -75,11 +77,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "875",
         "Special Effects": "",
-        "Obtainable by": "Workbench LV2",
-        "Icon": "",
-        "Name": "7.62x54mm R SNB gzh"
+        "Obtainable by": "Workbench LV2"
     },
     {
+        "Icon": "",
+        "Name": "7.62x54mm R T-46M gzh",
         "Damage": "82",
         "Penetration Power": "41",
         "Armor Damage %": "83",
@@ -91,8 +93,6 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "800",
         "Special Effects": "Tracer (green)",
-        "Obtainable by": "Prapor LL2",
-        "Icon": "",
-        "Name": "7.62x54mm R T-46M gzh"
+        "Obtainable by": "Prapor LL2"
     }
 ]

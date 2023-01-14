@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": "5.7x28mm L191",
         "Damage": "58",
         "Penetration Power": "33",
         "Armor Damage %": "41",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "922",
         "Special Effects": "Tracer (red)",
-        "Obtainable by": "Peacekeeper LL3",
-        "Icon": "",
-        "Name": "5.7x28mm L191"
+        "Obtainable by": "Peacekeeper LL3"
     },
     {
+        "Icon": "",
+        "Name": "5.7x28mm R37.F",
         "Damage": "98",
         "Penetration Power": "8",
         "Armor Damage %": "7",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "+15",
         "Projectile Speed (m/s)": "729",
         "Special Effects": "",
-        "Obtainable by": "Mechanic LL4 after Gunsmith - Part 9",
-        "Icon": "",
-        "Name": "5.7x28mm R37.F"
+        "Obtainable by": "Mechanic LL4 after Gunsmith - Part 9"
     },
     {
+        "Icon": "",
+        "Name": "5.7x28mm R37.X",
         "Damage": "81",
         "Penetration Power": "11",
         "Armor Damage %": "14",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "+20",
         "Projectile Speed (m/s)": "724",
         "Special Effects": "",
-        "Obtainable by": "Mechanic LL3",
-        "Icon": "",
-        "Name": "5.7x28mm R37.X"
+        "Obtainable by": "Mechanic LL3"
     },
     {
+        "Icon": "",
+        "Name": "5.7x28mm SB193",
         "Damage": "54",
         "Penetration Power": "35",
         "Armor Damage %": "37",
@@ -59,11 +61,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "299",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Peacekeeper LL4",
-        "Icon": "",
-        "Name": "5.7x28mm SB193"
+        "Obtainable by": "Peacekeeper LL4"
     },
     {
+        "Icon": "",
+        "Name": "5.7x28mm SS190",
         "Damage": "49",
         "Penetration Power": "37",
         "Armor Damage %": "43",
@@ -75,11 +77,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "715",
         "Special Effects": "",
-        "Obtainable by": "Workbench LV2",
-        "Icon": "",
-        "Name": "5.7x28mm SS190"
+        "Obtainable by": "Workbench LV2"
     },
     {
+        "Icon": "",
+        "Name": "5.7x28mm SS197SR",
         "Damage": "62",
         "Penetration Power": "20",
         "Armor Damage %": "22",
@@ -91,11 +93,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "594",
         "Special Effects": "",
-        "Obtainable by": "Peacekeeper LL2",
-        "Icon": "",
-        "Name": "5.7x28mm SS197SR"
+        "Obtainable by": "Peacekeeper LL2"
     },
     {
+        "Icon": "",
+        "Name": "5.7x28mm SS198LF",
         "Damage": "74",
         "Penetration Power": "10",
         "Armor Damage %": "15",
@@ -107,8 +109,6 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "792",
         "Special Effects": "",
-        "Obtainable by": "Peacekeeper LL2",
-        "Icon": "",
-        "Name": "5.7x28mm SS198LF"
+        "Obtainable by": "Peacekeeper LL2"
     }
 ]

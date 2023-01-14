@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": ".45 ACP AP",
         "Damage": "66",
         "Penetration Power": "38",
         "Armor Damage %": "48",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "299",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Workbench LV2",
-        "Icon": "",
-        "Name": ".45 ACP AP"
+        "Obtainable by": "Workbench LV2"
     },
     {
+        "Icon": "",
+        "Name": ".45 ACP Hydra-Shok",
         "Damage": "100",
         "Penetration Power": "13",
         "Armor Damage %": "30",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "+30",
         "Projectile Speed (m/s)": "274",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Peacekeeper LL2",
-        "Icon": "",
-        "Name": ".45 ACP Hydra-Shok"
+        "Obtainable by": "Peacekeeper LL2"
     },
     {
+        "Icon": "",
+        "Name": ".45 ACP Lasermatch FMJ",
         "Damage": "76",
         "Penetration Power": "19",
         "Armor Damage %": "37",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "290",
         "Special Effects": "Subsonic Tracer (red)",
-        "Obtainable by": "Peacekeeper LL2",
-        "Icon": "",
-        "Name": ".45 ACP Lasermatch FMJ"
+        "Obtainable by": "Peacekeeper LL2"
     },
     {
+        "Icon": "",
+        "Name": ".45 ACP Match FMJ",
         "Damage": "72",
         "Penetration Power": "25",
         "Armor Damage %": "36",
@@ -59,11 +61,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "340",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Peacekeeper LL1",
-        "Icon": "",
-        "Name": ".45 ACP Match FMJ"
+        "Obtainable by": "Peacekeeper LL1"
     },
     {
+        "Icon": "",
+        "Name": ".45 ACP RIP",
         "Damage": "130",
         "Penetration Power": "3",
         "Armor Damage %": "12",
@@ -75,8 +77,6 @@
         "Heavy Bleeding Chance %": "+20",
         "Projectile Speed (m/s)": "293",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Mechanic LL4",
-        "Icon": "",
-        "Name": ".45 ACP RIP"
+        "Obtainable by": "Mechanic LL4"
     }
 ]

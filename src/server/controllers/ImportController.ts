@@ -18,7 +18,14 @@ export default class ImportController
 
             if (key === 'ammo') {
                 const ammo = <unknown>req.query.subKey as AmmoKey
-                await this.repos[key].storeToJson(ammo)
+                
+                if (!ammo) {
+                    for (const ammo of Object.keys(ammoTypes)) {
+                        await this.repos[key].storeToJson(ammo)
+                    }
+                } else {
+                    await this.repos[key].storeToJson(ammo)
+                }
             }
 
             res.send(201)
@@ -33,8 +40,17 @@ export default class ImportController
 
             if (key === 'ammo') {
                 const ammo = <unknown>req.query.subKey as AmmoKey
-                for (const ammoType of ammoTypes[ammo]) {
-                    await this.repos[key].storeJsonToMongoDb(ammoType)
+
+                if (!ammo) {
+                    for (const ammo of Object.keys(ammoTypes)) {
+                        for (const ammoType of ammoTypes[<AmmoKey>ammo]) {
+                            await this.repos[key].storeJsonToMongoDb(ammoType)
+                        }
+                    }
+                } else {
+                    for (const ammoType of ammoTypes[ammo]) {
+                        await this.repos[key].storeJsonToMongoDb(ammoType)
+                    }
                 }
             }
 

@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": "9x39mm BP gs",
         "Damage": "60",
         "Penetration Power": "55",
         "Armor Damage %": "68",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "295",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL4 (Barter) after GrenadierWorkbench LV3",
-        "Icon": "",
-        "Name": "9x39mm BP gs"
+        "Obtainable by": "Prapor LL4 (Barter) after GrenadierWorkbench LV3"
     },
     {
+        "Icon": "",
+        "Name": "9x39mm PAB-9 gs",
         "Damage": "62",
         "Penetration Power": "48",
         "Armor Damage %": "72",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "320",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Loot only",
-        "Icon": "",
-        "Name": "9x39mm PAB-9 gs"
+        "Obtainable by": "Loot only"
     },
     {
+        "Icon": "",
+        "Name": "9x39mm SP-5 gs",
         "Damage": "71",
         "Penetration Power": "28",
         "Armor Damage %": "60",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "10%",
         "Projectile Speed (m/s)": "290",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL2",
-        "Icon": "",
-        "Name": "9x39mm SP-5 gs"
+        "Obtainable by": "Prapor LL2"
     },
     {
+        "Icon": "",
+        "Name": "9x39mm SP-6 gs",
         "Damage": "58",
         "Penetration Power": "46",
         "Armor Damage %": "60",
@@ -59,11 +61,11 @@
         "Heavy Bleeding Chance %": "10%",
         "Projectile Speed (m/s)": "305",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL3Workbench LV2",
-        "Icon": "",
-        "Name": "9x39mm SP-6 gs"
+        "Obtainable by": "Prapor LL3Workbench LV2"
     },
     {
+        "Icon": "",
+        "Name": "9x39mm SPP gs",
         "Damage": "68",
         "Penetration Power": "40",
         "Armor Damage %": "55",
@@ -75,8 +77,6 @@
         "Heavy Bleeding Chance %": "20%",
         "Projectile Speed (m/s)": "310",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL3 (Barter)Prapor LL4 after Test Drive - Part 1Workbench LV3",
-        "Icon": "",
-        "Name": "9x39mm SPP gs"
+        "Obtainable by": "Prapor LL3 (Barter)Prapor LL4 after Test Drive - Part 1Workbench LV3"
     }
 ]

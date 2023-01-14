@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": "23x75mm \"Barrikada\" slug",
         "Damage": "192",
         "Penetration Power": "39",
         "Armor Damage %": "75",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "420",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL4",
-        "Icon": "",
-        "Name": "23x75mm \"Barrikada\" slug"
+        "Obtainable by": "Prapor LL4"
     },
     {
+        "Icon": "",
+        "Name": "23x75mm \"Shrapnel-10\" buckshot",
         "Damage": "8x87",
         "Penetration Power": "11",
         "Armor Damage %": "20",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "270",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL3",
-        "Icon": "",
-        "Name": "23x75mm \"Shrapnel-10\" buckshot"
+        "Obtainable by": "Prapor LL3"
     },
     {
+        "Icon": "",
+        "Name": "23x75mm \"Shrapnel-25\" buckshot",
         "Damage": "8x78",
         "Penetration Power": "10",
         "Armor Damage %": "20",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "375",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL3",
-        "Icon": "",
-        "Name": "23x75mm \"Shrapnel-25\" buckshot"
+        "Obtainable by": "Prapor LL3"
     },
     {
+        "Icon": "",
+        "Name": "23x75mm \"Zvezda\" flashbang round",
         "Damage": "0",
         "Penetration Power": "0",
         "Armor Damage %": "0",
@@ -59,8 +61,6 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "80",
         "Special Effects": "Flashbang",
-        "Obtainable by": "USEC: Skier LL4 after CounteractionBEAR: Prapor LL3 after Our Own LandWorkbench LV3",
-        "Icon": "",
-        "Name": "23x75mm \"Zvezda\" flashbang round"
+        "Obtainable by": "USEC: Skier LL4 after CounteractionBEAR: Prapor LL3 after Our Own LandWorkbench LV3"
     }
 ]

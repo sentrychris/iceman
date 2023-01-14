@@ -74,8 +74,8 @@ export class AmmoParser
                 }, {})
             }
 
-            const source = parse([...row.querySelectorAll('th')], 1)
-            const dest = parse([...row.querySelectorAll('td')], 2)
+            const dest = parse([...row.querySelectorAll('th')], 1)
+            const source = parse([...row.querySelectorAll('td')], 2)
 
             return deepCopy(source, dest)
         })

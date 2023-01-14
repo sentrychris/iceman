@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": "7.62x25mm TT AKBS",
         "Damage": "58",
         "Penetration Power": "12",
         "Armor Damage %": "32",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "",
         "Ricochet Chance": "6.5%",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL1",
-        "Icon": "",
-        "Name": "7.62x25mm TT AKBS"
+        "Obtainable by": "Prapor LL1"
     },
     {
+        "Icon": "",
+        "Name": "7.62x25mm TT FMJ43",
         "Damage": "60",
         "Penetration Power": "11",
         "Armor Damage %": "29",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "",
         "Ricochet Chance": "6.5%",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL1",
-        "Icon": "",
-        "Name": "7.62x25mm TT FMJ43"
+        "Obtainable by": "Prapor LL1"
     },
     {
+        "Icon": "",
+        "Name": "7.62x25mm TT LRN",
         "Damage": "64",
         "Penetration Power": "8",
         "Armor Damage %": "28",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "+10",
         "Ricochet Chance": "5%",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL1",
-        "Icon": "",
-        "Name": "7.62x25mm TT LRN"
+        "Obtainable by": "Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "7.62x25mm TT LRNPC",
         "Damage": "66",
         "Penetration Power": "7",
         "Armor Damage %": "27",
@@ -59,11 +61,11 @@
         "Heavy Bleeding Chance %": "+10",
         "Ricochet Chance": "5%",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL1",
-        "Icon": "",
-        "Name": "7.62x25mm TT LRNPC"
+        "Obtainable by": "Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "7.62x25mm TT P gl",
         "Damage": "58",
         "Penetration Power": "14",
         "Armor Damage %": "32",
@@ -75,11 +77,11 @@
         "Heavy Bleeding Chance %": "",
         "Ricochet Chance": "6.5%",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL2",
-        "Icon": "",
-        "Name": "7.62x25mm TT P gl"
+        "Obtainable by": "Prapor LL2"
     },
     {
+        "Icon": "",
+        "Name": "7.62x25mm TT Pst gzh",
         "Damage": "50",
         "Penetration Power": "25",
         "Armor Damage %": "36",
@@ -91,11 +93,11 @@
         "Heavy Bleeding Chance %": "",
         "Ricochet Chance": "10%",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL2 after The Punisher - Part 2",
-        "Icon": "",
-        "Name": "7.62x25mm TT Pst gzh"
+        "Obtainable by": "Prapor LL2 after The Punisher - Part 2"
     },
     {
+        "Icon": "",
+        "Name": "7.62x25mm TT PT gzh",
         "Damage": "55",
         "Penetration Power": "18",
         "Armor Damage %": "34",
@@ -107,8 +109,6 @@
         "Heavy Bleeding Chance %": "",
         "Ricochet Chance": "10%",
         "Special Effects": "Tracer (red)",
-        "Obtainable by": "Prapor LL2",
-        "Icon": "",
-        "Name": "7.62x25mm TT PT gzh"
+        "Obtainable by": "Prapor LL2"
     }
 ]

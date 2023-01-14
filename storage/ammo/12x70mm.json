@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": "12/70 \"Poleva-3\" slug",
         "Damage": "140",
         "Penetration Power": "17",
         "Armor Damage %": "40",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "410",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL1",
-        "Icon": "",
-        "Name": "12/70 \"Poleva-3\" slug"
+        "Obtainable by": "Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "12/70 \"Poleva-6u\" slug",
         "Damage": "150",
         "Penetration Power": "20",
         "Armor Damage %": "50",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "+5",
         "Projectile Speed (m/s)": "430",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL2",
-        "Icon": "",
-        "Name": "12/70 \"Poleva-6u\" slug"
+        "Obtainable by": "Jaeger LL2"
     },
     {
+        "Icon": "",
+        "Name": "12/70 5.25mm buckshot",
         "Damage": "8x37",
         "Penetration Power": "1",
         "Armor Damage %": "15",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "330",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Jaeger LL1",
-        "Icon": "",
-        "Name": "12/70 5.25mm buckshot"
+        "Obtainable by": "Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "12/70 6.5mm Express buckshot",
         "Damage": "9x35",
         "Penetration Power": "3",
         "Armor Damage %": "26",
@@ -59,11 +61,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "430",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL1",
-        "Icon": "",
-        "Name": "12/70 6.5mm Express buckshot"
+        "Obtainable by": "Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "12/70 7mm buckshot",
         "Damage": "8x39",
         "Penetration Power": "3",
         "Armor Damage %": "26",
@@ -75,11 +77,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "415",
         "Special Effects": "",
-        "Obtainable by": "Skier LL1Jaeger LL1",
-        "Icon": "",
-        "Name": "12/70 7mm buckshot"
+        "Obtainable by": "Skier LL1Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "12/70 8.5mm Magnum buckshot",
         "Damage": "8x50",
         "Penetration Power": "2",
         "Armor Damage %": "26",
@@ -91,11 +93,11 @@
         "Heavy Bleeding Chance %": "+10",
         "Projectile Speed (m/s)": "385",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL2Workbench LV1",
-        "Icon": "",
-        "Name": "12/70 8.5mm Magnum buckshot"
+        "Obtainable by": "Jaeger LL2Workbench LV1"
     },
     {
+        "Icon": "",
+        "Name": "12/70 AP-20 armor-piercing slug",
         "Damage": "164",
         "Penetration Power": "37",
         "Armor Damage %": "65",
@@ -107,11 +109,11 @@
         "Heavy Bleeding Chance %": "+10",
         "Projectile Speed (m/s)": "510",
         "Special Effects": "",
-        "Obtainable by": "Workbench LV3",
-        "Icon": "",
-        "Name": "12/70 AP-20 armor-piercing slug"
+        "Obtainable by": "Workbench LV3"
     },
     {
+        "Icon": "",
+        "Name": "12/70 Copper Sabot Premier HP slug",
         "Damage": "206",
         "Penetration Power": "14",
         "Armor Damage %": "46",
@@ -123,11 +125,11 @@
         "Heavy Bleeding Chance %": "+25",
         "Projectile Speed (m/s)": "442",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL3",
-        "Icon": "",
-        "Name": "12/70 Copper Sabot Premier HP slug"
+        "Obtainable by": "Jaeger LL3"
     },
     {
+        "Icon": "",
+        "Name": "12/70 Dual Sabot slug",
         "Damage": "2x85",
         "Penetration Power": "17",
         "Armor Damage %": "65",
@@ -139,11 +141,11 @@
         "Heavy Bleeding Chance %": "+15",
         "Projectile Speed (m/s)": "415",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL3",
-        "Icon": "",
-        "Name": "12/70 Dual Sabot slug"
+        "Obtainable by": "Jaeger LL3"
     },
     {
+        "Icon": "",
+        "Name": "12/70 flechette",
         "Damage": "8x25",
         "Penetration Power": "31",
         "Armor Damage %": "26",
@@ -155,11 +157,11 @@
         "Heavy Bleeding Chance %": "+25",
         "Projectile Speed (m/s)": "320",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Jaeger LL3 after The Huntsman Path - Forest CleaningWorkbench LV2",
-        "Icon": "",
-        "Name": "12/70 flechette"
+        "Obtainable by": "Jaeger LL3 after The Huntsman Path - Forest CleaningWorkbench LV2"
     },
     {
+        "Icon": "",
+        "Name": "12/70 FTX Custom Lite slug",
         "Damage": "183",
         "Penetration Power": "20",
         "Armor Damage %": "50",
@@ -171,11 +173,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "480",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL2",
-        "Icon": "",
-        "Name": "12/70 FTX Custom Lite slug"
+        "Obtainable by": "Jaeger LL2"
     },
     {
+        "Icon": "",
+        "Name": "12/70 Grizzly 40 slug",
         "Damage": "190",
         "Penetration Power": "12",
         "Armor Damage %": "48",
@@ -187,11 +189,11 @@
         "Heavy Bleeding Chance %": "+10",
         "Projectile Speed (m/s)": "390",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL1",
-        "Icon": "",
-        "Name": "12/70 Grizzly 40 slug"
+        "Obtainable by": "Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "12/70 lead slug",
         "Damage": "167",
         "Penetration Power": "15",
         "Armor Damage %": "55",
@@ -203,11 +205,11 @@
         "Heavy Bleeding Chance %": "+15",
         "Projectile Speed (m/s)": "370",
         "Special Effects": "",
-        "Obtainable by": "Skier LL1Peacekeeper LL1Jaeger LL1",
-        "Icon": "",
-        "Name": "12/70 lead slug"
+        "Obtainable by": "Skier LL1Peacekeeper LL1Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "12/70 makeshift .50 BMG slug",
         "Damage": "197",
         "Penetration Power": "26",
         "Armor Damage %": "57",
@@ -219,11 +221,11 @@
         "Heavy Bleeding Chance %": "+15",
         "Projectile Speed (m/s)": "410",
         "Special Effects": "Tracer(red)",
-        "Obtainable by": "Jaeger LL3 after Silent Caliber",
-        "Icon": "",
-        "Name": "12/70 makeshift .50 BMG slug"
+        "Obtainable by": "Jaeger LL3 after Silent Caliber"
     },
     {
+        "Icon": "",
+        "Name": "12/70 RIP",
         "Damage": "265",
         "Penetration Power": "2",
         "Armor Damage %": "11",
@@ -235,11 +237,11 @@
         "Heavy Bleeding Chance %": "+25",
         "Projectile Speed (m/s)": "410",
         "Special Effects": "",
-        "Obtainable by": "Skier LL3 (Barter) after BullshitWorkbench LV2",
-        "Icon": "",
-        "Name": "12/70 RIP"
+        "Obtainable by": "Skier LL3 (Barter) after BullshitWorkbench LV2"
     },
     {
+        "Icon": "",
+        "Name": "12/70 SuperFormance HP slug",
         "Damage": "220",
         "Penetration Power": "5",
         "Armor Damage %": "12",
@@ -251,8 +253,6 @@
         "Heavy Bleeding Chance %": "+40",
         "Projectile Speed (m/s)": "594",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL4",
-        "Icon": "",
-        "Name": "12/70 SuperFormance HP slug"
+        "Obtainable by": "Jaeger LL4"
     }
 ]

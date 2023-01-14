@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": ".338 Lapua Magnum AP",
         "Damage": "115",
         "Penetration Power": "79",
         "Armor Damage %": "89",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "+55",
         "Projectile Speed (m/s)": "849",
         "Special Effects": "",
-        "Obtainable by": "Loot only",
-        "Icon": "",
-        "Name": ".338 Lapua Magnum AP"
+        "Obtainable by": "Loot only"
     },
     {
+        "Icon": "",
+        "Name": ".338 Lapua Magnum FMJ",
         "Damage": "122",
         "Penetration Power": "47",
         "Armor Damage %": "83",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "+50",
         "Projectile Speed (m/s)": "900",
         "Special Effects": "",
-        "Obtainable by": "Peacekeeper LL4",
-        "Icon": "",
-        "Name": ".338 Lapua Magnum FMJ"
+        "Obtainable by": "Peacekeeper LL4"
     },
     {
+        "Icon": "",
+        "Name": ".338 Lapua Magnum TAC-X",
         "Damage": "196",
         "Penetration Power": "18",
         "Armor Damage %": "55",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "+50",
         "Projectile Speed (m/s)": "880",
         "Special Effects": "",
-        "Obtainable by": "Mechanic LL4 after Import",
-        "Icon": "",
-        "Name": ".338 Lapua Magnum TAC-X"
+        "Obtainable by": "Mechanic LL4 after Import"
     },
     {
+        "Icon": "",
+        "Name": ".338 Lapua Magnum UCW",
         "Damage": "142",
         "Penetration Power": "32",
         "Armor Damage %": "70",
@@ -59,8 +61,6 @@
         "Heavy Bleeding Chance %": "+40",
         "Projectile Speed (m/s)": "849",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL4",
-        "Icon": "",
-        "Name": ".338 Lapua Magnum UCW"
+        "Obtainable by": "Jaeger LL4"
     }
 ]

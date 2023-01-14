@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": "5.56x45mm FMJ",
         "Damage": "54",
         "Penetration Power": "23",
         "Armor Damage %": "33",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "957",
         "Special Effects": "",
-        "Obtainable by": "Skier LL1Peacekeeper LL1",
-        "Icon": "",
-        "Name": "5.56x45mm FMJ"
+        "Obtainable by": "Skier LL1Peacekeeper LL1"
     },
     {
+        "Icon": "",
+        "Name": "5.56x45mm HP",
         "Damage": "79",
         "Penetration Power": "8",
         "Armor Damage %": "22",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "+15",
         "Projectile Speed (m/s)": "947",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL1",
-        "Icon": "",
-        "Name": "5.56x45mm HP"
+        "Obtainable by": "Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "5.56x45mm M855",
         "Damage": "53",
         "Penetration Power": "30",
         "Armor Damage %": "37",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "922",
         "Special Effects": "",
-        "Obtainable by": "Peacekeeper LL2",
-        "Icon": "",
-        "Name": "5.56x45mm M855"
+        "Obtainable by": "Peacekeeper LL2"
     },
     {
+        "Icon": "",
+        "Name": "5.56x45mm M855A1",
         "Damage": "49",
         "Penetration Power": "44",
         "Armor Damage %": "52",
@@ -59,11 +61,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "945",
         "Special Effects": "",
-        "Obtainable by": "Peacekeeper LL4",
-        "Icon": "",
-        "Name": "5.56x45mm M855A1"
+        "Obtainable by": "Peacekeeper LL4"
     },
     {
+        "Icon": "",
+        "Name": "5.56x45mm M856",
         "Damage": "59",
         "Penetration Power": "23",
         "Armor Damage %": "34",
@@ -75,11 +77,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "874",
         "Special Effects": "Tracer (red)",
-        "Obtainable by": "Peacekeeper LL2",
-        "Icon": "",
-        "Name": "5.56x45mm M856"
+        "Obtainable by": "Peacekeeper LL2"
     },
     {
+        "Icon": "",
+        "Name": "5.56x45mm M856A1",
         "Damage": "54",
         "Penetration Power": "37",
         "Armor Damage %": "52",
@@ -91,11 +93,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "940",
         "Special Effects": "Tracer (red)",
-        "Obtainable by": "Peacekeeper LL2 after The Cult - Part 1Workbench LV2",
-        "Icon": "",
-        "Name": "5.56x45mm M856A1"
+        "Obtainable by": "Peacekeeper LL2 after The Cult - Part 1Workbench LV2"
     },
     {
+        "Icon": "",
+        "Name": "5.56x45mm M995",
         "Damage": "42",
         "Penetration Power": "53",
         "Armor Damage %": "58",
@@ -107,11 +109,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "1013",
         "Special Effects": "",
-        "Obtainable by": "Workbench LV3",
-        "Icon": "",
-        "Name": "5.56x45mm M995"
+        "Obtainable by": "Workbench LV3"
     },
     {
+        "Icon": "",
+        "Name": "5.56x45mm MK 255 Mod 0 (RRLP)",
         "Damage": "63",
         "Penetration Power": "18",
         "Armor Damage %": "32",
@@ -123,11 +125,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "936",
         "Special Effects": "",
-        "Obtainable by": "Peacekeeper LL1",
-        "Icon": "",
-        "Name": "5.56x45mm MK 255 Mod 0 (RRLP)"
+        "Obtainable by": "Peacekeeper LL1"
     },
     {
+        "Icon": "",
+        "Name": "5.56x45mm MK 318 Mod 0 (SOST)",
         "Damage": "69",
         "Penetration Power": "20",
         "Armor Damage %": "35",
@@ -139,11 +141,11 @@
         "Heavy Bleeding Chance %": "+10",
         "Projectile Speed (m/s)": "902",
         "Special Effects": "",
-        "Obtainable by": "Peacekeeper LL3Workbench LV3",
-        "Icon": "",
-        "Name": "5.56x45mm MK 318 Mod 0 (SOST)"
+        "Obtainable by": "Peacekeeper LL3Workbench LV3"
     },
     {
+        "Icon": "",
+        "Name": "5.56x45mm SSA AP",
         "Damage": "38",
         "Penetration Power": "57",
         "Armor Damage %": "64",
@@ -155,11 +157,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "1013",
         "Special Effects": "",
-        "Obtainable by": "Loot only",
-        "Icon": "",
-        "Name": "5.56x45mm SSA AP"
+        "Obtainable by": "Loot only"
     },
     {
+        "Icon": "",
+        "Name": "5.56x45mm Warmageddon",
         "Damage": "88",
         "Penetration Power": "3",
         "Armor Damage %": "11",
@@ -171,8 +173,6 @@
         "Heavy Bleeding Chance %": "+20",
         "Projectile Speed (m/s)": "936",
         "Special Effects": "",
-        "Obtainable by": "Peacekeeper LL3 (Barter)Jaeger LL4 (Barter)",
-        "Icon": "",
-        "Name": "5.56x45mm Warmageddon"
+        "Obtainable by": "Peacekeeper LL3 (Barter)Jaeger LL4 (Barter)"
     }
 ]

@@ -1,3 +1,4 @@
+import e from 'cors'
 import type { Request, Response } from 'express'
 import { client } from '../database'
 
@@ -16,15 +17,16 @@ export default class AmmoController
     async search(req: Request, res: Response) {
         try {
             const collection = await client.getCollection('ammo')
-            const result = await collection.find({
-                'Name': {
-                    $regex: req.query.name
+            const result = await collection.aggregate([{
+                $search: {
+                    index: 'default',
+                    text: {
+                        path: "Name",
+                        query: req.query.name,
+                        fuzzy: {}
+                    }
                 }
-            }).toArray()
-
-            if (!result || result.length === 0) {
-                res.send(`Nothing found for ${req.query.type}`).status(404)
-            }
+            }]).toArray()
 
             res.send(result)
         } catch (error) {

@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": "12.7x55mm PS12",
         "Damage": "115",
         "Penetration Power": "28",
         "Armor Damage %": "60",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "+20",
         "Projectile Speed (m/s)": "285",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL4",
-        "Icon": "",
-        "Name": "12.7x55mm PS12"
+        "Obtainable by": "Prapor LL4"
     },
     {
+        "Icon": "",
+        "Name": "12.7x55mm PS12A",
         "Damage": "165",
         "Penetration Power": "10",
         "Armor Damage %": "22",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "+30",
         "Projectile Speed (m/s)": "290",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL3",
-        "Icon": "",
-        "Name": "12.7x55mm PS12A"
+        "Obtainable by": "Prapor LL3"
     },
     {
+        "Icon": "",
+        "Name": "12.7x55mm PS12B",
         "Damage": "102",
         "Penetration Power": "46",
         "Armor Damage %": "57",
@@ -43,8 +45,6 @@
         "Heavy Bleeding Chance %": "+15",
         "Projectile Speed (m/s)": "300",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Workbench LV3",
-        "Icon": "",
-        "Name": "12.7x55mm PS12B"
+        "Obtainable by": "Workbench LV3"
     }
 ]

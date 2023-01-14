@@ -1,5 +1,7 @@
 [
     {
+        "Icon": "",
+        "Name": "5.45x39mm 7N40",
         "Damage": "52",
         "Penetration Power": "44",
         "Armor Damage %": "50",
@@ -11,11 +13,11 @@
         "Heavy Bleeding Chance %": "+15",
         "Projectile Speed (m/s)": "915",
         "Special Effects": "",
-        "Obtainable by": "Loot only",
-        "Icon": "",
-        "Name": "5.45x39mm 7N40"
+        "Obtainable by": "Loot only"
     },
     {
+        "Icon": "",
+        "Name": "5.45x39mm BP gs",
         "Damage": "45",
         "Penetration Power": "37",
         "Armor Damage %": "41",
@@ -27,11 +29,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "890",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL2 (Barter)Prapor LL3",
-        "Icon": "",
-        "Name": "5.45x39mm BP gs"
+        "Obtainable by": "Prapor LL2 (Barter)Prapor LL3"
     },
     {
+        "Icon": "",
+        "Name": "5.45x39mm BS gs",
         "Damage": "40",
         "Penetration Power": "51",
         "Armor Damage %": "57",
@@ -43,11 +45,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "830",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL3 (Barter)",
-        "Icon": "",
-        "Name": "5.45x39mm BS gs"
+        "Obtainable by": "Prapor LL3 (Barter)"
     },
     {
+        "Icon": "",
+        "Name": "5.45x39mm BT gs",
         "Damage": "42",
         "Penetration Power": "40",
         "Armor Damage %": "35",
@@ -59,11 +61,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "880",
         "Special Effects": "Tracer (red)",
-        "Obtainable by": "Prapor LL2 (Barter)Prapor LL3 after The Punisher - Part 4",
-        "Icon": "",
-        "Name": "5.45x39mm BT gs"
+        "Obtainable by": "Prapor LL2 (Barter)Prapor LL3 after The Punisher - Part 4"
     },
     {
+        "Icon": "",
+        "Name": "5.45x39mm FMJ",
         "Damage": "56",
         "Penetration Power": "21",
         "Armor Damage %": "30",
@@ -75,11 +77,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "884",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL1",
-        "Icon": "",
-        "Name": "5.45x39mm FMJ"
+        "Obtainable by": "Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "5.45x39mm HP",
         "Damage": "74",
         "Penetration Power": "12",
         "Armor Damage %": "20",
@@ -91,11 +93,11 @@
         "Heavy Bleeding Chance %": "+15",
         "Projectile Speed (m/s)": "884",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL1",
-        "Icon": "",
-        "Name": "5.45x39mm HP"
+        "Obtainable by": "Jaeger LL1"
     },
     {
+        "Icon": "",
+        "Name": "5.45x39mm PP gs",
         "Damage": "44",
         "Penetration Power": "36",
         "Armor Damage %": "38",
@@ -107,11 +109,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "886",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL2Workbench LV2",
-        "Icon": "",
-        "Name": "5.45x39mm PP gs"
+        "Obtainable by": "Prapor LL2Workbench LV2"
     },
     {
+        "Icon": "",
+        "Name": "5.45x39mm PPBS gs \"Igolnik\"",
         "Damage": "37",
         "Penetration Power": "62",
         "Armor Damage %": "55",
@@ -123,11 +125,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "905",
         "Special Effects": "",
-        "Obtainable by": "Workbench LV3",
-        "Icon": "",
-        "Name": "5.45x39mm PPBS gs \"Igolnik\""
+        "Obtainable by": "Workbench LV3"
     },
     {
+        "Icon": "",
+        "Name": "5.45x39mm PRS gs",
         "Damage": "60",
         "Penetration Power": "12",
         "Armor Damage %": "28",
@@ -139,11 +141,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "866",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL1",
-        "Icon": "",
-        "Name": "5.45x39mm PRS gs"
+        "Obtainable by": "Prapor LL1"
     },
     {
+        "Icon": "",
+        "Name": "5.45x39mm PS gs",
         "Damage": "48",
         "Penetration Power": "31",
         "Armor Damage %": "35",
@@ -155,11 +157,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "890",
         "Special Effects": "",
-        "Obtainable by": "Prapor LL1 after Delivery from the Past",
-        "Icon": "",
-        "Name": "5.45x39mm PS gs"
+        "Obtainable by": "Prapor LL1 after Delivery from the Past"
     },
     {
+        "Icon": "",
+        "Name": "5.45x39mm SP",
         "Damage": "68",
         "Penetration Power": "13",
         "Armor Damage %": "34",
@@ -171,11 +173,11 @@
         "Heavy Bleeding Chance %": "+10",
         "Projectile Speed (m/s)": "873",
         "Special Effects": "",
-        "Obtainable by": "Jaeger LL2",
-        "Icon": "",
-        "Name": "5.45x39mm SP"
+        "Obtainable by": "Jaeger LL2"
     },
     {
+        "Icon": "",
+        "Name": "5.45x39mm T gs",
         "Damage": "57",
         "Penetration Power": "20",
         "Armor Damage %": "38",
@@ -187,11 +189,11 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "883",
         "Special Effects": "Tracer (red)",
-        "Obtainable by": "Prapor LL1",
-        "Icon": "",
-        "Name": "5.45x39mm T gs"
+        "Obtainable by": "Prapor LL1"
     },
     {
+        "Icon": "",
+        "Name": "5.45x39mm US gs",
         "Damage": "65",
         "Penetration Power": "15",
         "Armor Damage %": "34",
@@ -203,8 +205,6 @@
         "Heavy Bleeding Chance %": "",
         "Projectile Speed (m/s)": "303",
         "Special Effects": "Subsonic",
-        "Obtainable by": "Prapor LL2",
-        "Icon": "",
-        "Name": "5.45x39mm US gs"
+        "Obtainable by": "Prapor LL2"
     }
 ]
