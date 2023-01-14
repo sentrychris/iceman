@@ -1,9 +1,9 @@
 import type { Request, Response } from 'express'
 import type { Repository } from '../interfaces/Repository'
-import type { AmmoKey } from '../types/keys'
 import type { ImportKey } from '../types/keys'
+import type { AmmoKey } from '../types/keys'
 import { AmmoRepository } from '../lib/ammo/AmmoRepository'
-import { mappedAmmo } from '../lib/map/wikiAmmo'
+import { ammoTypes } from '../lib/map/wiki/ammo'
 
 
 export default class ImportController
@@ -33,7 +33,7 @@ export default class ImportController
 
             if (key === 'ammo') {
                 const ammo = <unknown>req.query.subKey as AmmoKey
-                for (const ammoType of mappedAmmo[ammo]) {
+                for (const ammoType of ammoTypes[ammo]) {
                     await this.repos[key].storeJsonToMongoDb(ammoType)
                 }
             }
