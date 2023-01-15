@@ -1,7 +1,7 @@
 import {formatTime, hours} from '../../utilities'
 import { MessageEmbed } from 'discord.js'
 
-export class TarkovTimer
+export class RaidTimer
 {
     private multiplier: number = 7
 
@@ -19,7 +19,7 @@ export class TarkovTimer
 
 export function getRaidTimes({embed}: {embed: boolean}): MessageEmbed | Record<string, string>
 {
-    const timer = new TarkovTimer
+    const timer = new RaidTimer
     const left = timer.getTarkovTime(true)
     const right = timer.getTarkovTime(false)
 
