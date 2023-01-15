@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "tsc",
     "serve:bot": "node ./dist/bot/index.js",
     "serve:api": "node ./dist/server/index.js",
+    "serve:api:hot": "nodemon ./dist/server/index.js",
     "watch": "tsc --watch"
   },
   "author": "",
@@ -24,6 +26,7 @@
     "@types/express": "^4.17.15",
     "@types/jsdom": "^20.0.1",
     "@types/mongodb": "^4.0.7",
-    "@types/node": "^18.0.3"
+    "@types/node": "^18.0.3",
+    "nodemon": "^2.0.20"
   }
 }

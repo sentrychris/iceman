@@ -19,14 +19,12 @@ export class AmmoImporter implements Importer<AmmoImporter>
      */
     async json(key?: unknown | null) {               
         if (!key) {
-            const response: BallisticsCollection = []
+            const response: Array<BallisticsCollection> = []
             
             for (const ammoKey of Object.keys(ammoTypes)) {
                 const data = await this.repository.storeToJsonFile(ammoKey)
                 response.push(data)
             }
-
-            console.log("importer", response)
 
             return response
         } else {

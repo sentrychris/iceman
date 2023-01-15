@@ -16,4 +16,4 @@ export interface Ballistics {
     "Obtainable by": string;
 }
 
-export type BallisticsCollection = Ballistics[][]
+export type BallisticsCollection = Ballistics[]
