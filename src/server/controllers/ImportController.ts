@@ -1,58 +1,30 @@
 import type { Request, Response } from 'express'
-import type { Repository } from '../interfaces/Repository'
 import type { ImportKey } from '../types/keys'
-import type { AmmoKey } from '../types/keys'
-import { AmmoRepository } from '../lib/ammo/AmmoRepository'
-import { ammoTypes } from '../lib/map/wiki/ammo'
+import { Importer } from '../interfaces/Importer'
+import { AmmoImporter } from '../lib/ammo/AmmoImporter'
 
 
 export default class ImportController
 {
-    protected repos: Record<string, Repository>  = {
-        ammo: new AmmoRepository
+    protected import: Record<ImportKey, Importer<any>>  = {
+        ammo: new AmmoImporter
     }
     
-    async importToJson(req: Request , res: Response) {
+    async json(req: Request , res: Response) {
         try {
             const key = <unknown>req.query.key as ImportKey
-
-            if (key === 'ammo') {
-                const ammo = <unknown>req.query.subKey as AmmoKey
-                
-                if (!ammo) {
-                    for (const ammo of Object.keys(ammoTypes)) {
-                        await this.repos[key].storeToJson(ammo)
-                    }
-                } else {
-                    await this.repos[key].storeToJson(ammo)
-                }
-            }
-
-            res.send(201)
+            const response = await this.import[key].json(req.query.subKey)
+            
+            res.status(201).send(response)
         } catch (error) {
             console.log(error)
         }
     }
 
-    async importToMongoDb(req: Request, res: Response) {
+    async mongo(req: Request, res: Response) {
         try {
             const key = <unknown>req.query.key as ImportKey
-
-            if (key === 'ammo') {
-                const ammo = <unknown>req.query.subKey as AmmoKey
-
-                if (!ammo) {
-                    for (const ammo of Object.keys(ammoTypes)) {
-                        for (const ammoType of ammoTypes[<AmmoKey>ammo]) {
-                            await this.repos[key].storeJsonToMongoDb(ammoType)
-                        }
-                    }
-                } else {
-                    for (const ammoType of ammoTypes[ammo]) {
-                        await this.repos[key].storeJsonToMongoDb(ammoType)
-                    }
-                }
-            }
+            this.import[key].mongo(req.query.subKey)
 
             res.send(201)
         } catch (error) {

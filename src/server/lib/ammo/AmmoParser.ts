@@ -1,5 +1,6 @@
 import { JSDOM } from 'jsdom'
 import { deepCopy } from '../../../utilities'
+import { Ballistics } from '../../interfaces/Ballistics'
 
 export class AmmoParser
 {
@@ -11,7 +12,7 @@ export class AmmoParser
     /**
     * Parsed json
     */
-    public json: Array<Record<string, string>> = []
+    public json: Array<Ballistics> = []
     
     /**
     * Fetch data
@@ -28,7 +29,7 @@ export class AmmoParser
     * Parse data
     * @returns 
     */
-    async parseData(): Promise<Array<Record<string, string>> | boolean> {
+    async parseData(): Promise<Array<Ballistics> | false> {
         if (!this.data) {
             return false
         }

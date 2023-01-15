@@ -1,5 +1,6 @@
-export interface Repository {
+export interface Repository<T> {
     path: string;
-    storeToJson(key: string): Promise<void>;
-    storeJsonToMongoDb(key?: string | null): Promise<void>;
+    collection: T;
+    storeToJsonFile(key: string): Promise<T>;
+    storeJsonFileToMongoDb(key?: string | null): Promise<void>;
 }

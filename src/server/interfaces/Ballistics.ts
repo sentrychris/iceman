@@ -15,3 +15,5 @@ export interface Ballistics {
     "Special Effects": string;
     "Obtainable by": string;
 }
+
+export type BallisticsCollection = Ballistics[][]
