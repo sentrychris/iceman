@@ -1,12 +1,12 @@
 export interface Ballistics {
-    _id: string;
-    Icon: string;
-    Name: string;
-    Damage: string;
+    "_id": string;
+    "Icon": string;
+    "Name": string;
+    "Damage": string;
     "Penetration Power": string;
     "Armor Damage %": string;
     "Accuracy %": string;
-    Recoil: string;
+    "Recoil": string;
     "Fragmentation Chance": string;
     "Ricochet Chance": string;
     "Light Bleeding Chance %": string;
@@ -15,5 +15,3 @@ export interface Ballistics {
     "Special Effects": string;
     "Obtainable by": string;
 }
-
-export type BallisticsCollection = Ballistics[]

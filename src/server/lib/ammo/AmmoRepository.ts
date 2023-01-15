@@ -1,20 +1,33 @@
 import type { Repository } from '../../interfaces/Repository'
-import type { Ballistics, BallisticsCollection } from '../../interfaces/Ballistics'
+import type { Ballistics } from '../../interfaces/Ballistics'
+import type { BallisticsCollection } from '../../types/collections'
 import type { AmmoKey } from '../../types/keys'
 import { ammoParser } from './AmmoParser'
 import { ammoTypes } from '../map/wiki/ammo'
+import { settings } from '../../config'
 import { client } from '../../database'
 import * as fs from 'fs'
 
 export class AmmoRepository implements Repository<BallisticsCollection>
 {
-    public path: string  = `C:\\Users\\chris\\workspace\\tarkov-thingy\\storage`
+    /**
+     * Storage path
+     */
+    public path: string = settings.app.storage
 
+    /**
+     * Collected data
+     */
     public collection: Array<BallisticsCollection> = []
     
+    /**
+     * Store data to JSON file
+     * 
+     * @param key 
+     * @returns 
+     */
     async storeToJsonFile(key: AmmoKey) {
-        this.collection = []
-
+        console.log(this.path)
         for (const ammoType of ammoTypes[key]) {
             const ammo = await ammoParser.getData(ammoType)
             const ballistics = await ammo.parseData()
@@ -28,18 +41,44 @@ export class AmmoRepository implements Repository<BallisticsCollection>
         return this.collection
     }
 
+    /**
+     * Store JSON file data to Mongo DB
+     * 
+     * @param key
+     * @returns 
+     */
     async storeJsonFileToMongoDb(key: string | null = null) {
         try {
             if (key) {
                 const data = await this.readJsonFile(key)
-                const collection = await client.getCollection('ammo')
-                await collection.insertMany(data)
+                const collection = await client.getCollection('_ammo')
+                const response = await collection.insertMany(data)
+
+                console.log(response)
+
+                return response
             }
         } catch (error) {
             console.log(error)
         }
+
+        return []
     }
 
+    /**
+     * Clear collected data
+     */
+    async clearCollection() {
+        this.collection = []
+    }
+
+    /**
+     * Write JSON file
+     * 
+     * @param key 
+     * @param data 
+     * @returns 
+     */
     private async writeJsonFile(key: string, data: Array<Ballistics>) {
         fs.writeFileSync(`${this.path}/ammo/${key}.json`,
             JSON.stringify(data, null, 4),
@@ -51,6 +90,12 @@ export class AmmoRepository implements Repository<BallisticsCollection>
         return this
     }
 
+    /**
+     * Read JSON file
+     * 
+     * @param key
+     * @returns 
+     */
     private async readJsonFile(key: string) {
         const data = fs.readFileSync(`${this.path}/ammo/${key}.json`, {
             encoding: 'utf-8',

@@ -1,7 +1,12 @@
+export interface AppSetting {
+    [key: string]: string
+}
+
 export interface AppSettings {
     url: string;
     secret: string;
     port: string | number;
+    storage: string;
 }
 
 export interface MongoSettings {

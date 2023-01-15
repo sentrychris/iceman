@@ -1,9 +1,8 @@
-import { BallisticsCollection } from "../../interfaces/Ballistics"
 import { Importer } from "../../interfaces/Importer"
 import { Repository } from "../../interfaces/Repository"
 import { AmmoKey } from "../../types/keys"
-import { ammoTypes } from "../map/wiki/ammo"
 import { AmmoRepository } from "./AmmoRepository"
+import { ammoTypes } from "../map/wiki/ammo"
 
 export class AmmoImporter implements Importer<AmmoImporter>
 {
@@ -18,17 +17,16 @@ export class AmmoImporter implements Importer<AmmoImporter>
      * @param key the ammo type e.g. pistol, shotgun
      */
     async json(key?: unknown | null) {               
-        if (!key) {
-            const response: Array<BallisticsCollection> = []
-            
+        this.repository.clearCollection()
+
+        if (!key) {           
             for (const ammoKey of Object.keys(ammoTypes)) {
-                const data = await this.repository.storeToJsonFile(ammoKey)
-                response.push(data)
+                await this.repository.storeToJsonFile(ammoKey)
             }
 
-            return response
+            return this.repository.collection
         } else {
-            return await this.repository.storeToJsonFile(<unknown>key as AmmoKey)
+            return await this.repository.storeToJsonFile(<AmmoKey>key)
         }
     }
     
@@ -38,6 +36,8 @@ export class AmmoImporter implements Importer<AmmoImporter>
      * @param key 
      */
     async mongo(key?: unknown | null) {
+        this.repository.clearCollection()
+
         if (!key) {
             for (const ammo of Object.keys(ammoTypes)) {
                 for (const ammoType of ammoTypes[<AmmoKey>ammo]) {
