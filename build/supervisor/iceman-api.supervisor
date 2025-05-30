@@ -1,8 +1,0 @@
-# -*- conf -*-
-
-[program:iceman-api]
-process_name = iceman-api-%(process_num)s
-command = node /home/pi/iceman/dist/server/index.js --daemon
-stdout_logfile=/var/log/supervisor/%(program_name)s-%(process_num)s.log
-numprocs = 1
-numprocs_start = 9008

@@ -1,16 +1,7 @@
 import { config } from 'dotenv';
 import { Client, GatewayIntentBits } from 'discord.js';
-import { settings } from '../server/config';
-import { client as mongo } from '../server/database';
 
 config();
-
-const prefix = <string>process.env.PREFIX;
-
-const channels = {
-  botSpam: <string>process.env.BOT_SPAM,
-  raidTimer: <string>process.env.RAID_TIMER
-};
 
 const client = new Client({
   intents: [
@@ -21,11 +12,12 @@ const client = new Client({
   ]
 });
 
+const PREFIX = <string>process.env.PREFIX ?? '!';
+const WARFRAME_API = <string>process.env.WARFRAME_API ?? 'https://api.warframestat.us/pc';
+
 export {
-  prefix,
-  channels,
   client,
-  settings,
-  mongo
+  PREFIX,
+  WARFRAME_API
 };
  

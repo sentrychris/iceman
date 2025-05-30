@@ -4,6 +4,7 @@ declare global {
             NODE_ENV: 'development' | 'production'
             PREFIX: string
             TOKEN: string
+            WARFRAME_API: string
         }
     }
 }

@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-# Wait until the volume is mounted
-until cd /var/www/html/iceman && npm install
-do
-  echo "Retrying NPM install"
-done
-
-./node_modules/typescript/bin/tsc --watch
