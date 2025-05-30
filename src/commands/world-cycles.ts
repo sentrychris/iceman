@@ -1,5 +1,5 @@
-import { EmbedBuilder } from 'discord.js';
-import { WARFRAME_API } from '../config';
+import { type Client, type TextChannel, EmbedBuilder } from 'discord.js';
+import { INTERVAL_MS, WARFRAME_API, WORLD_CYCLE_TRACKING_CHANNEL } from '../config';
 
 const THUMBNAILS = {
   cetus: 'https://wiki.warframe.com/images/thumb/Cetus.png/300px-Cetus.png',
@@ -26,7 +26,7 @@ const embed = (
   return new EmbedBuilder()
     .setColor(embedColor)
     .setTitle(worldName)
-    .setDescription('World cycle timers')
+    .setDescription('World Cycle')
     .addFields(
       { name: 'Time', value: dayOrNight, inline: true},
       { name: 'Ends In', value: endsIn, inline: true}
@@ -68,3 +68,43 @@ export const orbVallis = async (): Promise<EmbedBuilder> => {
   const time = data.state; // "warm" or "cold"
   return embed('Orb Vallis', time.charAt(0).toUpperCase() + time.slice(1), data.timeLeft, THUMBNAILS.vallis);
 };
+
+/**
+ * Loop world cycles every hour
+ * @param client
+ */
+export const startWorldCycleTrackingLoop = (client: Client): void => {
+  client.once('ready', async () => {
+    console.log('World cycle loop started');
+
+    const channel = await client.channels.fetch(WORLD_CYCLE_TRACKING_CHANNEL);
+
+    if (!channel || !channel.isTextBased()) {
+      console.error('Invalid or non-text channel');
+      return;
+    }
+
+    const sendEmbeds = async () => {
+      try {
+        const [cetusEmbed, cambionEmbed, vallisEmbed] = await Promise.all([
+          cetus(),
+          cambionDrift(),
+          orbVallis(),
+        ]);
+
+        await (channel as TextChannel).send({
+          embeds: [cetusEmbed, cambionEmbed, vallisEmbed],
+        });
+
+      } catch (err) {
+        console.error('Failed to send world cycle embeds:', err);
+      }
+    };
+
+    // Initial send immediately on startup
+    await sendEmbeds();
+
+    // Repeat every hour
+    setInterval(sendEmbeds, INTERVAL_MS);
+  });
+}
