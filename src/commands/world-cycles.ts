@@ -34,6 +34,11 @@ const embed = (
     .setThumbnail(thumbnailUrl);
 }
 
+/**
+ * Cetus/Earth world cycle
+ * 
+ * @returns 
+ */
 export const cetus = async (): Promise<EmbedBuilder> => {
   const res = await fetch(`${WARFRAME_API}/cetusCycle`);
   const data = await res.json();
@@ -41,6 +46,11 @@ export const cetus = async (): Promise<EmbedBuilder> => {
   return embed('Cetus/Earth', time, data.timeLeft, THUMBNAILS.cetus);
 };
 
+/**
+ * Cambion Drift/Deimos world cycle
+ * 
+ * @returns 
+ */
 export const cambionDrift = async (): Promise<EmbedBuilder> => {
   const res = await fetch(`${WARFRAME_API}/cambionCycle`);
   const data = await res.json();
@@ -48,6 +58,10 @@ export const cambionDrift = async (): Promise<EmbedBuilder> => {
   return embed('Cambion Drift', time.charAt(0).toUpperCase() + time.slice(1), data.timeLeft, THUMBNAILS.cambion);
 };
 
+/**
+ * Orb Vallis/Venus world cycle
+ * @returns 
+ */
 export const orbVallis = async (): Promise<EmbedBuilder> => {
   const res = await fetch(`${WARFRAME_API}/vallisCycle`);
   const data = await res.json();
