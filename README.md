@@ -30,6 +30,22 @@ Use the prefix `!wf` before all commands:
 | `!wf buy <item>`          | Get the cheapest sell order for an item from warframe.market (e.g. `frost prime set`) |
 | `!wf prizedraw`           | Post a clan prize draw (restricted to founding warlord only)                |
 
+
+<p align="center">
+  <table>
+    <tr>
+      <td align="center"><img src="./docs/wf-baro.png" width="250"/><br/><code>!wf baro</code></td>
+      <td align="center"><img src="./docs/wf-buy.png" width="250"/><br/><code>!wf buy</code></td>
+      <td align="center"><img src="./docs/wf-cycles.png" width="250"/><br/><code>!wf cycles</code></td>
+    </tr>
+    <tr>
+      <td align="center"><img src="./docs/wf-nightwave.png" width="250"/><br/><code>!wf nightwave</code></td>
+      <td align="center"><img src="./docs/wf-prize.png" width="250"/><br/><code>!wf prizedraw</code></td>
+      <td></td>
+    </tr>
+  </table>
+</p>
+
 ## Setup
 
 ### 1. Clone the repository
