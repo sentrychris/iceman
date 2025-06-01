@@ -1,6 +1,6 @@
 import { EmbedBuilder, type Message, type TextChannel } from 'discord.js';
 import { getBaroKiteerLocation } from './commands/baro-kiteer';
-import { buildNightwaveEmbed } from './commands/nightwave';
+import { buildNightwaveEmbed } from './commands/nightwave-alerts';
 import { buildVoidFissuresEmbed } from './commands/void-fissures';
 import { buildWorldCyclesEmbed } from './commands/world-cycles';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
