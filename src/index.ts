@@ -91,9 +91,9 @@ client.on('messageCreate', async (message: Message) => {
    * Warframe market cheapest sell order
    */
   if (message.content.startsWith(`${DISCORD_PREFIX} buy `)) {
-      const query = message.content.slice(`${DISCORD_PREFIX} buy `.length).trim();
-      const slug = query.toLowerCase().replace(/\s+/g, '_');
-      const displayName = query.replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()); // Title Case
+    const query = message.content.slice(`${DISCORD_PREFIX} buy `.length).trim();
+    const slug = query.toLowerCase().replace(/\s+/g, '_');
+    const displayName = query.replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
     const order = await getWarframeMarketCheapestSellOrder(slug);
 
