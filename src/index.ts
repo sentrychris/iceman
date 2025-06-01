@@ -7,6 +7,7 @@ import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
 import { client, DISCORD_PREFIX, CLAN_ICON, CLAN_ANNOUNCEMENTS_CHANNEL, FOUNDING_WARLORD_USER_ID, DISCORD_COLOR } from './config';
+import { buildSortieEmbed } from './commands/sortie-mission';
   
 client.on('ready', () => {
   console.log('ready');
@@ -26,11 +27,12 @@ client.on('messageCreate', async (message: Message) => {
       .setTitle('Warframe Bot Usage')
       .setDescription('Use the following commands with `!wf`')
       .addFields(
-        { name: '`!wf world` or `!wf cycles`', value: 'Shows current world cycles for Cetus, Cambion Drift, and Orb Vallis.', inline: false },
-        { name: '`!wf baro`', value: 'Displays Baro Ki\'Teer\'s current location and arrival/departure times.', inline: false },
+        { name: '`!wf world` or `!wf wc`', value: 'Shows current world cycles for Cetus, Cambion Drift, and Orb Vallis.', inline: false },
+        { name: '`!wf baro` or `!wf vt`', value: 'Displays Baro Ki\'Teer\'s current location and arrival/departure times.', inline: false },
         { name: '`!wf teshin` or `!wf sp`', value: 'Displays the current Steel Path Honors rotation from Teshin.', inline: false },
-        { name: '`!wf nightwave`', value: 'Shows current Nightwave acts (daily and weekly).', inline: false },
-        { name: '`!wf fissures`', value: 'Lists currently active Void Fissures.', inline: false },
+        { name: '`!wf sortie`', value: 'Displays today\'s Sortie missions, boss, faction, and modifiers.', inline: false },
+        { name: '`!wf nightwave` or `!wf nw`', value: 'Shows current Nightwave acts (daily and weekly).', inline: false },
+        { name: '`!wf fissures` or `!wf vf`', value: 'Lists currently active Void Fissures.', inline: false },
         { name: '`!wf buy <item name>` or `!wf wtb <item name>`', value: 'Gets the cheapest in-game sell order for a Warframe Market item. Example: `!wf buy frost prime set`', inline: false },
       )
       .setFooter({ text: 'Only in-game sellers are shown in market lookups.' })
@@ -41,29 +43,33 @@ client.on('messageCreate', async (message: Message) => {
   /**
    * Baro Ki'Teer void trader location
    */
-  if (message.content === `${DISCORD_PREFIX} baro`) {
+  if (message.content === `${DISCORD_PREFIX} baro` || message.content === `${DISCORD_PREFIX} vt`) {
     message.reply({ embeds: [await getBaroKiteerLocation()]});
   }
 
   /**
    * Nightwave daily & weekly alerts
    */
-  if (message.content === `${DISCORD_PREFIX} nightwave`) {
+  if (message.content === `${DISCORD_PREFIX} nightwave` || message.content === `${DISCORD_PREFIX} nw`) {
     message.reply({ embeds: [await buildNightwaveEmbed()] });
   }
 
   /**
    * Active void fissures
    */
-  if (message.content === `${DISCORD_PREFIX} fissures`) {
+  if (message.content === `${DISCORD_PREFIX} fissures` || message.content === `${DISCORD_PREFIX} vf`) {
     message.reply({ embeds: [await buildVoidFissuresEmbed()] });
   }
 
   /**
    * World cycle timers
    */
-  if (message.content === `${DISCORD_PREFIX} world` || message.content === `${DISCORD_PREFIX} cycles`) {
+  if (message.content === `${DISCORD_PREFIX} world` || message.content === `${DISCORD_PREFIX} wc`) {
     message.reply({ embeds: await buildWorldCyclesEmbed() });
+  }
+
+  if (message.content === `${DISCORD_PREFIX} sortie`) {
+    return message.reply({ embeds: [await buildSortieEmbed()] });
   }
 
   /**

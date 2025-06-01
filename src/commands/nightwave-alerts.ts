@@ -13,12 +13,6 @@ interface NightwaveChallenge {
   startString: string;
 }
 
-const formatLabel = (c: NightwaveChallenge): string => {
-  if (c.isDaily) return '🟦 Daily';
-  if (c.isElite) return '🟥 Elite Weekly';
-  return '🟨 Weekly';
-};
-
 const timeRemaining = (expiryISO: string): string => {
   const now = new Date();
   const expiry = new Date(expiryISO);
@@ -51,16 +45,38 @@ export const buildNightwaveEmbed = async (): Promise<EmbedBuilder> => {
       .setThumbnail(NIGHTWAVE_ICON);
   }
 
-  const fields = challenges.map(c => ({
-    name: `${formatLabel(c)}\n${c.title}`,
-    value: `${c.desc}\n⏱️ Ends in: ${timeRemaining(c.expiry)}\n🎯 ${c.reputation} standing\n`,
-    inline: true
-  }));
+  const group = (type: string, list: NightwaveChallenge[]) => {
+    return list.map(c => ({
+      name: c.title,
+      value:
+        `> ${c.desc}\n` +
+        `> ⏱️ Ends in: ${timeRemaining(c.expiry)}\n` +
+        `> 🎯 ${c.reputation} standing`,
+      inline: false,
+    }));
+  };
 
-  return new EmbedBuilder()
+  const dailies = group('Daily', challenges.filter(c => c.isDaily));
+  const eliteWeeklies = group('Elite Weekly', challenges.filter(c => c.isElite));
+  const weeklies = group('Weekly', challenges.filter(c => !c.isElite && !c.isDaily));
+
+  const embed = new EmbedBuilder()
     .setColor(DISCORD_COLOR.orange)
     .setTitle('Nightwave Challenges')
-    .setDescription(`Active Daily, Weekly, and Elite Weekly Challenges`)
-    .addFields(fields)
+    .setDescription('Active Daily, Weekly, and Elite Weekly Challenges')
     .setThumbnail(NIGHTWAVE_ICON);
+
+  if (dailies.length) {
+    embed.addFields({ name: '🟦 Daily Challenges', value: '\u200b', inline: false }, ...dailies);
+  }
+
+  if (weeklies.length) {
+    embed.addFields({ name: '🟨 Weekly Challenges', value: '\u200b', inline: false }, ...weeklies);
+  }
+
+  if (eliteWeeklies.length) {
+    embed.addFields({ name: '🟥 Elite Weekly Challenges', value: '\u200b', inline: false }, ...eliteWeeklies);
+  }
+
+  return embed;
 };
