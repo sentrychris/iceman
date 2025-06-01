@@ -1,5 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { WARFRAME_API } from '../config';
+import { DISCORD_COLOR, WARFRAME_API } from '../config';
 
 const THUMBNAILS = {
   cetus: 'https://wiki.warframe.com/images/thumb/Cetus.png/300px-Cetus.png',
@@ -23,7 +23,7 @@ const embed = (
   thumbnailUrl: string
 ) => {
   return new EmbedBuilder()
-    .setColor(0x3498DB)
+    .setColor(DISCORD_COLOR.blue)
     .setTitle(worldName)
     .setDescription('World Cycle')
     .addFields(

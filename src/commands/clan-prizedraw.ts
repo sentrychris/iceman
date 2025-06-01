@@ -1,5 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { CLAN_ICON } from '../config';
+import { CLAN_ICON, DISCORD_COLOR } from '../config';
 import { readFile } from 'fs/promises';
 import path from 'path';
 
@@ -47,7 +47,7 @@ export const buildClanPrizeDrawEmbed = async (): Promise<EmbedBuilder> => {
   const { user, prize } = clanPrizeDraw(members, prizes);
 
   return new EmbedBuilder()
-    .setColor(0x9B59B6)
+    .setColor(DISCORD_COLOR.purple)
     .setTitle('Clan Monthly Giveaway Prize Draw')
     .setDescription('Congratulations to our winner! Your prize will be gifted to you through the in-game market.')
     .addFields(

@@ -1,5 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { WARFRAME_API } from '../config';
+import { DISCORD_COLOR, WARFRAME_API } from '../config';
 
 const VOID_ICON = 'https://wiki.warframe.com/images/thumb/VoidSkybox.jpg/244px-VoidSkybox.jpg';
 
@@ -36,7 +36,7 @@ export const buildVoidFissuresEmbed = async (): Promise<EmbedBuilder> => {
     return new EmbedBuilder()
       .setTitle('Void Fissures')
       .setDescription('No active fissures.')
-      .setColor(0x95a5a6)
+      .setColor(DISCORD_COLOR.blue)
       .setThumbnail(VOID_ICON);
   }
 
@@ -50,7 +50,7 @@ export const buildVoidFissuresEmbed = async (): Promise<EmbedBuilder> => {
 
   return new EmbedBuilder()
     .setTitle('Active Void Fissures')
-    .setColor(0x9b59b6)
+    .setColor(DISCORD_COLOR.blue)
     .setThumbnail(VOID_ICON)
     .addFields(fields);
 };

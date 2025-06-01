@@ -1,5 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { WARFRAME_API } from '../config';
+import { DISCORD_COLOR, WARFRAME_API } from '../config';
 
 const NIGHTWAVE_ICON = 'https://wiki.warframe.com/images/thumb/NightwaveSyndicate.png/300px-NightwaveSyndicate.png';
 
@@ -47,7 +47,7 @@ export const buildNightwaveEmbed = async (): Promise<EmbedBuilder> => {
     return new EmbedBuilder()
       .setTitle('Nightwave')
       .setDescription('No active challenges.')
-      .setColor(0x7289DA)
+      .setColor(DISCORD_COLOR.orange)
       .setThumbnail(NIGHTWAVE_ICON);
   }
 
@@ -58,7 +58,7 @@ export const buildNightwaveEmbed = async (): Promise<EmbedBuilder> => {
   }));
 
   return new EmbedBuilder()
-    .setColor(0x7289DA)
+    .setColor(DISCORD_COLOR.orange)
     .setTitle('Nightwave Challenges')
     .setDescription(`Active Daily, Weekly, and Elite Weekly Challenges`)
     .addFields(fields)

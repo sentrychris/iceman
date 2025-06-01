@@ -22,11 +22,19 @@ const FOUNDING_WARLORD_USER_ID = <string>process.env.FOUNDING_WARLORD_USER_ID; /
 const GENERAL_WARFRAME_CHAT_CHANNEL = <string>process.env.GENERAL_WARFRAME_CHAT_CHANNEL; // #general-warframe-chat
 const CLAN_ANNOUNCEMENTS_CHANNEL = <string>process.env.CLAN_ANNOUNCEMENTS_CHANNEL;       // #nihil-vox-announcements
 
+const DISCORD_COLOR = {
+  blue: 0x3498DB,
+  purple: 0x9B59B6,
+  orange: 0xE67E22,
+  red: 0xFF0000
+}
+
 export {
   client,
   WARFRAME_API,
   WARFRAME_MARKET_API,
   CLAN_ICON,
+  DISCORD_COLOR,
   DISCORD_PREFIX,
   FOUNDING_WARLORD_USER_ID,
   GENERAL_WARFRAME_CHAT_CHANNEL,

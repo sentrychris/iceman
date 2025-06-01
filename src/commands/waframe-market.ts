@@ -1,5 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { WARFRAME_MARKET_API } from '../config';
+import { DISCORD_COLOR, WARFRAME_MARKET_API } from '../config';
 
 type SellOrder = {
   platinum: number;
@@ -88,7 +88,7 @@ export const buildMarketPriceEmbed = (itemName: string, itemSlug: string, order:
       : 'https://warframe.market/static/build/resources/images/logo-black.3bec6a3a0f1e6f1edbb1.png';
 
   return new EmbedBuilder()
-    .setColor(0x9B59B6)
+    .setColor(DISCORD_COLOR.purple)
     .setTitle(`Cheapest Sell Order: ${itemName}`)
     .setURL(`https://warframe.market/items/${itemSlug}`)
     .addFields(fields)

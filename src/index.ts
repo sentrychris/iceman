@@ -5,7 +5,7 @@ import { buildVoidFissuresEmbed } from './commands/void-fissures';
 import { buildWorldCyclesEmbed } from './commands/world-cycles';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
-import { client, DISCORD_PREFIX, CLAN_ICON, CLAN_ANNOUNCEMENTS_CHANNEL, FOUNDING_WARLORD_USER_ID } from './config';
+import { client, DISCORD_PREFIX, CLAN_ICON, CLAN_ANNOUNCEMENTS_CHANNEL, FOUNDING_WARLORD_USER_ID, DISCORD_COLOR } from './config';
   
 client.on('ready', () => {
   console.log('ready');
@@ -21,7 +21,7 @@ client.on('messageCreate', async (message: Message) => {
    */
   if (message.content === `${DISCORD_PREFIX}` || message.content === `${DISCORD_PREFIX} help` || message.content === `${DISCORD_PREFIX} usage`) {
     return message.reply({ embeds: [new EmbedBuilder()
-      .setColor(0x3498DB)
+      .setColor(DISCORD_COLOR.blue)
       .setTitle('Warframe Bot Usage')
       .setDescription('Use the following commands with `!wf`')
       .addFields(
@@ -29,7 +29,7 @@ client.on('messageCreate', async (message: Message) => {
         { name: '`!wf baro`', value: 'Displays Baro Ki\'Teer\'s current location and arrival/departure times.', inline: false },
         { name: '`!wf nightwave`', value: 'Shows current Nightwave acts (daily and weekly).', inline: false },
         { name: '`!wf fissures`', value: 'Lists currently active Void Fissures.', inline: false },
-        { name: '`!wf buy <item name>`', value: 'Gets the cheapest in-game sell order for a Warframe Market item. Example: `!wf buy frost prime set`', inline: false },
+        { name: '`!wf buy <item name>` or `!wf wtb <item name>`', value: 'Gets the cheapest in-game sell order for a Warframe Market item. Example: `!wf buy frost prime set`', inline: false },
       )
       .setFooter({ text: 'Only in-game sellers are shown in market lookups.' })
       .setThumbnail(CLAN_ICON)]
@@ -40,7 +40,7 @@ client.on('messageCreate', async (message: Message) => {
    * Baro Ki'Teer void trader location
    */
   if (message.content === `${DISCORD_PREFIX} baro`) {
-    message.reply(await getBaroKiteerLocation());
+    message.reply({ embeds: [await getBaroKiteerLocation()]});
   }
 
   /**
@@ -88,8 +88,8 @@ client.on('messageCreate', async (message: Message) => {
   /**
    * Warframe market cheapest sell order
    */
-  if (message.content.startsWith(`${DISCORD_PREFIX} buy `)) {
-    const query = message.content.slice(`${DISCORD_PREFIX} buy `.length).trim();
+  if (/^!wf\s+(buy|wtb)\s+/i.test(message.content)) {
+    const query = message.content.replace(/^!wf\s+(buy|wtb)\s+/i, '').trim();
     const slug = query.toLowerCase().replace(/\s+/g, '_');
     const displayName = query.replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
