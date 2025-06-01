@@ -5,7 +5,7 @@ import { buildVoidFissuresEmbed } from './commands/void-fissures';
 import { buildWorldCyclesEmbed } from './commands/world-cycles';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
-import { client, FOUNDING_WARLORD_USER_ID, DISCORD_PREFIX, CLAN_ANNOUNCEMENTS_CHANNEL } from './config';
+import { client, DISCORD_PREFIX, CLAN_ICON, CLAN_ANNOUNCEMENTS_CHANNEL, FOUNDING_WARLORD_USER_ID } from './config';
   
 client.on('ready', () => {
   console.log('ready');
@@ -32,7 +32,7 @@ client.on('messageCreate', async (message: Message) => {
         { name: '`!wf buy <item name>`', value: 'Gets the cheapest in-game sell order for a Warframe Market item. Example: `!wf buy frost prime set`', inline: false },
       )
       .setFooter({ text: 'Only in-game sellers are shown in market lookups.' })
-      .setThumbnail('https://i.imgur.com/fQn9zNL.png')]
+      .setThumbnail(CLAN_ICON)]
     });
   }
 

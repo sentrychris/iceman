@@ -1,4 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
+import { CLAN_ICON } from '../config';
 
 // Logged in past 4 days
 const eligibleMembers = [
@@ -66,5 +67,5 @@ export const buildClanPrizeDrawEmbed = (): EmbedBuilder => {
       { name: 'Member', value: user, inline: true },
       { name: 'Prize', value: prize, inline: true }
     )
-    .setThumbnail('https://i.imgur.com/fQn9zNL.png');
+    .setThumbnail(CLAN_ICON);
 };
