@@ -8,10 +8,10 @@ A lightweight and modular Discord bot for tracking world states, Nightwave, Baro
 
 ## Features
 
-- **World Cycle Tracking**: Automatically posts Cetus, Cambion Drift, and Orb Vallis cycles on a timer.
-- **Nightwave Alerts**: Shows daily and weekly acts.
+- **World Cycles**: Shows Cetus, Cambion Drift, and Orb Vallis world cycles.
+- **Nightwave Alerts**: Shows daily and weekly acts and standing.
 - **Baro Ki'Teer Status**: Displays current location and inventory.
-- **Void Fissures**: Lists all active fissures.
+- **Void Fissures**: Lists all active void fissures.
 - **Market Lookups**: Finds the cheapest current in-game sell order for any item on [warframe.market](https://warframe.market).
 - **Clan Prize Draw**: Restricted command for founding warlord to post prize draws.
 - **Usage Command**: Provides interactive help message.
