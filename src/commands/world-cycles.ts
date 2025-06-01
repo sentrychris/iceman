@@ -1,5 +1,9 @@
 import { type Client, type TextChannel, EmbedBuilder } from 'discord.js';
-import { INTERVAL_MS, WARFRAME_API, WORLD_CYCLE_TRACKING_CHANNEL } from '../config';
+import {
+  WARFRAME_API,
+  WORLD_CYCLE_TRACKING_CHANNEL,
+  WORLD_CYCLE_UPDATE_INTERVAL_MS
+} from '../config';
 
 const THUMBNAILS = {
   cetus: 'https://wiki.warframe.com/images/thumb/Cetus.png/300px-Cetus.png',
@@ -105,6 +109,6 @@ export const startWorldCycleTrackingLoop = (client: Client): void => {
     await sendEmbeds();
 
     // Repeat every hour
-    setInterval(sendEmbeds, INTERVAL_MS);
+    setInterval(sendEmbeds, WORLD_CYCLE_UPDATE_INTERVAL_MS);
   });
 }

@@ -12,19 +12,24 @@ const client = new Client({
   ]
 });
 
-const PREFIX = <string>process.env.PREFIX ?? '!';
 const WARFRAME_API = <string>process.env.WARFRAME_API ?? 'https://api.warframestat.us/pc';
 
-const GENERAL_WARFRAME_CHAT_CHANNEL = "1356609283609067653"; // #general-warframe-chat
-const WORLD_CYCLE_TRACKING_CHANNEL  = "1378043397188751452"; // #world-cycle-tracking
-const INTERVAL_MS = 60 * 60 * 1000; // 1 hour
+const DISCORD_PREFIX = <string>process.env.DISCORD_PREFIX ?? '!wf';
+
+const FOUNDING_WARLORD_USER_ID = <string>process.env.FOUNDING_WARLORD_USER_ID; // shikaricm
+const GENERAL_WARFRAME_CHAT_CHANNEL = <string>process.env.GENERAL_WARFRAME_CHAT_CHANNEL; // #general-warframe-chat
+const CLAN_ANNOUNCEMENTS_CHANNEL = <string>process.env.CLAN_ANNOUNCEMENTS_CHANNEL;       // #nihil-vox-announcements
+const WORLD_CYCLE_TRACKING_CHANNEL  = <string>process.env.WORLD_CYCLE_TRACKING_CHANNEL;  // #world-cycle-tracking
+const WORLD_CYCLE_UPDATE_INTERVAL_MS = 60 * 60 * 1000;
 
 export {
   client,
-  PREFIX,
   WARFRAME_API,
+  DISCORD_PREFIX,
+  FOUNDING_WARLORD_USER_ID,
   GENERAL_WARFRAME_CHAT_CHANNEL,
+  CLAN_ANNOUNCEMENTS_CHANNEL,
   WORLD_CYCLE_TRACKING_CHANNEL,
-  INTERVAL_MS
+  WORLD_CYCLE_UPDATE_INTERVAL_MS
 };
  

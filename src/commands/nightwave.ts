@@ -53,7 +53,7 @@ export const nightwave = async (): Promise<EmbedBuilder> => {
 
   const fields = challenges.map(c => ({
     name: `${formatLabel(c)}\n${c.title}`,
-    value: `${c.desc}\n⏱️ Ends in: ${timeRemaining(c.expiry)}\n🎯 ${c.reputation} endo\n`,
+    value: `${c.desc}\n⏱️ Ends in: ${timeRemaining(c.expiry)}\n🎯 ${c.reputation} standing\n`,
     inline: true
   }));
 
