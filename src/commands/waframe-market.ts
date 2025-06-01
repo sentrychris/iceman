@@ -9,6 +9,15 @@ type SellOrder = {
   rank?: number; // optional field
 };
 
+const getModThumbnailUrl = (itemName: string): string => {
+  const modFileName = itemName
+    .toLowerCase()
+    .split(' ')
+    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+    .join('');
+  return `https://wiki.warframe.com/images/${modFileName}Mod.png`;
+};
+
 /**
  * Fetches the single cheapest current sell order for a given Warframe Market item slug
  * @param slug - Warframe Market item slug (e.g., "vitality" or "octavia_prime_neuroptics")
@@ -50,12 +59,6 @@ export const getWarframeMarketCheapestSellOrder = async (slug: string): Promise<
   }
 };
 
-/**
- * Builds an embed showing the cheapest current sell order,
- * including mod rank if applicable
- * @param itemName - Display name of the item
- * @param order - The cheapest sell order
- */
 export const buildMarketPriceEmbed = (itemName: string, order: SellOrder): EmbedBuilder => {
   const whisper = `/w ${order.seller} Hi! I want to buy: "${itemName}" for ${order.platinum} platinum. (warframe.market)`;
 
@@ -75,10 +78,15 @@ export const buildMarketPriceEmbed = (itemName: string, order: SellOrder): Embed
     inline: false,
   });
 
+  const thumbnailUrl =
+    typeof order.rank === 'number'
+      ? getModThumbnailUrl(itemName)
+      : 'https://warframe.market/static/build/resources/images/logo-black.3bec6a3a0f1e6f1edbb1.png';
+
   return new EmbedBuilder()
     .setColor(0x9B59B6)
     .setTitle(`Cheapest Sell Order: ${itemName}`)
     .addFields(fields)
-    .setThumbnail('https://warframe.market/static/build/resources/images/logo-black.3bec6a3a0f1e6f1edbb1.png')
+    .setThumbnail(thumbnailUrl)
     .setFooter({ text: `Region: ${order.region} • Only sellers currently in-game` });
 };
