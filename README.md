@@ -12,8 +12,6 @@ A lightweight and modular Discord bot for tracking world states, Nightwave, Baro
 - **Clan Prize Draw**: Restricted command for founding warlord to post prize draws.
 - **Usage Command**: Provides interactive help message.
 
----
-
 ## Commands
 
 Use the prefix `!wf` before all commands:
@@ -27,8 +25,6 @@ Use the prefix `!wf` before all commands:
 | `!wf fissures`            | List active Void Fissures                                                    |
 | `!wf buy <item>`          | Get the cheapest sell order for an item from warframe.market (e.g. `frost prime set`) |
 | `!wf prizedraw`           | Post a clan prize draw (restricted to founding warlord only)                |
-
----
 
 ## Setup
 
@@ -62,8 +58,6 @@ WORLD_CYCLE_UPDATE_INTERVAL_MS=3600000
 
 > All channel/user IDs can be obtained in Discord by enabling Developer Mode.
 
----
-
 ## Running the Bot
 
 ```bash
@@ -76,16 +70,16 @@ Use a process manager like `pm2` for background execution:
 pm2 start dist/index.js --name "wf-bot"
 ```
 
----
-
 ## Requirements
 
 * Node.js 18+
 * Discord bot token
 * Text channels with send/embed permissions
 
----
-
 ## License
 
-MIT
+[MIT](LICENSE)
+
+<p align="center">
+  <img src="https://i.imgur.com/fQn9zNL.png" alt="Warframe Bot" width="100"/>
+</p>
