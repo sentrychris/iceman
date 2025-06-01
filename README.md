@@ -63,17 +63,16 @@ npm install
 
 ### 3. Environment configuration
 
-Create a `.env` file in the root:
+Create an `.env` file in the root:
 
 ```env
 DISCORD_AUTH_TOKEN=your_discord_token
 DISCORD_PREFIX=!wf
 FOUNDING_WARLORD_USER_ID=your_user_id
-CLAN_ANNOUNCEMENTS_CHANNEL=channel_id
-WORLD_CYCLE_TRACKING_CHANNEL=channel_id
+CLAN_ICON=https://i.imgur.com/fQn9zNL.png
+CLAN_ANNOUNCEMENTS_CHANNEL=clan_announcements_channel_id
 WARFRAME_MARKET_API=https://api.warframe.market/v2
 WARFRAME_API=https://api.warframestat.us/pc
-WORLD_CYCLE_UPDATE_INTERVAL_MS=3600000
 ```
 
 > All channel/user IDs can be obtained in Discord by enabling Developer Mode.
@@ -81,7 +80,7 @@ WORLD_CYCLE_UPDATE_INTERVAL_MS=3600000
 ## Running the Bot
 
 ```bash
-npm run build && npm start
+npm run build && npm run bot
 ```
 
 Use a process manager like `pm2` for background execution:
