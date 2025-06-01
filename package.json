@@ -1,5 +1,5 @@
 {
-  "name": "nihil-vox-warframe-bot",
+  "name": "warframe-discord-bot",
   "version": "1.0.0",
   "description": "Nihil Vox's Discord bot for Warframe Players",
   "main": "index.js",
