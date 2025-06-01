@@ -14,6 +14,8 @@ const client = new Client({
 
 const WARFRAME_API = <string>process.env.WARFRAME_API ?? 'https://api.warframestat.us/pc';
 
+const WARFRAME_MARKET_API = <string>process.env.WARFRAME_MARKET_API ?? 'https://api.warframe.market/v2';
+
 const DISCORD_PREFIX = <string>process.env.DISCORD_PREFIX ?? '!wf';
 
 const FOUNDING_WARLORD_USER_ID = <string>process.env.FOUNDING_WARLORD_USER_ID; // shikaricm
@@ -25,6 +27,7 @@ const WORLD_CYCLE_UPDATE_INTERVAL_MS = 60 * 60 * 1000;
 export {
   client,
   WARFRAME_API,
+  WARFRAME_MARKET_API,
   DISCORD_PREFIX,
   FOUNDING_WARLORD_USER_ID,
   GENERAL_WARFRAME_CHAT_CHANNEL,

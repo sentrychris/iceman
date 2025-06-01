@@ -48,7 +48,7 @@ const eligiblePrizes = [
   "1,000 Endo",
 ]
 
-const randomlySelectWinner = (): { user: string, prize: string } => {
+const clanPrizeDraw = (): { user: string, prize: string } => {
   return {
     user: eligibleMembers[Math.floor(Math.random() * eligibleMembers.length)].trim(),
     prize: eligiblePrizes[Math.floor(Math.random() * eligiblePrizes.length)]
@@ -56,8 +56,8 @@ const randomlySelectWinner = (): { user: string, prize: string } => {
 };
 
 
-export const clanPrizeDraw = (): EmbedBuilder => {
-  const { user, prize } = randomlySelectWinner();
+export const buildClanPrizeDrawEmbed = (): EmbedBuilder => {
+  const { user, prize } = clanPrizeDraw();
 
   return new EmbedBuilder()
     .setColor(0x9B59B6)
@@ -70,7 +70,7 @@ export const clanPrizeDraw = (): EmbedBuilder => {
     .setThumbnail("https://i.imgur.com/fQn9zNL.png");
 };
 
-export const startPrizeDrawLoop = (client: Client): void => {
+export const startClanPrizeDrawLoop = (client: Client): void => {
   client.once('ready', async () => {
     console.log('Prize draw loop scheduled');
 
@@ -84,7 +84,7 @@ export const startPrizeDrawLoop = (client: Client): void => {
     const sendPrizeDraw = async () => {
       try {
         await (channel as TextChannel).send({
-          embeds: [clanPrizeDraw()],
+          embeds: [buildClanPrizeDrawEmbed()],
         });
         console.log('Prize draw sent');
       } catch (err) {

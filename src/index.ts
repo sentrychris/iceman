@@ -1,15 +1,11 @@
-import { Message } from 'discord.js';
+import { EmbedBuilder, Message } from 'discord.js';
 import { client, FOUNDING_WARLORD_USER_ID, DISCORD_PREFIX } from './config';
 import { baroKiteerLocation } from './commands/baro-kiteer';
 import { nightwave } from './commands/nightwave';
 import { voidFissures } from './commands/void-fissures';
-import {
-  cetus,
-  cambionDrift,
-  orbVallis,
-  startWorldCycleTrackingLoop
-} from './commands/world-cycles';
-import { clanPrizeDraw } from './commands/clan-prizedraw';
+import { cetus, cambionDrift, orbVallis, startWorldCycleTrackingLoop } from './commands/world-cycles';
+import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/warframe-market/market-price';
+import { buildClanPrizeDrawEmbed, startClanPrizeDrawLoop } from './commands/clan-prizedraw';
   
 client.on('ready', () => {
   console.log('ready');
@@ -65,13 +61,28 @@ client.on('messageCreate', async (message: Message) => {
       return;
     }
 
-    message.reply({ embeds: [clanPrizeDraw()] });
+    message.reply({ embeds: [buildClanPrizeDrawEmbed()] });
+  }
+
+  if (message.content.startsWith(`${DISCORD_PREFIX} buy `)) {
+      const input = message.content.slice(`${DISCORD_PREFIX} buy `.length).trim();
+      const slug = input.toLowerCase().replace(/\s+/g, '_');
+      const displayName = input.replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()); // Title Case
+
+    const order = await getWarframeMarketCheapestSellOrder(slug);
+
+    if (!order) {
+      return message.reply(`No active sell orders found for **${displayName}**.`);
+    }
+
+    return message.reply({ embeds: [buildMarketPriceEmbed(displayName, order)] });
   }
 });
 
 /**
- * World cycle loop
+ * Loops
  */
 // startWorldCycleTrackingLoop(client);
+// startClanPrizeDrawLoop(client);
   
 client.login(<string>process.env.DISCORD_AUTH_TOKEN);
