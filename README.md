@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://i.imgur.com/fQn9zNL.png" alt="Warframe Bot" width="200"/>
+</p>
+
 # Warframe Discord Bot
 
 A lightweight and modular Discord bot for tracking world states, Nightwave, Baro Ki'Teer, void fissures, and Warframe Market prices. Built with `discord.js` and TypeScript.
@@ -81,5 +85,5 @@ pm2 start dist/index.js --name "wf-bot"
 [MIT](LICENSE)
 
 <p align="center">
-  <img src="https://i.imgur.com/fQn9zNL.png" alt="Warframe Bot" width="100"/>
+  <img src="https://i.imgur.com/fQn9zNL.png" alt="Warframe Bot" width="200"/>
 </p>
