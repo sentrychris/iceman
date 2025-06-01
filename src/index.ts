@@ -1,4 +1,4 @@
-import type { Message, TextChannel } from 'discord.js';
+import { EmbedBuilder, type Message, type TextChannel } from 'discord.js';
 import { getBaroKiteerLocation } from './commands/baro-kiteer';
 import { buildNightwaveEmbed } from './commands/nightwave';
 import { buildVoidFissuresEmbed } from './commands/void-fissures';
@@ -26,6 +26,29 @@ client.on('ready', () => {
 client.on('messageCreate', async (message: Message) => {
   if (!message.content.startsWith(DISCORD_PREFIX) || message.author.bot) {
     return;
+  }
+
+  const buildUsageEmbed = (): EmbedBuilder => {
+    return new EmbedBuilder()
+      .setColor(0x3498DB)
+      .setTitle('Warframe Bot Usage')
+      .setDescription('Use the following commands with `!wf`')
+      .addFields(
+        { name: '`!wf world` or `!wf cycles`', value: 'Shows current world cycles for Cetus, Cambion Drift, and Orb Vallis.', inline: false },
+        { name: '`!wf baro`', value: 'Displays Baro Ki\'Teer\'s current location and arrival/departure times.', inline: false },
+        { name: '`!wf nightwave`', value: 'Shows current Nightwave acts (daily and weekly).', inline: false },
+        { name: '`!wf fissures`', value: 'Lists currently active Void Fissures.', inline: false },
+        { name: '`!wf buy <item name>`', value: 'Gets the cheapest in-game sell order for a Warframe Market item. Example: `!wf buy frost prime set`', inline: false },
+      )
+      .setFooter({ text: 'Only in-game sellers are shown in market lookups.' })
+      .setThumbnail('https://i.imgur.com/fQn9zNL.png');
+  };
+
+  /**
+   * Help / usage
+   */
+  if (message.content === `${DISCORD_PREFIX}` || message.content === `${DISCORD_PREFIX} help` || message.content === `${DISCORD_PREFIX} usage`) {
+    return message.reply({ embeds: [buildUsageEmbed()] });
   }
 
   /**
