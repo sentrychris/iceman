@@ -6,11 +6,12 @@ type SellOrder = {
   seller: string;
   quantity: number;
   region: string;
+  rank?: number; // optional field
 };
 
 /**
  * Fetches the single cheapest current sell order for a given Warframe Market item slug
- * @param slug - Warframe Market item slug (e.g., "octavia_prime_neuroptics")
+ * @param slug - Warframe Market item slug (e.g., "vitality" or "octavia_prime_neuroptics")
  * @returns The cheapest sell order or null
  */
 export const getWarframeMarketCheapestSellOrder = async (slug: string): Promise<SellOrder | null> => {
@@ -41,6 +42,7 @@ export const getWarframeMarketCheapestSellOrder = async (slug: string): Promise<
       seller: best.user.ingameName,
       quantity: best.quantity,
       region: best.user.platform,
+      rank: typeof best.rank === 'number' ? best.rank : undefined,
     };
   } catch (err) {
     console.error('Failed to fetch cheapest sell order:', err);
@@ -50,22 +52,33 @@ export const getWarframeMarketCheapestSellOrder = async (slug: string): Promise<
 
 /**
  * Builds an embed showing the cheapest current sell order,
- * and provides a preformatted whisper message
+ * including mod rank if applicable
  * @param itemName - Display name of the item
  * @param order - The cheapest sell order
  */
 export const buildMarketPriceEmbed = (itemName: string, order: SellOrder): EmbedBuilder => {
   const whisper = `/w ${order.seller} Hi! I want to buy: "${itemName}" for ${order.platinum} platinum. (warframe.market)`;
 
+  const fields = [
+    { name: 'Platinum', value: `${order.platinum}p`, inline: true },
+    { name: 'Seller', value: order.seller, inline: true },
+    { name: 'Quantity', value: `${order.quantity}`, inline: true },
+  ];
+
+  if (typeof order.rank === 'number') {
+    fields.push({ name: 'Mod Rank', value: `${order.rank}`, inline: true });
+  }
+
+  fields.push({
+    name: 'Copy & Paste Whisper',
+    value: `\`${whisper}\``,
+    inline: false,
+  });
+
   return new EmbedBuilder()
     .setColor(0x9B59B6)
     .setTitle(`Cheapest Sell Order: ${itemName}`)
-    .addFields(
-      { name: 'Platinum', value: `${order.platinum}p`, inline: true },
-      { name: 'Seller', value: order.seller, inline: true },
-      { name: 'Quantity', value: `${order.quantity}`, inline: true },
-      { name: 'Copy & Paste Whisper', value: `\`${whisper}\``, inline: false },
-    )
+    .addFields(fields)
     .setThumbnail('https://warframe.market/static/build/resources/images/logo-black.3bec6a3a0f1e6f1edbb1.png')
     .setFooter({ text: `Region: ${order.region} • Only sellers currently in-game` });
 };
