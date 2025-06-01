@@ -4,6 +4,7 @@ import { buildNightwaveEmbed } from './commands/nightwave';
 import { buildVoidFissuresEmbed } from './commands/void-fissures';
 import { buildWorldCyclesEmbed } from './commands/world-cycles';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
+import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
 import { client, DISCORD_PREFIX, CLAN_ICON, CLAN_ANNOUNCEMENTS_CHANNEL, FOUNDING_WARLORD_USER_ID, DISCORD_COLOR } from './config';
   
@@ -27,6 +28,7 @@ client.on('messageCreate', async (message: Message) => {
       .addFields(
         { name: '`!wf world` or `!wf cycles`', value: 'Shows current world cycles for Cetus, Cambion Drift, and Orb Vallis.', inline: false },
         { name: '`!wf baro`', value: 'Displays Baro Ki\'Teer\'s current location and arrival/departure times.', inline: false },
+        { name: '`!wf teshin` or `!wf sp`', value: 'Displays the current Steel Path Honors rotation from Teshin.', inline: false },
         { name: '`!wf nightwave`', value: 'Shows current Nightwave acts (daily and weekly).', inline: false },
         { name: '`!wf fissures`', value: 'Lists currently active Void Fissures.', inline: false },
         { name: '`!wf buy <item name>` or `!wf wtb <item name>`', value: 'Gets the cheapest in-game sell order for a Warframe Market item. Example: `!wf buy frost prime set`', inline: false },
@@ -62,6 +64,13 @@ client.on('messageCreate', async (message: Message) => {
    */
   if (message.content === `${DISCORD_PREFIX} world` || message.content === `${DISCORD_PREFIX} cycles`) {
     message.reply({ embeds: await buildWorldCyclesEmbed() });
+  }
+
+  /**
+   * Steel Path Honors shop (Teshin rotation)
+   */
+  if (message.content === `${DISCORD_PREFIX} teshin` || message.content === `${DISCORD_PREFIX} sp`) {
+    return message.reply({ embeds: [buildTeshinRotationEmbed()] });
   }
 
   /**
