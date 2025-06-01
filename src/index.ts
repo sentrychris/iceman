@@ -99,7 +99,7 @@ client.on('messageCreate', async (message: Message) => {
       return message.reply(`No active sell orders found for **${displayName}**.`);
     }
 
-    return message.reply({ embeds: [buildMarketPriceEmbed(displayName, order)] });
+    return message.reply({ embeds: [buildMarketPriceEmbed(displayName, slug, order)] });
   }
 });
   

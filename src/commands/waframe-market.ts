@@ -59,12 +59,16 @@ export const getWarframeMarketCheapestSellOrder = async (slug: string): Promise<
   }
 };
 
-export const buildMarketPriceEmbed = (itemName: string, order: SellOrder): EmbedBuilder => {
+export const buildMarketPriceEmbed = (itemName: string, itemSlug: string, order: SellOrder): EmbedBuilder => {
   const whisper = `/w ${order.seller} Hi! I want to buy: "${itemName}" for ${order.platinum} platinum. (warframe.market)`;
 
   const fields = [
     { name: 'Platinum', value: `${order.platinum}p`, inline: true },
-    { name: 'Seller', value: order.seller, inline: true },
+    {
+      name: 'Seller',
+      value: `[${order.seller}](https://warframe.market/profile/${encodeURIComponent(order.seller)})`,
+      inline: true
+    },
     { name: 'Quantity', value: `${order.quantity}`, inline: true },
   ];
 
@@ -86,7 +90,10 @@ export const buildMarketPriceEmbed = (itemName: string, order: SellOrder): Embed
   return new EmbedBuilder()
     .setColor(0x9B59B6)
     .setTitle(`Cheapest Sell Order: ${itemName}`)
+    .setURL(`https://warframe.market/items/${itemSlug}`)
     .addFields(fields)
     .setThumbnail(thumbnailUrl)
-    .setFooter({ text: `Region: ${order.region} • Only sellers currently in-game` });
+    .setFooter({
+      text: `Region: ${order.region} • Only sellers currently in-game • Source: www.warframe.market`,
+    });
 };
