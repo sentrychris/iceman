@@ -2,8 +2,8 @@ import { EmbedBuilder, type Message, type TextChannel } from 'discord.js';
 import { getBaroKiteerLocation } from './commands/baro-kiteer';
 import { buildNightwaveEmbed } from './commands/nightwave';
 import { buildVoidFissuresEmbed } from './commands/void-fissures';
-import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildWorldCyclesEmbed } from './commands/world-cycles';
+import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
 import { client, FOUNDING_WARLORD_USER_ID, DISCORD_PREFIX, CLAN_ANNOUNCEMENTS_CHANNEL } from './config';
   
@@ -37,15 +37,6 @@ client.on('messageCreate', async (message: Message) => {
   }
 
   /**
-   * World cycle timers
-   */
-  if (message.content === `${DISCORD_PREFIX} world` || message.content === `${DISCORD_PREFIX} cycles`) {
-    message.reply({
-      embeds: await buildWorldCyclesEmbed()
-    });
-  }
-
-  /**
    * Baro Ki'Teer void trader location
    */
   if (message.content === `${DISCORD_PREFIX} baro`) {
@@ -64,6 +55,13 @@ client.on('messageCreate', async (message: Message) => {
    */
   if (message.content === `${DISCORD_PREFIX} fissures`) {
     message.reply({ embeds: [await buildVoidFissuresEmbed()] });
+  }
+
+  /**
+   * World cycle timers
+   */
+  if (message.content === `${DISCORD_PREFIX} world` || message.content === `${DISCORD_PREFIX} cycles`) {
+    message.reply({ embeds: await buildWorldCyclesEmbed() });
   }
 
   /**
