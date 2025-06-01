@@ -81,7 +81,7 @@ client.on('messageCreate', async (message: Message) => {
     }
 
     await (channel as TextChannel).send({
-      embeds: [buildClanPrizeDrawEmbed()],
+      embeds: [await buildClanPrizeDrawEmbed()],
     });
   }
 

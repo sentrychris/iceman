@@ -1,68 +1,55 @@
 import { EmbedBuilder } from 'discord.js';
 import { CLAN_ICON } from '../config';
+import { readFile } from 'fs/promises';
+import path from 'path';
 
-// Logged in past 4 days
-const eligibleMembers = [
-  'Joolri',
-  'ELLADARAS1 ',
-  'KingInTheRings',
-  'muxi69',
-  'Corona9 ',
-  'KingOneTap2675',
-  'JonathanDuhGoat',
-  'Miky_69',
-  'XXScaryQrowXX ',
-  'Galaxycc_',
-  'BLACK-OP',
-  'King_Tinz ',
-  'SyctheDefalt  ',
-  'Reinion ',
-  'IamAstraeus ',
-  'ScooterHitMe',
-  'PROPODIDA ',
-  'davedaniel69 ',
-  'larry123987',
-  'BDP88',
-  'GuraChampion ',
-  'rackety_cavalry4',
-  'MidgetBoy06',
-  'var_zal',
-  'Elyyfio',
-  'Alonsoy',
-  'Sp14d3r_m4n',
-];
+type PrizeDrawResult = {
+  user: string;
+  prize: string;
+};
 
-const eligiblePrizes = [
-  '1x Omni Forma',
-  '3x Riven Mod Slots',
-  '1x Veiled Riven Cipher',
-  '3x Forma Bundle',
-  '1x Catalyst Reactor',
-  '1x Orokin Reactor',
-  '1x Exilus Warframe Adapter',
-  '1x Exilus Weapon Adapter',
-  '1x Primary Arcane Adapter',
-  '1x Secondary Arcane Adapter',
-  '2x Weapon slots',
-  '1x Warframe slot',
-  '1,000 Endo',
-]
+/**
+ * Loads eligible members and prizes from disk
+ */
+const loadClanPrizeData = async (): Promise<{ members: string[]; prizes: string[] }> => {
+  const base = path.resolve(__dirname, '../../storage/clan');
 
-const clanPrizeDraw = (): { user: string, prize: string } => {
+  const [membersRaw, prizesRaw] = await Promise.all([
+    readFile(path.join(base, 'members.json'), 'utf-8'),
+    readFile(path.join(base, 'prizes.json'), 'utf-8')
+  ]);
+
+  const members = JSON.parse(membersRaw);
+  const prizes = JSON.parse(prizesRaw);
+
+  if (!Array.isArray(members) || !Array.isArray(prizes)) {
+    throw new Error('Invalid clan data format.');
+  }
+
+  return { members, prizes };
+};
+
+/**
+ * Picks a random member and prize
+ */
+const clanPrizeDraw = (members: string[], prizes: string[]): PrizeDrawResult => {
   return {
-    user: eligibleMembers[Math.floor(Math.random() * eligibleMembers.length)].trim(),
-    prize: eligiblePrizes[Math.floor(Math.random() * eligiblePrizes.length)]
+    user: members[Math.floor(Math.random() * members.length)].trim(),
+    prize: prizes[Math.floor(Math.random() * prizes.length)]
   };
 };
 
-
-export const buildClanPrizeDrawEmbed = (): EmbedBuilder => {
-  const { user, prize } = clanPrizeDraw();
+/**
+ * Builds an embed for clan prize draw
+ */
+export const buildClanPrizeDrawEmbed = async (): Promise<EmbedBuilder> => {
+  const { members, prizes } = await loadClanPrizeData();
+  const { user, prize } = clanPrizeDraw(members, prizes);
 
   return new EmbedBuilder()
     .setColor(0x9B59B6)
     .setTitle('Clan Monthly Giveaway Prize Draw')
-    .setDescription('Congratulations to our randomly selected winner! Your prize will be gifted to you through the in-game market.')
+    .setDescription('Congratulations to our winner! Your prize will be gifted to you through the in-game market.')
     .addFields(
       { name: 'Member', value: user, inline: true },
       { name: 'Prize', value: prize, inline: true }
