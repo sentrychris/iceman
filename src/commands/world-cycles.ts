@@ -67,3 +67,16 @@ export const buildOrbVallisWorldCycleEmbed = async (): Promise<EmbedBuilder> => 
   const time = data.state; // "warm" or "cold"
   return embed('Orb Vallis', time.charAt(0).toUpperCase() + time.slice(1), data.timeLeft, THUMBNAILS.vallis);
 };
+
+/**
+ * Build world cycles embed
+ */
+export const buildWorldCyclesEmbed = async(): Promise<EmbedBuilder[]> => {
+  const [cetusEmbed, cambionEmbed, vallisEmbed] = await Promise.all([
+    buildCetusWorldCycleEmbed(),
+    buildCambionDriftWorldCycleEmbed(),
+    buildOrbVallisWorldCycleEmbed(),
+  ]);
+
+  return [cetusEmbed, cambionEmbed, vallisEmbed];
+}

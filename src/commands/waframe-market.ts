@@ -1,5 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { WARFRAME_MARKET_API } from '../../config';
+import { WARFRAME_MARKET_API } from '../config';
 
 type SellOrder = {
   platinum: number;

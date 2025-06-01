@@ -3,21 +3,9 @@ import { getBaroKiteerLocation } from './commands/baro-kiteer';
 import { buildNightwaveEmbed } from './commands/nightwave';
 import { buildVoidFissuresEmbed } from './commands/void-fissures';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
-import {
-  buildCetusWorldCycleEmbed,
-  buildCambionDriftWorldCycleEmbed,
-  buildOrbVallisWorldCycleEmbed
-} from './commands/world-cycles';
-import {
-  buildMarketPriceEmbed,
-  getWarframeMarketCheapestSellOrder
-} from './commands/warframe-market/market-price';
-import {
-  client,
-  FOUNDING_WARLORD_USER_ID,
-  DISCORD_PREFIX,
-  CLAN_ANNOUNCEMENTS_CHANNEL
-} from './config';
+import { buildWorldCyclesEmbed } from './commands/world-cycles';
+import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
+import { client, FOUNDING_WARLORD_USER_ID, DISCORD_PREFIX, CLAN_ANNOUNCEMENTS_CHANNEL } from './config';
   
 client.on('ready', () => {
   console.log('ready');
@@ -28,8 +16,11 @@ client.on('messageCreate', async (message: Message) => {
     return;
   }
 
-  const buildUsageEmbed = (): EmbedBuilder => {
-    return new EmbedBuilder()
+  /**
+   * Help / usage
+   */
+  if (message.content === `${DISCORD_PREFIX}` || message.content === `${DISCORD_PREFIX} help` || message.content === `${DISCORD_PREFIX} usage`) {
+    return message.reply({ embeds: [new EmbedBuilder()
       .setColor(0x3498DB)
       .setTitle('Warframe Bot Usage')
       .setDescription('Use the following commands with `!wf`')
@@ -41,28 +32,16 @@ client.on('messageCreate', async (message: Message) => {
         { name: '`!wf buy <item name>`', value: 'Gets the cheapest in-game sell order for a Warframe Market item. Example: `!wf buy frost prime set`', inline: false },
       )
       .setFooter({ text: 'Only in-game sellers are shown in market lookups.' })
-      .setThumbnail('https://i.imgur.com/fQn9zNL.png');
-  };
-
-  /**
-   * Help / usage
-   */
-  if (message.content === `${DISCORD_PREFIX}` || message.content === `${DISCORD_PREFIX} help` || message.content === `${DISCORD_PREFIX} usage`) {
-    return message.reply({ embeds: [buildUsageEmbed()] });
+      .setThumbnail('https://i.imgur.com/fQn9zNL.png')]
+    });
   }
 
   /**
    * World cycle timers
    */
   if (message.content === `${DISCORD_PREFIX} world` || message.content === `${DISCORD_PREFIX} cycles`) {
-    const [cetusEmbed, cambionEmbed, vallisEmbed] = await Promise.all([
-      buildCetusWorldCycleEmbed(),
-      buildCambionDriftWorldCycleEmbed(),
-      buildOrbVallisWorldCycleEmbed(),
-    ]);
-  
     message.reply({
-      embeds: [cetusEmbed, cambionEmbed, vallisEmbed]
+      embeds: await buildWorldCyclesEmbed()
     });
   }
 
@@ -112,9 +91,9 @@ client.on('messageCreate', async (message: Message) => {
    * Warframe market cheapest sell order
    */
   if (message.content.startsWith(`${DISCORD_PREFIX} buy `)) {
-      const input = message.content.slice(`${DISCORD_PREFIX} buy `.length).trim();
-      const slug = input.toLowerCase().replace(/\s+/g, '_');
-      const displayName = input.replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()); // Title Case
+      const query = message.content.slice(`${DISCORD_PREFIX} buy `.length).trim();
+      const slug = query.toLowerCase().replace(/\s+/g, '_');
+      const displayName = query.replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase()); // Title Case
 
     const order = await getWarframeMarketCheapestSellOrder(slug);
 
