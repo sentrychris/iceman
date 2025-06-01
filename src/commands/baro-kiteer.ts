@@ -5,7 +5,7 @@ import { WARFRAME_API } from '../config';
  *
  * @returns 
  */
-export const baroKiteerLocation = async (): Promise<string> => {
+export const getBaroKiteerLocation = async (): Promise<string> => {
   try {
     const res = await fetch(`${WARFRAME_API}/voidTrader`);
     const data = await res.json();

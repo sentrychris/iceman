@@ -1,11 +1,23 @@
-import { EmbedBuilder, Message } from 'discord.js';
-import { client, FOUNDING_WARLORD_USER_ID, DISCORD_PREFIX } from './config';
-import { baroKiteerLocation } from './commands/baro-kiteer';
-import { nightwave } from './commands/nightwave';
-import { voidFissures } from './commands/void-fissures';
-import { cetus, cambionDrift, orbVallis, startWorldCycleTrackingLoop } from './commands/world-cycles';
-import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/warframe-market/market-price';
-import { buildClanPrizeDrawEmbed, startClanPrizeDrawLoop } from './commands/clan-prizedraw';
+import type { Message, TextChannel } from 'discord.js';
+import { getBaroKiteerLocation } from './commands/baro-kiteer';
+import { buildNightwaveEmbed } from './commands/nightwave';
+import { buildVoidFissuresEmbed } from './commands/void-fissures';
+import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
+import {
+  buildCetusWorldCycleEmbed,
+  buildCambionDriftWorldCycleEmbed,
+  buildOrbVallisWorldCycleEmbed
+} from './commands/world-cycles';
+import {
+  buildMarketPriceEmbed,
+  getWarframeMarketCheapestSellOrder
+} from './commands/warframe-market/market-price';
+import {
+  client,
+  FOUNDING_WARLORD_USER_ID,
+  DISCORD_PREFIX,
+  CLAN_ANNOUNCEMENTS_CHANNEL
+} from './config';
   
 client.on('ready', () => {
   console.log('ready');
@@ -21,9 +33,9 @@ client.on('messageCreate', async (message: Message) => {
    */
   if (message.content === `${DISCORD_PREFIX} world` || message.content === `${DISCORD_PREFIX} cycles`) {
     const [cetusEmbed, cambionEmbed, vallisEmbed] = await Promise.all([
-      cetus(),
-      cambionDrift(),
-      orbVallis(),
+      buildCetusWorldCycleEmbed(),
+      buildCambionDriftWorldCycleEmbed(),
+      buildOrbVallisWorldCycleEmbed(),
     ]);
   
     message.reply({
@@ -32,28 +44,28 @@ client.on('messageCreate', async (message: Message) => {
   }
 
   /**
-   * Baro kiteer
+   * Baro Ki'Teer void trader location
    */
   if (message.content === `${DISCORD_PREFIX} baro`) {
-    message.reply(await baroKiteerLocation());
+    message.reply(await getBaroKiteerLocation());
   }
 
   /**
-   * Nightwave
+   * Nightwave daily & weekly alerts
    */
   if (message.content === `${DISCORD_PREFIX} nightwave`) {
-    message.reply({ embeds: [await nightwave()] });
+    message.reply({ embeds: [await buildNightwaveEmbed()] });
   }
 
   /**
-   * Void fissures
+   * Active void fissures
    */
   if (message.content === `${DISCORD_PREFIX} fissures`) {
-    message.reply({ embeds: [await voidFissures()] });
+    message.reply({ embeds: [await buildVoidFissuresEmbed()] });
   }
 
   /**
-   * Prize draw
+   * Clan prize draw (founding warlord only)
    */
   if (message.content === `${DISCORD_PREFIX} prizedraw`) {
     if (message.author.id !== FOUNDING_WARLORD_USER_ID) {
@@ -61,9 +73,21 @@ client.on('messageCreate', async (message: Message) => {
       return;
     }
 
-    message.reply({ embeds: [buildClanPrizeDrawEmbed()] });
+    const channel = await client.channels.fetch(CLAN_ANNOUNCEMENTS_CHANNEL);
+
+    if (!channel || !channel.isTextBased()) {
+      console.error('Invalid or non-text channel for prize draw');
+      return;
+    }
+
+    await (channel as TextChannel).send({
+      embeds: [buildClanPrizeDrawEmbed()],
+    });
   }
 
+  /**
+   * Warframe market cheapest sell order
+   */
   if (message.content.startsWith(`${DISCORD_PREFIX} buy `)) {
       const input = message.content.slice(`${DISCORD_PREFIX} buy `.length).trim();
       const slug = input.toLowerCase().replace(/\s+/g, '_');
@@ -78,11 +102,5 @@ client.on('messageCreate', async (message: Message) => {
     return message.reply({ embeds: [buildMarketPriceEmbed(displayName, order)] });
   }
 });
-
-/**
- * Loops
- */
-// startWorldCycleTrackingLoop(client);
-// startClanPrizeDrawLoop(client);
   
 client.login(<string>process.env.DISCORD_AUTH_TOKEN);

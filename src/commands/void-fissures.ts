@@ -28,7 +28,7 @@ function groupByTier(fissures: Fissure[]): Map<string, Fissure[]> {
   }, new Map<string, Fissure[]>());
 }
 
-export const voidFissures = async (): Promise<EmbedBuilder> => {
+export const buildVoidFissuresEmbed = async (): Promise<EmbedBuilder> => {
   const res = await fetch(`${WARFRAME_API}/fissures`);
   const fissures: Fissure[] = await res.json();
 

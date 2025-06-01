@@ -1,9 +1,5 @@
-import { type Client, type TextChannel, EmbedBuilder } from 'discord.js';
-import {
-  WARFRAME_API,
-  WORLD_CYCLE_TRACKING_CHANNEL,
-  WORLD_CYCLE_UPDATE_INTERVAL_MS
-} from '../config';
+import { EmbedBuilder } from 'discord.js';
+import { WARFRAME_API } from '../config';
 
 const THUMBNAILS = {
   cetus: 'https://wiki.warframe.com/images/thumb/Cetus.png/300px-Cetus.png',
@@ -24,11 +20,10 @@ const embed = (
   worldName: string,
   dayOrNight: string,
   endsIn: string,
-  thumbnailUrl: string,
-  embedColor: number = 0x3498DB
+  thumbnailUrl: string
 ) => {
   return new EmbedBuilder()
-    .setColor(embedColor)
+    .setColor(0x3498DB)
     .setTitle(worldName)
     .setDescription('World Cycle')
     .addFields(
@@ -43,7 +38,7 @@ const embed = (
  * 
  * @returns 
  */
-export const cetus = async (): Promise<EmbedBuilder> => {
+export const buildCetusWorldCycleEmbed = async (): Promise<EmbedBuilder> => {
   const res = await fetch(`${WARFRAME_API}/cetusCycle`);
   const data = await res.json();
   const time = data.isDay ? 'Day' : 'Night';
@@ -55,7 +50,7 @@ export const cetus = async (): Promise<EmbedBuilder> => {
  * 
  * @returns 
  */
-export const cambionDrift = async (): Promise<EmbedBuilder> => {
+export const buildCambionDriftWorldCycleEmbed = async (): Promise<EmbedBuilder> => {
   const res = await fetch(`${WARFRAME_API}/cambionCycle`);
   const data = await res.json();
   const time = data.active; // "fass" or "vome"
@@ -66,49 +61,9 @@ export const cambionDrift = async (): Promise<EmbedBuilder> => {
  * Orb Vallis/Venus world cycle
  * @returns 
  */
-export const orbVallis = async (): Promise<EmbedBuilder> => {
+export const buildOrbVallisWorldCycleEmbed = async (): Promise<EmbedBuilder> => {
   const res = await fetch(`${WARFRAME_API}/vallisCycle`);
   const data = await res.json();
   const time = data.state; // "warm" or "cold"
   return embed('Orb Vallis', time.charAt(0).toUpperCase() + time.slice(1), data.timeLeft, THUMBNAILS.vallis);
 };
-
-/**
- * Loop world cycles every hour
- * @param client
- */
-export const startWorldCycleTrackingLoop = (client: Client): void => {
-  client.once('ready', async () => {
-    console.log('World cycle loop started');
-
-    const channel = await client.channels.fetch(WORLD_CYCLE_TRACKING_CHANNEL);
-
-    if (!channel || !channel.isTextBased()) {
-      console.error('Invalid or non-text channel');
-      return;
-    }
-
-    const sendEmbeds = async () => {
-      try {
-        const [cetusEmbed, cambionEmbed, vallisEmbed] = await Promise.all([
-          cetus(),
-          cambionDrift(),
-          orbVallis(),
-        ]);
-
-        await (channel as TextChannel).send({
-          embeds: [cetusEmbed, cambionEmbed, vallisEmbed],
-        });
-
-      } catch (err) {
-        console.error('Failed to send world cycle embeds:', err);
-      }
-    };
-
-    // Initial send immediately on startup
-    await sendEmbeds();
-
-    // Repeat every hour
-    setInterval(sendEmbeds, WORLD_CYCLE_UPDATE_INTERVAL_MS);
-  });
-}
