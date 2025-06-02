@@ -1,4 +1,5 @@
-import { EmbedBuilder, type Message, type TextChannel } from 'discord.js';
+import type { Message, TextChannel } from 'discord.js';
+import { usage } from './usage';
 import { getBaroKiteerLocation } from './commands/baro-kiteer';
 import { buildNightwaveEmbed } from './commands/nightwave-alerts';
 import { buildVoidFissuresEmbed } from './commands/void-fissures';
@@ -8,7 +9,7 @@ import { buildArchonHuntEmbed } from './commands/archon-hunt';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
-import { client, DISCORD_PREFIX, CLAN_ICON, CLAN_ANNOUNCEMENTS_CHANNEL, FOUNDING_WARLORD_USER_ID, DISCORD_COLOR } from './config';
+import { client, DISCORD_PREFIX, FOUNDING_WARLORD_USER_ID, CLAN_ANNOUNCEMENTS_CHANNEL } from './config';
   
 client.on('ready', () => {
   console.log('ready');
@@ -19,62 +20,20 @@ client.on('messageCreate', async (message: Message) => {
     return;
   }
 
-  /**
-   * Help / usage
-   */
-  if (
-    message.content === `${DISCORD_PREFIX}` ||
-    message.content === `${DISCORD_PREFIX} help` ||
-    message.content === `${DISCORD_PREFIX} usage`
-  ) {
-    return message.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setColor(DISCORD_COLOR.blue)
-          .setTitle('Warframe Bot Usage')
-          .setDescription('Use the following commands with `!wf`')
-          .addFields(
-            { name: '`!wf world` or `!wf wc`', value: 'Shows current world cycles for Cetus, Cambion Drift, and Orb Vallis.', inline: false },
-            { name: '`!wf baro` or `!wf vt`', value: 'Displays Baro Ki\'Teer\'s current location and arrival/departure times.', inline: false },
-            { name: '`!wf teshin` or `!wf sp`', value: 'Displays the current Steel Path Honors rotation from Teshin.', inline: false },
-            { name: '`!wf sortie`', value: 'Displays today\'s Sortie missions, boss, faction, and modifiers.', inline: false },
-            { name: '`!wf archon`', value: 'Displays this week\'s Archon Hunt mission.', inline: false },
-            { name: '`!wf nightwave` or `!wf nw`', value: 'Shows current Nightwave acts (daily and weekly).', inline: false },
-            {
-              name: '`!wf fissures` or `!wf vf`',
-              value: 'Lists currently active Void Fissures grouped by relic era. Optional filter: `!wf fissures meso`.',
-              inline: false
-            },
-            {
-              name: '`!wf buy <item name>` or `!wf wtb <item name>`',
-              value: 'Gets the cheapest in-game sell order for a Warframe Market item.\nExample: `!wf buy frost prime set`',
-              inline: false
-            }
-          )
-          .setFooter({ text: 'Only in-game sellers are shown in market lookups.' })
-          .setThumbnail(CLAN_ICON)
-      ]
-    });
-  }
+  // Show usage help
+  await usage(message);
 
-
-  /**
-   * Baro Ki'Teer void trader location
-   */
+  // Show Baro Ki'Teer void trader location
   if (message.content === `${DISCORD_PREFIX} baro` || message.content === `${DISCORD_PREFIX} vt`) {
     message.reply({ embeds: [await getBaroKiteerLocation()]});
   }
 
-  /**
-   * Nightwave daily & weekly alerts
-   */
+  // Show Nightwave daily & weekly alerts
   if (message.content === `${DISCORD_PREFIX} nightwave` || message.content === `${DISCORD_PREFIX} nw`) {
     message.reply({ embeds: [await buildNightwaveEmbed()] });
   }
 
-  /**
-   * Active void fissures
-   */
+  // Show active void fissures
   if (message.content.startsWith(`${DISCORD_PREFIX} fissures`) || message.content.startsWith(`${DISCORD_PREFIX} vf`)) {
     const parts = message.content.trim().split(/\s+/);
     const tierFilter = parts.length > 2 ? parts.slice(2).join(' ') : parts[1]; // support '!wf fissures meso' or '!wf vf meso'
@@ -86,37 +45,54 @@ client.on('messageCreate', async (message: Message) => {
     message.reply({ embeds: [embed] });
   }
 
-  /**
-   * World cycle timers
-   */
-  if (message.content === `${DISCORD_PREFIX} world` || message.content === `${DISCORD_PREFIX} wc`) {
-    message.reply({ embeds: await buildWorldCyclesEmbed() });
+  // Show current world cycles
+  if (/^!wf\s+(world|wc)(\s+.+)?$/i.test(message.content)) {
+    const match = message.content.match(/^!wf\s+(world|wc)(?:\s+(.+))?/i);
+    let filter = match?.[2]?.trim().toLowerCase();
+
+    if (filter) {
+      // Normalize filter aliases
+      if (filter.includes('orb')) filter = 'vallis';
+      else if (filter.includes('deimos') || filter.includes('cambion')) filter = 'cambion';
+      else if (filter.includes('earth') || filter.includes('cetus')) filter = 'cetus';
+      else filter = undefined; // fallback if unrecognized
+    }
+
+    const embed = await buildWorldCyclesEmbed(filter);
+    return message.reply({ embeds: Array.isArray(embed) ? embed : [embed] });
   }
 
-  /**
-   * Sortie missions
-   */
+  // Show the daily active sortie mission
   if (message.content === `${DISCORD_PREFIX} sortie`) {
     return message.reply({ embeds: [await buildSortieEmbed()] });
   }
 
-  /**
-   * Archon hunts
-   */
+  // Show the weekly active archon hunt mission
   if (message.content === `${DISCORD_PREFIX} archon`) {
     message.reply({ embeds: [await buildArchonHuntEmbed()] });
   }
 
-  /**
-   * Steel Path Honors shop (Teshin rotation)
-   */
+  // Show steel path honors shop rotation and evergreen offerings
   if (message.content === `${DISCORD_PREFIX} teshin` || message.content === `${DISCORD_PREFIX} sp`) {
     return message.reply({ embeds: [await buildTeshinRotationEmbed()] });
   }
 
-  /**
-   * Clan prize draw (founding warlord only)
-   */
+  // Show cheapest sell order for an item from warframe.market
+  if (/^!wf\s+(buy|wtb)\s+/i.test(message.content)) {
+    const query = message.content.replace(/^!wf\s+(buy|wtb)\s+/i, '').trim();
+    const slug = query.toLowerCase().replace(/\s+/g, '_');
+    const displayName = query.replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+
+    const order = await getWarframeMarketCheapestSellOrder(slug);
+
+    if (!order) {
+      return message.reply(`No active sell orders found for **${displayName}**.`);
+    }
+
+    return message.reply({ embeds: [buildMarketPriceEmbed(displayName, slug, order)] });
+  }
+
+  // Run the clan prizedraw
   if (message.content === `${DISCORD_PREFIX} prizedraw`) {
     if (message.author.id !== FOUNDING_WARLORD_USER_ID) {
       console.warn(`${message.author.displayName} attempted !wf prizedraw`);
@@ -133,23 +109,6 @@ client.on('messageCreate', async (message: Message) => {
     await (channel as TextChannel).send({
       embeds: [await buildClanPrizeDrawEmbed()],
     });
-  }
-
-  /**
-   * Warframe market cheapest sell order
-   */
-  if (/^!wf\s+(buy|wtb)\s+/i.test(message.content)) {
-    const query = message.content.replace(/^!wf\s+(buy|wtb)\s+/i, '').trim();
-    const slug = query.toLowerCase().replace(/\s+/g, '_');
-    const displayName = query.replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-
-    const order = await getWarframeMarketCheapestSellOrder(slug);
-
-    if (!order) {
-      return message.reply(`No active sell orders found for **${displayName}**.`);
-    }
-
-    return message.reply({ embeds: [buildMarketPriceEmbed(displayName, slug, order)] });
   }
 });
   
