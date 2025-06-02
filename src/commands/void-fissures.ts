@@ -1,7 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
 import { DISCORD_COLOR, WARFRAME_API } from '../config';
 
-const VOID_ICON = 'https://wiki.warframe.com/images/thumb/VoidSkybox.jpg/244px-VoidSkybox.jpg';
+const VOID_ICON = 'https://wiki.warframe.com/images/thumb/VoidRelicPack.png/300px-VoidRelicPack.png';
 
 interface Fissure {
   node: string;
@@ -12,14 +12,40 @@ interface Fissure {
   expiry: string;
 }
 
+/**
+ * Converts fissure object to formatted markdown bullet line.
+ */
 function formatFissure(f: Fissure): string {
-  const modifiers = [];
-  if (f.isHard) modifiers.push('Steel Path');
-  if (f.isStorm) modifiers.push('Void Storm');
-  const mods = modifiers.length ? ` (${modifiers.join(', ')})` : '';
-  return `• ${f.node} - ${f.missionType}${mods}`;
+  const tags = [];
+  if (f.isHard) tags.push('Steel Path');
+  if (f.isStorm) tags.push('Void Storm');
+
+  const levelRange = getTierLevelRange(f.tier, f.isHard);
+  const label = `• **${f.node}** — ${f.missionType} (Lvl ${levelRange})`;
+  return tags.length > 0 ? `${label} _( ${tags.join(', ')} )_` : label;
 }
 
+/**
+ * Get the relic tier level range.
+ */
+function getTierLevelRange(tier: string, isHard: boolean): string {
+  const ranges: Record<string, [number, number]> = {
+    Lith: [10, 30],
+    Meso: [15, 35],
+    Neo: [20, 40],
+    Axi: [25, 45],
+    Requiem: [30, 50],
+  };
+  const base = ranges[tier] || [0, 0];
+  if (isHard) {
+    return `${base[0] + 100}–${base[1] + 100}`;
+  }
+  return `${base[0]}–${base[1]}`;
+}
+
+/**
+ * Groups fissures by tier.
+ */
 function groupByTier(fissures: Fissure[]): Map<string, Fissure[]> {
   return fissures.reduce((map, f) => {
     if (!map.has(f.tier)) map.set(f.tier, []);
@@ -28,7 +54,10 @@ function groupByTier(fissures: Fissure[]): Map<string, Fissure[]> {
   }, new Map<string, Fissure[]>());
 }
 
-export const buildVoidFissuresEmbed = async (): Promise<EmbedBuilder> => {
+/**
+ * Builds an embed showing active void fissures grouped by relic tier.
+ */
+export const buildVoidFissuresEmbed = async (filterTier?: string): Promise<EmbedBuilder> => {
   const res = await fetch(`${WARFRAME_API}/fissures`);
   const fissures: Fissure[] = await res.json();
 
@@ -42,15 +71,32 @@ export const buildVoidFissuresEmbed = async (): Promise<EmbedBuilder> => {
 
   const grouped = groupByTier(fissures);
 
-  const fields = Array.from(grouped.entries()).map(([tier, entries]) => ({
-    name: tier,
-    value: entries.map(formatFissure).join('\n'),
+  const entries = Array.from(grouped.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .filter(([tier]) => !filterTier || tier.toLowerCase() === filterTier.toLowerCase());
+
+  if (!entries.length) {
+    return new EmbedBuilder()
+      .setTitle('Void Fissures')
+      .setDescription(`No fissures found for tier: ${filterTier}`)
+      .setColor(DISCORD_COLOR.blue)
+      .setThumbnail(VOID_ICON);
+  }
+
+  const fields = entries.map(([tier, list]) => ({
+    name: `${tier} Relics`,
+    value: list
+      .sort((a, b) => a.node.localeCompare(b.node))
+      .map(formatFissure)
+      .join('\n'),
     inline: false,
   }));
 
   return new EmbedBuilder()
     .setTitle('Active Void Fissures')
+    .setDescription(filterTier ? `Filtered by era: ${filterTier}` : 'Live fissures available for relic cracking')
     .setColor(DISCORD_COLOR.blue)
     .setThumbnail(VOID_ICON)
-    .addFields(fields);
+    .addFields(fields)
+    .setFooter({ text: 'Steel Path and Void Storm included where applicable.' });
 };

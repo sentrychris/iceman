@@ -22,25 +22,41 @@ client.on('messageCreate', async (message: Message) => {
   /**
    * Help / usage
    */
-  if (message.content === `${DISCORD_PREFIX}` || message.content === `${DISCORD_PREFIX} help` || message.content === `${DISCORD_PREFIX} usage`) {
-    return message.reply({ embeds: [new EmbedBuilder()
-      .setColor(DISCORD_COLOR.blue)
-      .setTitle('Warframe Bot Usage')
-      .setDescription('Use the following commands with `!wf`')
-      .addFields(
-        { name: '`!wf world` or `!wf wc`', value: 'Shows current world cycles for Cetus, Cambion Drift, and Orb Vallis.', inline: false },
-        { name: '`!wf baro` or `!wf vt`', value: 'Displays Baro Ki\'Teer\'s current location and arrival/departure times.', inline: false },
-        { name: '`!wf teshin` or `!wf sp`', value: 'Displays the current Steel Path Honors rotation from Teshin.', inline: false },
-        { name: '`!wf sortie`', value: 'Displays today\'s Sortie missions, boss, faction, and modifiers.', inline: false },
-        { name: '`!wf archon`', value: 'Displays this week\'s Archon Hunt mission.', inline: false },
-        { name: '`!wf nightwave` or `!wf nw`', value: 'Shows current Nightwave acts (daily and weekly).', inline: false },
-        { name: '`!wf fissures` or `!wf vf`', value: 'Lists currently active Void Fissures.', inline: false },
-        { name: '`!wf buy <item name>` or `!wf wtb <item name>`', value: 'Gets the cheapest in-game sell order for a Warframe Market item. Example: `!wf buy frost prime set`', inline: false },
-      )
-      .setFooter({ text: 'Only in-game sellers are shown in market lookups.' })
-      .setThumbnail(CLAN_ICON)]
+  if (
+    message.content === `${DISCORD_PREFIX}` ||
+    message.content === `${DISCORD_PREFIX} help` ||
+    message.content === `${DISCORD_PREFIX} usage`
+  ) {
+    return message.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setColor(DISCORD_COLOR.blue)
+          .setTitle('Warframe Bot Usage')
+          .setDescription('Use the following commands with `!wf`')
+          .addFields(
+            { name: '`!wf world` or `!wf wc`', value: 'Shows current world cycles for Cetus, Cambion Drift, and Orb Vallis.', inline: false },
+            { name: '`!wf baro` or `!wf vt`', value: 'Displays Baro Ki\'Teer\'s current location and arrival/departure times.', inline: false },
+            { name: '`!wf teshin` or `!wf sp`', value: 'Displays the current Steel Path Honors rotation from Teshin.', inline: false },
+            { name: '`!wf sortie`', value: 'Displays today\'s Sortie missions, boss, faction, and modifiers.', inline: false },
+            { name: '`!wf archon`', value: 'Displays this week\'s Archon Hunt mission.', inline: false },
+            { name: '`!wf nightwave` or `!wf nw`', value: 'Shows current Nightwave acts (daily and weekly).', inline: false },
+            {
+              name: '`!wf fissures` or `!wf vf`',
+              value: 'Lists currently active Void Fissures grouped by relic era. Optional filter: `!wf fissures meso`.',
+              inline: false
+            },
+            {
+              name: '`!wf buy <item name>` or `!wf wtb <item name>`',
+              value: 'Gets the cheapest in-game sell order for a Warframe Market item.\nExample: `!wf buy frost prime set`',
+              inline: false
+            }
+          )
+          .setFooter({ text: 'Only in-game sellers are shown in market lookups.' })
+          .setThumbnail(CLAN_ICON)
+      ]
     });
   }
+
 
   /**
    * Baro Ki'Teer void trader location
@@ -59,8 +75,15 @@ client.on('messageCreate', async (message: Message) => {
   /**
    * Active void fissures
    */
-  if (message.content === `${DISCORD_PREFIX} fissures` || message.content === `${DISCORD_PREFIX} vf`) {
-    message.reply({ embeds: [await buildVoidFissuresEmbed()] });
+  if (message.content.startsWith(`${DISCORD_PREFIX} fissures`) || message.content.startsWith(`${DISCORD_PREFIX} vf`)) {
+    const parts = message.content.trim().split(/\s+/);
+    const tierFilter = parts.length > 2 ? parts.slice(2).join(' ') : parts[1]; // support '!wf fissures meso' or '!wf vf meso'
+
+    const knownTiers = ['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
+    const isTier = tierFilter && knownTiers.some(t => t.toLowerCase() === tierFilter.toLowerCase());
+
+    const embed = await buildVoidFissuresEmbed(isTier ? tierFilter : undefined);
+    message.reply({ embeds: [embed] });
   }
 
   /**
