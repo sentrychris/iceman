@@ -1,6 +1,6 @@
 import type { Message, TextChannel } from 'discord.js';
 import { usage } from './usage';
-import { getBaroKiteerLocation } from './commands/baro-kiteer';
+import { buildBaroKiteerLocationEmbed } from './commands/baro-kiteer';
 import { buildNightwaveEmbed } from './commands/nightwave-alerts';
 import { buildVoidFissuresEmbed } from './commands/void-fissures';
 import { buildWorldCyclesEmbed } from './commands/world-cycles';
@@ -25,7 +25,7 @@ client.on('messageCreate', async (message: Message) => {
 
   // Show Baro Ki'Teer void trader location
   if (message.content === `${DISCORD_PREFIX} baro` || message.content === `${DISCORD_PREFIX} vt`) {
-    message.reply({ embeds: [await getBaroKiteerLocation()]});
+    message.reply({ embeds: [await buildBaroKiteerLocationEmbed()]});
   }
 
   // Show Nightwave daily & weekly alerts

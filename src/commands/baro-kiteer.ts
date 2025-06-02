@@ -6,7 +6,7 @@ const BARO_ICON = 'https://wiki.warframe.com/images/thumb/TennoCon2020BaroCroppe
 /**
  * Fetches Baro Ki'Teer's location and returns an embed.
  */
-export const getBaroKiteerLocation = async (): Promise<EmbedBuilder> => {
+export const buildBaroKiteerLocationEmbed = async (): Promise<EmbedBuilder> => {
   try {
     const res = await fetch(`${WARFRAME_API}/voidTrader?lang=en`);
     const data = await res.json();
