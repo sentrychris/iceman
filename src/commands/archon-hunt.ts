@@ -42,7 +42,7 @@ export const buildArchonHuntEmbed = async (): Promise<EmbedBuilder> => {
     const embed = new EmbedBuilder()
       .setColor(DISCORD_COLOR.red)
       .setTitle('Archon Hunt')
-      .setDescription(`This week's Archon Hunt against **${data.boss}**`)
+      .setDescription(`This week's Archon Hunt is against **${data.boss}**`)
       .setThumbnail(image)
       .addFields(
         { name: 'Boss', value: data.boss, inline: true },
