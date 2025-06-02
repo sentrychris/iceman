@@ -1,5 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { CLAN_ICON, DISCORD_COLOR } from '../config';
+import { DISCORD_COLOR, DISCORD_ICON } from '../config';
 import { readFile } from 'fs/promises';
 import path from 'path';
 
@@ -54,5 +54,5 @@ export const buildClanPrizeDrawEmbed = async (): Promise<EmbedBuilder> => {
       { name: 'Member', value: user, inline: true },
       { name: 'Prize', value: prize, inline: true }
     )
-    .setThumbnail(CLAN_ICON);
+    .setThumbnail(DISCORD_ICON.clan);
 };

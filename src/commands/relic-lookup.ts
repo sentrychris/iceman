@@ -1,8 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
-import { DISCORD_COLOR } from '../config';
+import { DISCORD_COLOR, DISCORD_ICON } from '../config';
 
 const DROPS_API_URL = 'https://drops.warframestat.us/data/all.json';
-const RELIC_ICON = 'https://wiki.warframe.com/images/thumb/VoidRelicPack.png/300px-VoidRelicPack.png';
 
 interface MissionReward {
   itemName: string;
@@ -97,7 +96,7 @@ export const buildRelicDropsEmbed = async (query: string): Promise<EmbedBuilder>
       .setTitle('Relic Drop Lookup')
       .setDescription(`Relics that contain: **${query}**`)
       .setColor(DISCORD_COLOR.red)
-      .setThumbnail(RELIC_ICON)
+      .setThumbnail(DISCORD_ICON.relic)
       .addFields([
         {
           name: 'All relics are vaulted',
@@ -133,7 +132,7 @@ export const buildRelicDropsEmbed = async (query: string): Promise<EmbedBuilder>
     .setTitle('Relic Drop Lookup')
     .setDescription(`Relics that contain: **${query}**`)
     .setColor(DISCORD_COLOR.orange)
-    .setThumbnail(RELIC_ICON)
+    .setThumbnail(DISCORD_ICON.relic)
     .addFields(fields)
     .setFooter({ text: 'Data via drops.warframestat.us' });
 };

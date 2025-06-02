@@ -1,7 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { DISCORD_COLOR, WARFRAME_API } from '../config';
-
-const TESHIN_ICON = 'https://wiki.warframe.com/images/Teshin.png';
+import { DISCORD_COLOR, DISCORD_ICON, WARFRAME_API } from '../config';
 
 interface RotationItem {
   name: string;
@@ -50,7 +48,7 @@ export const buildTeshinRotationEmbed = async (): Promise<EmbedBuilder> => {
         inline: false
       }
     )
-    .setThumbnail(TESHIN_ICON)
+    .setThumbnail(DISCORD_ICON.teshin)
     .setFooter({
       text: 'Steel Path Honors reset weekly. Rotation and prices sourced live from Warframe API.'
     });

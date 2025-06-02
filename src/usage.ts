@@ -1,5 +1,5 @@
 import { EmbedBuilder, type Message } from "discord.js";
-import { DISCORD_BOT_NAME, DISCORD_PREFIX, DISCORD_COLOR, CLAN_ICON } from "./config";
+import { DISCORD_BOT_NAME, DISCORD_COLOR, DISCORD_ICON, DISCORD_PREFIX } from "./config";
 
 export const usage = async (message: Message) => {
   if (
@@ -68,7 +68,7 @@ export const usage = async (message: Message) => {
             },
           )
           .setFooter({ text: 'Only online in-game sellers are shown in market lookups.' })
-          .setThumbnail(CLAN_ICON)
+          .setThumbnail(DISCORD_ICON.clan)
       ]
     });
   }

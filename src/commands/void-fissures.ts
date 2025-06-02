@@ -1,7 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { DISCORD_COLOR, WARFRAME_API } from '../config';
-
-const VOID_ICON = 'https://wiki.warframe.com/images/thumb/VoidRelicPack.png/300px-VoidRelicPack.png';
+import { DISCORD_COLOR, DISCORD_ICON, WARFRAME_API } from '../config';
 
 interface Fissure {
   node: string;
@@ -66,7 +64,7 @@ export const buildVoidFissuresEmbed = async (filterTier?: string): Promise<Embed
       .setTitle('Void Fissures')
       .setDescription('No active fissures.')
       .setColor(DISCORD_COLOR.blue)
-      .setThumbnail(VOID_ICON);
+      .setThumbnail(DISCORD_ICON.void);
   }
 
   const grouped = groupByTier(fissures);
@@ -80,7 +78,7 @@ export const buildVoidFissuresEmbed = async (filterTier?: string): Promise<Embed
       .setTitle('Void Fissures')
       .setDescription(`No fissures found for tier: ${filterTier}`)
       .setColor(DISCORD_COLOR.blue)
-      .setThumbnail(VOID_ICON);
+      .setThumbnail(DISCORD_ICON.void);
   }
 
   const fields = entries.map(([tier, list]) => ({
@@ -96,7 +94,7 @@ export const buildVoidFissuresEmbed = async (filterTier?: string): Promise<Embed
     .setTitle('Active Void Fissures')
     .setDescription(filterTier ? `Filtered by era: ${filterTier}` : 'Live fissures available for relic cracking')
     .setColor(DISCORD_COLOR.orange)
-    .setThumbnail(VOID_ICON)
+    .setThumbnail(DISCORD_ICON.void)
     .addFields(fields)
     .setFooter({ text: 'Steel Path and Void Storm included where applicable.' });
 };

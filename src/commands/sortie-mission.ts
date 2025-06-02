@@ -1,7 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { DISCORD_COLOR, WARFRAME_API } from '../config';
-
-const SORTIE_ICON = 'https://wiki.warframe.com/images/Sortie_b.png';
+import { DISCORD_COLOR, DISCORD_ICON, WARFRAME_API } from '../config';
 
 /**
  * Builds an embed showing today's Sortie details.
@@ -31,8 +29,8 @@ export const buildSortieEmbed = async (): Promise<EmbedBuilder> => {
     return new EmbedBuilder()
       .setColor(DISCORD_COLOR.orange)
       .setTitle('Sortie — Daily Missions')
-      .setThumbnail(SORTIE_ICON)
       .setDescription(`🧟 **Boss**: ${boss}\n⚔️ **Faction**: ${faction}`)
+      .setThumbnail(DISCORD_ICON.sortie)
       .addFields(
         ...missionFields,
         { name: 'Started', value: startString, inline: true },
@@ -46,6 +44,7 @@ export const buildSortieEmbed = async (): Promise<EmbedBuilder> => {
     return new EmbedBuilder()
       .setColor(DISCORD_COLOR.red)
       .setTitle('Sortie — Daily Missions')
-      .setDescription('Unable to fetch sortie data at this time.');
+      .setDescription('Unable to fetch sortie data at this time.')
+      .setThumbnail(DISCORD_ICON.sortie);
   }
 };

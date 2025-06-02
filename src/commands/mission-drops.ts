@@ -1,8 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
-import { DISCORD_COLOR } from '../config';
+import { DISCORD_COLOR, DISCORD_ICON } from '../config';
 
 const DROPS_API_URL = 'https://drops.warframestat.us/data/all.json';
-const ITEM_ICON = 'https://wiki.warframe.com/images/Resource_Orange.png';
 
 interface MissionReward {
   itemName: string;
@@ -55,7 +54,7 @@ export const buildItemDropsEmbed = async (args: string[]): Promise<EmbedBuilder>
         .setTitle('Mission Drops Lookup')
         .setDescription(`Planet not found: **${planetInput}**`)
         .setColor(DISCORD_COLOR.red)
-        .setThumbnail(ITEM_ICON);
+        .setThumbnail(DISCORD_ICON.item);
     }
 
     const node = Object.keys(missionRewards[planet]).find(
@@ -67,7 +66,7 @@ export const buildItemDropsEmbed = async (args: string[]): Promise<EmbedBuilder>
         .setTitle('Mission Drops Lookup')
         .setDescription(`Mission not found on **${planet}**: **${missionInput}**`)
         .setColor(DISCORD_COLOR.red)
-        .setThumbnail(ITEM_ICON);
+        .setThumbnail(DISCORD_ICON.item);
     }
 
     const nodeData = missionRewards[planet][node];
@@ -89,7 +88,7 @@ export const buildItemDropsEmbed = async (args: string[]): Promise<EmbedBuilder>
       .setDescription(`${nodeData.gameMode} mission rewards`)
       .addFields(fields)
       .setColor(DISCORD_COLOR.orange)
-      .setThumbnail(ITEM_ICON)
+      .setThumbnail(DISCORD_ICON.item)
       .setFooter({ text: 'Data via drops.warframestat.us' });
   }
 
@@ -126,7 +125,7 @@ export const buildItemDropsEmbed = async (args: string[]): Promise<EmbedBuilder>
       .setTitle('Item Drop Lookup')
       .setDescription(`No mission drops found for: **${itemQuery}**`)
       .setColor(DISCORD_COLOR.red)
-      .setThumbnail(ITEM_ICON);
+      .setThumbnail(DISCORD_ICON.item);
   }
 
   const topMatches = matches
@@ -148,6 +147,6 @@ export const buildItemDropsEmbed = async (args: string[]): Promise<EmbedBuilder>
     .setDescription(`For item - **${itemQuery}**`)
     .addFields(fields)
     .setColor(DISCORD_COLOR.orange)
-    .setThumbnail(ITEM_ICON)
+    .setThumbnail(DISCORD_ICON.item)
     .setFooter({ text: 'Data via drops.warframestat.us' });
 };
