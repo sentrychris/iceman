@@ -1,5 +1,5 @@
 import { EmbedBuilder, type Message } from "discord.js";
-import { DISCORD_PREFIX, DISCORD_COLOR, CLAN_ICON } from "./config";
+import { DISCORD_BOT_NAME, DISCORD_PREFIX, DISCORD_COLOR, CLAN_ICON } from "./config";
 
 export const usage = async (message: Message) => {
   if (
@@ -13,56 +13,61 @@ export const usage = async (message: Message) => {
       embeds: [
         new EmbedBuilder()
           .setColor(DISCORD_COLOR.blue)
-          .setTitle('Warframe Bot Usage')
-          .setDescription(`Use the following commands with \`${DISCORD_PREFIX.trim()}\``)
+          .setTitle(`${DISCORD_BOT_NAME} Bot Usage`)
+          .setDescription('Built with ❤️ by shikaricm. Source code [here](https://github.com/sentrychris/warframe-discord-bot).\n⠀\n')
           .addFields(
             {
-              name: '`!wf world`',
-              value: 'Shows current world cycles for Cetus, Cambion Drift, and Orb Vallis.\nOptional filter: `!wf world cetus`\n-\n',
-              inline: false
-            },
-            {
               name: '`!wf baro`',
-              value: 'Displays Baro Ki\'Teer\'s current location and arrival/departure times.\n-\n',
-              inline: false
-            },
-            {
-              name: '`!wf teshin`',
-              value: 'Displays the current Steel Path Honors rotation from Teshin.\n-\n',
-              inline: false
-            },
-            {
-              name: '`!wf sortie`',
-              value: 'Displays today\'s Sortie missions, boss, faction, and modifiers.\n-\n',
+              value: 'Displays Baro Ki\'Teer\'s location and arrival/departure times.\n⠀\n',
               inline: false
             },
             {
               name: '`!wf archon`',
-              value: 'Displays this week\'s Archon Hunt mission.\n-\n',
+              value: 'Displays this week\'s Archon Hunt mission.\n⠀\n',
               inline: false
             },
             {
-              name: '`!wf nightwave`',
-              value: 'Shows current Nightwave acts (daily and weekly).\n-\n',
+              name: '`!wf sortie`',
+              value: 'Displays today\'s Sortie missions, boss, faction, and modifiers.\n⠀\n',
               inline: false
             },
             {
               name: '`!wf fissures`',
-              value: 'Lists currently active Void Fissures grouped by relic era.\nOptional filter: `!wf fissures meso`\n-\n',
+              value: 'Lists currently active Void Fissures grouped by relic era.\nOptional filter: `!wf fissures meso`\n⠀\n',
               inline: false
             },
             {
               name: '`!wf relics <item name>`',
-              value: 'Finds all Void Relics that drop a specific item.\nExample: `!wf relics trinity prime systems`\n-\n',
+              value: 'Finds all Void Relics that drop a specific item.\nExample: `!wf relics trinity prime systems`\n⠀\n',
+              inline: false
+            },
+            {
+              name: '`!wf drops <item name>`',
+              value: 'Finds top 3 missions that drop a specific item.\nExample: `!wf drops critical delay`\n⠀\n',
+              inline: false
+            },
+            {
+              name: '`!wf world`',
+              value: 'Shows world cycles for Cetus, Cambion Drift, Orb Vallis.\nOptional filter: `!wf world cetus`\n⠀\n',
+              inline: false
+            },
+            {
+              name: '`!wf nightwave`',
+              value: 'Shows current Nightwave acts (daily and weekly).\n⠀\n',
+              inline: false
+            },
+            {
+              name: '`!wf teshin`',
+              value: 'Displays the active Steel Path Honors rotation from Teshin.\n⠀\n',
               inline: false
             },
             {
               name: '`!wf buy <item name>` or `!wf wtb <item name>`',
-              value: 'Gets the cheapest in-game sell order for a Warframe Market item.\nExample: `!wf buy frost prime set`\n-\n',
+              value: 'Finds the cheapest in-game sell order for a Warframe Market item.\nExample: `!wf buy frost prime set`',
               inline: false
-            }
+            },
           )
-          .setFooter({ text: 'Only in-game sellers are shown in market lookups.' })
+          .setFooter({ text: 'Only online in-game sellers are shown in market lookups.' })
           .setThumbnail(CLAN_ICON)
       ]
     });

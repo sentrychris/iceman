@@ -17,6 +17,7 @@ const WARFRAME_MARKET_API = <string>process.env.WARFRAME_MARKET_API ?? 'https://
 
 const CLAN_ICON = <string>process.env.CLAN_ICON ?? 'https://i.imgur.com/fQn9zNL.png';
 
+const DISCORD_BOT_NAME = <string>process.env.DISCORD_BOT_NAME ?? 'Warframe Helper';
 const DISCORD_PREFIX = <string>process.env.DISCORD_PREFIX ?? '!wf';
 const FOUNDING_WARLORD_USER_ID = <string>process.env.FOUNDING_WARLORD_USER_ID; // shikaricm
 const GENERAL_WARFRAME_CHAT_CHANNEL = <string>process.env.GENERAL_WARFRAME_CHAT_CHANNEL; // #general-warframe-chat
@@ -34,6 +35,7 @@ export {
   WARFRAME_API,
   WARFRAME_MARKET_API,
   CLAN_ICON,
+  DISCORD_BOT_NAME,
   DISCORD_COLOR,
   DISCORD_PREFIX,
   FOUNDING_WARLORD_USER_ID,

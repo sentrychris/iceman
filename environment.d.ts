@@ -5,6 +5,7 @@ declare global {
             WARFRAME_API: string;
             WARFRAME_MARKET_API: string;
             CLAN_ICON: string;
+            DISCORD_BOT_NAME: string;
             DISCORD_PREFIX: string;
             DISCORD_AUTH_TOKEN: string;
             FOUNDING_WARLORD_USER_ID: string;

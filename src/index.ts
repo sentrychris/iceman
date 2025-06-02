@@ -7,11 +7,12 @@ import { buildWorldCyclesEmbed } from './commands/world-cycles';
 import { buildSortieEmbed } from './commands/sortie-mission';
 import { buildArchonHuntEmbed } from './commands/archon-hunt';
 import { buildRelicDropsEmbed } from './commands/relic-lookup';
+import { buildItemDropsEmbed } from './commands/mission-drops';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
+import { buildMemeframeEmbed } from './commands/wf-memeframe';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
 import { client, DISCORD_PREFIX, FOUNDING_WARLORD_USER_ID, CLAN_ANNOUNCEMENTS_CHANNEL } from './config';
-import { buildMemeframeEmbed } from './commands/wf-meme';
   
 client.on('ready', () => {
   console.log('ready');
@@ -149,6 +150,24 @@ client.on('messageCreate', async (message: Message) => {
     return message.reply({ embeds: [await buildRelicDropsEmbed(query)] });
   }
 
+  /**
+   * Show mission drop rewards or item drop sources.
+   */
+  if (new RegExp(`^${PREFIX_REGEX}\\s+drops\\s+`, 'i').test(message.content)) {
+    const args = message.content.trim().split(/\s+/).slice(2);
+
+    if (args.length === 0) {
+      return message.reply(`Usage:
+  • Item drops (default): \`${DISCORD_PREFIX} drops [item name]\`
+  • Mission rewards: \`${DISCORD_PREFIX} drops planet [planet] [mission]\``);
+    }
+
+    return message.reply({ embeds: [await buildItemDropsEmbed(args)] });
+  }
+
+  /**
+   * Post a random meme from r/memeframe
+   */
   if (message.content === `${DISCORD_PREFIX} memeframe`) {
     return message.reply({ embeds: [await buildMemeframeEmbed()] });
   }
