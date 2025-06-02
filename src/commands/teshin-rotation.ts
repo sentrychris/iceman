@@ -1,67 +1,65 @@
 import { EmbedBuilder } from 'discord.js';
-import { DISCORD_COLOR } from '../config';
+import { DISCORD_COLOR, WARFRAME_API } from '../config';
 
 const TESHIN_ICON = 'https://wiki.warframe.com/images/Teshin.png';
 
-/**
- * Known 8-week Steel Path Honors shop rotation.
- */
-const TESHIN_ROTATION_ITEMS: Record<string, number> = {
-  'Umbra Forma Blueprint': 150,
-  '50,000 Kuva': 15,
-  'Kitgun Riven Mod': 75,
-  '3x Forma': 75,
-  'Zaw Riven Mod': 75,
-  '30,000 Endo': 150,
-  'Rifle Riven Mod': 75,
-  'Shotgun Riven Mod': 75,
-};
-
-const TESHIN_ROTATION_ARRAY = Object.entries(TESHIN_ROTATION_ITEMS);
+interface RotationItem {
+  name: string;
+  cost: number;
+}
 
 /**
- * The UTC timestamp of the known cycle start (a Sunday reset).
+ * Fetches and builds an embed showing Teshin's current Steel Path Honors offerings.
  */
-const ROTATION_START_DATE_UTC = new Date('2025-05-04T00:00:00Z');
+export const buildTeshinRotationEmbed = async (): Promise<EmbedBuilder> => {
+  const res = await fetch(`${WARFRAME_API}/steelPath`);
+  const data = await res.json();
 
-/**
- * Calculates the current week's rotation index.
- */
-const getCurrentRotationIndex = (): number => {
-  const now = new Date();
-  const elapsedWeeks = Math.floor((now.getTime() - ROTATION_START_DATE_UTC.getTime()) / (7 * 24 * 60 * 60 * 1000));
-  return elapsedWeeks % TESHIN_ROTATION_ARRAY.length;
-};
+  const current = data.currentReward as RotationItem;
+  const next = getNextRotatedItem(data.rotation, current.name);
+  const resetTime = new Date(data.expiry).toUTCString();
 
-/**
- * Returns the ISO date of the next Sunday reset.
- */
-const getNextResetDateUTC = (): string => {
-  const now = new Date();
-  const next = new Date(now);
-  next.setUTCDate(now.getUTCDate() + ((7 - now.getUTCDay()) % 7));
-  next.setUTCHours(0, 0, 0, 0);
-  return next.toUTCString();
-};
-
-/**
- * Builds an embed showing Teshin's current weekly item rotation.
- */
-export const buildTeshinRotationEmbed = (): EmbedBuilder => {
-  const index = getCurrentRotationIndex();
-  const [currentItem, currentCost] = TESHIN_ROTATION_ARRAY[index];
-  const [nextItem, nextCost] = TESHIN_ROTATION_ARRAY[(index + 1) % TESHIN_ROTATION_ARRAY.length];
-  const nextReset = getNextResetDateUTC();
+  const evergreenList = (data.evergreens as RotationItem[])
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .map(item => `• ${item.name} — 🪙 ${item.cost}`)
+    .join('\n');
 
   return new EmbedBuilder()
     .setColor(DISCORD_COLOR.orange)
     .setTitle('Teshin — Steel Path Honors')
-    .setDescription('This week’s rotating item in the Steel Path Honors shop')
+    .setDescription(`Current weekly rotation and evergreen offerings`)
     .addFields(
-      { name: 'Current Item', value: `${currentItem}\n🪙 ${currentCost} Steel Essence`, inline: true },
-      { name: 'Resets On', value: nextReset, inline: true },
-      { name: 'Next Item', value: `${nextItem}\n🪙 ${nextCost} Steel Essence`, inline: false },
+      {
+        name: '🟧 Weekly Rotating Item',
+        value: `**${current.name}**\n🪙 ${current.cost} Steel Essence`,
+        inline: true
+      },
+      {
+        name: '🔁 Next Rotation',
+        value: `**${next.name}**\n🪙 ${next.cost} Steel Essence`,
+        inline: true
+      },
+      {
+        name: '🕒 Resets On',
+        value: resetTime,
+        inline: false
+      },
+      {
+        name: '📦 Evergreen Offerings',
+        value: evergreenList || 'None',
+        inline: false
+      }
     )
     .setThumbnail(TESHIN_ICON)
-    .setFooter({ text: 'Rotation is based on known 8-week cycle. Resets every Sunday at 00:00 UTC.' });
+    .setFooter({
+      text: 'Steel Path Honors reset weekly. Rotation and prices sourced live from Warframe API.'
+    });
 };
+
+/**
+ * Given a rotation and the current item name, returns the next item.
+ */
+function getNextRotatedItem(rotation: RotationItem[], currentName: string): RotationItem {
+  const idx = rotation.findIndex(r => r.name === currentName);
+  return rotation[(idx + 1) % rotation.length];
+}

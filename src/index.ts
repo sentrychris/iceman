@@ -111,7 +111,7 @@ client.on('messageCreate', async (message: Message) => {
    * Steel Path Honors shop (Teshin rotation)
    */
   if (message.content === `${DISCORD_PREFIX} teshin` || message.content === `${DISCORD_PREFIX} sp`) {
-    return message.reply({ embeds: [buildTeshinRotationEmbed()] });
+    return message.reply({ embeds: [await buildTeshinRotationEmbed()] });
   }
 
   /**
