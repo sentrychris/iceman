@@ -11,6 +11,7 @@ import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
 import { client, DISCORD_PREFIX, FOUNDING_WARLORD_USER_ID, CLAN_ANNOUNCEMENTS_CHANNEL } from './config';
+import { buildMemeframeEmbed } from './commands/wf-meme';
   
 client.on('ready', () => {
   console.log('ready');
@@ -21,23 +22,36 @@ client.on('messageCreate', async (message: Message) => {
     return;
   }
 
-  // Show usage help
+  /**
+   * Command prefix e.g. `!wf`
+   */
+  const PREFIX_REGEX = DISCORD_PREFIX.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // escape for regex
+
+  /**
+   * Show bot usage
+   */
   await usage(message);
 
-  // Show Baro Ki'Teer void trader location
+  /**
+   * Show Baro Ki'Teer current location and arrival/departure times
+   */
   if (message.content === `${DISCORD_PREFIX} baro` || message.content === `${DISCORD_PREFIX} vt`) {
-    message.reply({ embeds: [await buildBaroKiteerLocationEmbed()]});
+    message.reply({ embeds: [await buildBaroKiteerLocationEmbed()] });
   }
 
-  // Show Nightwave daily & weekly alerts
+  /**
+   * Show Nightwave active daily and weekly alerts
+   */
   if (message.content === `${DISCORD_PREFIX} nightwave` || message.content === `${DISCORD_PREFIX} nw`) {
     message.reply({ embeds: [await buildNightwaveEmbed()] });
   }
 
-  // Show active void fissures
+  /**
+   * Show active Void Fissures. Optional filter by era/tier
+   */
   if (message.content.startsWith(`${DISCORD_PREFIX} fissures`) || message.content.startsWith(`${DISCORD_PREFIX} vf`)) {
     const parts = message.content.trim().split(/\s+/);
-    const tierFilter = parts.length > 2 ? parts.slice(2).join(' ') : parts[1]; // support '!wf fissures meso' or '!wf vf meso'
+    const tierFilter = parts.length > 2 ? parts.slice(2).join(' ') : parts[1];
 
     const knownTiers = ['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
     const isTier = tierFilter && knownTiers.some(t => t.toLowerCase() === tierFilter.toLowerCase());
@@ -46,41 +60,50 @@ client.on('messageCreate', async (message: Message) => {
     message.reply({ embeds: [embed] });
   }
 
-  // Show current world cycles
-  if (/^!wf\s+(world|wc)(\s+.+)?$/i.test(message.content)) {
-    const match = message.content.match(/^!wf\s+(world|wc)(?:\s+(.+))?/i);
+  /**
+   * Show current cycles for Cetus, Cambion Drift and Orb Vallis
+   */
+  if (new RegExp(`^${PREFIX_REGEX}\\s+(world|wc)(\\s+.+)?$`, 'i').test(message.content)) {
+    const match = message.content.match(new RegExp(`^${PREFIX_REGEX}\\s+(world|wc)(?:\\s+(.+))?`, 'i'));
     let filter = match?.[2]?.trim().toLowerCase();
 
     if (filter) {
-      // Normalize filter aliases
       if (filter.includes('orb') || filter.includes('vallis')) filter = 'vallis';
       else if (filter.includes('deimos') || filter.includes('cambion')) filter = 'cambion';
       else if (filter.includes('earth') || filter.includes('cetus')) filter = 'cetus';
-      else filter = undefined; // fallback if unrecognized
+      else filter = undefined;
     }
 
     const embed = await buildWorldCyclesEmbed(filter);
     return message.reply({ embeds: Array.isArray(embed) ? embed : [embed] });
   }
 
-  // Show the daily active sortie mission
+  /**
+   * Show active Sortie mission
+   */
   if (message.content === `${DISCORD_PREFIX} sortie`) {
     return message.reply({ embeds: [await buildSortieEmbed()] });
   }
 
-  // Show the weekly active archon hunt mission
+  /**
+   * Show active Archon Hunt mission
+   */
   if (message.content === `${DISCORD_PREFIX} archon`) {
     message.reply({ embeds: [await buildArchonHuntEmbed()] });
   }
 
-  // Show steel path honors shop rotation and evergreen offerings
+  /**
+   * Show current SP Honors rotation and evergreen offerings from Teshin
+   */
   if (message.content === `${DISCORD_PREFIX} teshin` || message.content === `${DISCORD_PREFIX} sp`) {
     return message.reply({ embeds: [await buildTeshinRotationEmbed()] });
   }
 
-  // Show cheapest sell order for an item from warframe.market
-  if (/^!wf\s+(buy|wtb)\s+/i.test(message.content)) {
-    const query = message.content.replace(/^!wf\s+(buy|wtb)\s+/i, '').trim();
+  /**
+   * Show cheapest current sell-order for given item
+   */
+  if (new RegExp(`^${PREFIX_REGEX}\\s+(buy|wtb)\\s+`, 'i').test(message.content)) {
+    const query = message.content.replace(new RegExp(`^${PREFIX_REGEX}\\s+(buy|wtb)\\s+`, 'i'), '').trim();
     const slug = query.toLowerCase().replace(/\s+/g, '_');
     const displayName = query.replace(/\s+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 
@@ -93,10 +116,12 @@ client.on('messageCreate', async (message: Message) => {
     return message.reply({ embeds: [buildMarketPriceEmbed(displayName, slug, order)] });
   }
 
-  // Run the clan prizedraw
+  /**
+   * Run a clan prizedraw. Bot will post to announcements channel
+   */
   if (message.content === `${DISCORD_PREFIX} prizedraw`) {
     if (message.author.id !== FOUNDING_WARLORD_USER_ID) {
-      console.warn(`${message.author.displayName} attempted !wf prizedraw`);
+      console.warn(`${message.author.displayName} attempted ${DISCORD_PREFIX}prizedraw`);
       return;
     }
 
@@ -112,15 +137,20 @@ client.on('messageCreate', async (message: Message) => {
     });
   }
 
-  // Show relics that drop a specific item
-  if (/^!wf\s+(relics|relic)\s+/i.test(message.content)) {
-    const query = message.content.replace(/^!wf\s+(relics|relic)\s+/i, '').trim();
+  /**
+   * Show relics for given item with best refinement level and drop chance
+   */
+  if (new RegExp(`^${PREFIX_REGEX}\\s+(relics|relic)\\s+`, 'i').test(message.content)) {
+    const query = message.content.replace(new RegExp(`^${PREFIX_REGEX}\\s+(relics|relic)\\s+`, 'i'), '').trim();
     if (!query) {
-      return message.reply('Specify the item you want to look up in relics. Example: `!wf relics trinity prime systems`');
+      return message.reply(`Specify the item you want to look up in relics. Example: \`${DISCORD_PREFIX} relics trinity prime systems\``);
     }
 
-    const embed = await buildRelicDropsEmbed(query);
-    return message.reply({ embeds: [embed] });
+    return message.reply({ embeds: [await buildRelicDropsEmbed(query)] });
+  }
+
+  if (message.content === `${DISCORD_PREFIX} memeframe`) {
+    return message.reply({ embeds: [await buildMemeframeEmbed()] });
   }
 });
   
