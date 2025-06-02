@@ -13,7 +13,7 @@ import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
 import { buildMemeframeEmbed } from './commands/wf-memeframe';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
-import { client, DISCORD_PREFIX, FOUNDING_WARLORD_USER_ID, CLAN_ANNOUNCEMENTS_CHANNEL } from './config';
+import { client, DISCORD_PREFIX, FOUNDING_WARLORD_USER_ID, CLAN_ANNOUNCEMENTS_CHANNEL_ID } from './config';
   
 client.on('ready', () => {
   console.log('ready');
@@ -126,7 +126,7 @@ client.on('messageCreate', async (message: Message) => {
       return;
     }
 
-    const channel = await client.channels.fetch(CLAN_ANNOUNCEMENTS_CHANNEL);
+    const channel = await client.channels.fetch(CLAN_ANNOUNCEMENTS_CHANNEL_ID);
 
     if (!channel || !channel.isTextBased()) {
       console.error('Invalid or non-text channel for prize draw');

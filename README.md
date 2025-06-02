@@ -66,7 +66,7 @@ DISCORD_AUTH_TOKEN=your_discord_token
 DISCORD_PREFIX=!wf
 FOUNDING_WARLORD_USER_ID=your_user_id
 CLAN_ICON=https://i.imgur.com/fQn9zNL.png
-CLAN_ANNOUNCEMENTS_CHANNEL=clan_announcements_channel_id
+CLAN_ANNOUNCEMENTS_CHANNEL_ID=clan_announcements_channel_id
 WARFRAME_MARKET_API=https://api.warframe.market/v2
 WARFRAME_API=https://api.warframestat.us/pc
 ```

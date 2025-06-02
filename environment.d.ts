@@ -10,8 +10,7 @@ declare global {
       DISCORD_PREFIX: string;
       DISCORD_AUTH_TOKEN: string;
       FOUNDING_WARLORD_USER_ID: string;
-      GENERAL_WARFRAME_CHAT_CHANNEL: string;
-      CLAN_ANNOUNCEMENTS_CHANNEL: string;
+      CLAN_ANNOUNCEMENTS_CHANNEL_ID: string;
     }
   }
 }
