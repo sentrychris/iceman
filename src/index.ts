@@ -6,11 +6,11 @@ import { buildVoidFissuresEmbed } from './commands/void-fissures';
 import { buildWorldCyclesEmbed } from './commands/world-cycles';
 import { buildSortieEmbed } from './commands/sortie-mission';
 import { buildArchonHuntEmbed } from './commands/archon-hunt';
+import { buildRelicDropsEmbed } from './commands/relic-lookup';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
 import { client, DISCORD_PREFIX, FOUNDING_WARLORD_USER_ID, CLAN_ANNOUNCEMENTS_CHANNEL } from './config';
-import { buildRelicDropsEmbed } from './commands/relic-lookup';
   
 client.on('ready', () => {
   console.log('ready');
