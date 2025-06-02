@@ -20,29 +20,24 @@ A lightweight and modular Discord bot for tracking world states, Nightwave, Baro
 
 Use the prefix `!wf` before all commands:
 
-| Command                    | Description                                                                 |
-|---------------------------|-----------------------------------------------------------------------------|
-| `!wf` or `!wf help`        | Show usage instructions                                                     |
-| `!wf world` or `!wf wc` | Show current world cycles (Cetus, Cambion Drift, Orb Vallis)                |
-| `!wf baro` or `!wf vt`                 | Show Baro Ki'Teer's current location and inventory                          |
-| `!wf teshin` or `!wf sp`  | Displays the current Steel Path Honors rotation from Teshin                  |
-| `!wf sortie` | Displays today's Sortie missions, boss, faction, and modifiers |
-| `!wf archon` | Displays this week`s Archon Hunt mission |
-| `!wf nightwave` or `!wf nw`           | Display Nightwave dailies and weeklies                                      |
-| `!wf fissures` or `!wf vf`            | List active Void Fissures                                                    |
-| `!wf buy <item>` or `!wf wtb <item>`          | Get the cheapest sell order for an item from warframe.market (e.g. `frost prime set`) |
-| `!wf prizedraw`           | Post a clan prize draw (restricted to founding warlord only)                |
-
+![help](./docs/wf-help.png)
 
 <p align="center">
   <table>
     <tr>
       <td align="center"><img src="./docs/wf-baro.png" width="250"/><br/><code>!wf baro</code></td>
-      <td align="center"><img src="./docs/wf-buy.png" width="250"/><br/><code>!wf buy</code></td>
-      <td align="center"><img src="./docs/wf-cycles.png" width="250"/><br/><code>!wf cycles</code></td>
+      <td align="center"><img src="./docs/wf-teshin.png" width="250"/><br/><code>!wf teshin</code></td>
+      <td align="center"><img src="./docs/wf-buy.png" width="250"/><br/><code>!wf wtb {item}</code></td>
+    </tr>
+    <tr>
+      <td align="center"><img src="./docs/wf-cycles.png" width="250"/><br/><code>!wf world</code></td>
+      <td align="center"><img src="./docs/wf-archon.png" width="250"/><br/><code>!wf archon</code></td>
+      <td align="center"><img src="./docs/wf-sortie.png" width="250"/><br/><code>!wf sortie</code></td>
+      <td></td>
     </tr>
     <tr>
       <td align="center"><img src="./docs/wf-nightwave.png" width="250"/><br/><code>!wf nightwave</code></td>
+      <td align="center"><img src="./docs/wf-relics.png" width="250"/><br/><code>!wf relics {item}</code></td>
       <td align="center"><img src="./docs/wf-prize.png" width="250"/><br/><code>!wf prizedraw</code></td>
       <td></td>
     </tr>
