@@ -29,7 +29,7 @@ export const buildSortieEmbed = async (): Promise<EmbedBuilder> => {
     }));
 
     return new EmbedBuilder()
-      .setColor(DISCORD_COLOR.blue)
+      .setColor(DISCORD_COLOR.orange)
       .setTitle('Sortie — Daily Missions')
       .setThumbnail(SORTIE_ICON)
       .setDescription(`🧟 **Boss**: ${boss}\n⚔️ **Faction**: ${faction}`)

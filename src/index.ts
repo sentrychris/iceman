@@ -53,7 +53,7 @@ client.on('messageCreate', async (message: Message) => {
 
     if (filter) {
       // Normalize filter aliases
-      if (filter.includes('orb')) filter = 'vallis';
+      if (filter.includes('orb') || filter.includes('vallis')) filter = 'vallis';
       else if (filter.includes('deimos') || filter.includes('cambion')) filter = 'cambion';
       else if (filter.includes('earth') || filter.includes('cetus')) filter = 'cetus';
       else filter = undefined; // fallback if unrecognized

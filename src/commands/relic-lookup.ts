@@ -1,4 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
+import { DISCORD_COLOR } from '../config';
 
 const DROPS_API_URL = 'https://drops.warframestat.us/data/all.json';
 const RELIC_ICON = 'https://wiki.warframe.com/images/thumb/VoidRelicPack.png/300px-VoidRelicPack.png';
@@ -86,7 +87,7 @@ export const buildRelicDropsEmbed = async (query: string): Promise<EmbedBuilder>
     return new EmbedBuilder()
       .setTitle('Relic Drop Lookup')
       .setDescription(`No relics found dropping: **${query}**`)
-      .setColor('Red');
+      .setColor(DISCORD_COLOR.red);
   }
 
   const unvaulted = allMatches.filter(e => !e.isVaulted);
@@ -95,7 +96,7 @@ export const buildRelicDropsEmbed = async (query: string): Promise<EmbedBuilder>
     return new EmbedBuilder()
       .setTitle('Relic Drop Lookup')
       .setDescription(`Relics that contain: **${query}**`)
-      .setColor('Red')
+      .setColor(DISCORD_COLOR.red)
       .setThumbnail(RELIC_ICON)
       .addFields([
         {
@@ -131,7 +132,7 @@ export const buildRelicDropsEmbed = async (query: string): Promise<EmbedBuilder>
   return new EmbedBuilder()
     .setTitle('Relic Drop Lookup')
     .setDescription(`Relics that contain: **${query}**`)
-    .setColor('Gold')
+    .setColor(DISCORD_COLOR.orange)
     .setThumbnail(RELIC_ICON)
     .addFields(fields)
     .setFooter({ text: 'Data via drops.warframestat.us' });

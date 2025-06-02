@@ -95,7 +95,7 @@ export const buildVoidFissuresEmbed = async (filterTier?: string): Promise<Embed
   return new EmbedBuilder()
     .setTitle('Active Void Fissures')
     .setDescription(filterTier ? `Filtered by era: ${filterTier}` : 'Live fissures available for relic cracking')
-    .setColor(DISCORD_COLOR.blue)
+    .setColor(DISCORD_COLOR.orange)
     .setThumbnail(VOID_ICON)
     .addFields(fields)
     .setFooter({ text: 'Steel Path and Void Storm included where applicable.' });

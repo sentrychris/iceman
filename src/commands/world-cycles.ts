@@ -22,40 +22,18 @@ const getEndsIn = (expiry: string): string => {
 /**
  * Shared embed builder
  */
-const embed = (title: string, timeLabel: string, endsIn: string, icon: string): EmbedBuilder =>
-  new EmbedBuilder()
-    .setColor(DISCORD_COLOR.blue)
+const embed = (title: string, timeLabel: string, endsIn: string, icon: string, color: number): EmbedBuilder => {
+  return new EmbedBuilder()
+    .setColor(color)
     .setTitle(title)
-    .setDescription('World Cycle')
+    .setDescription('Current world cycle')
     .addFields(
       { name: 'Time', value: timeLabel, inline: true },
       { name: 'Ends In', value: endsIn, inline: true }
     )
-    .setThumbnail(icon);
-
-/**
- * Individual cycle embeds
- */
-export const buildCetusWorldCycleEmbed = async (): Promise<EmbedBuilder> => {
-  const res = await fetch(`${WARFRAME_API}/cetusCycle?lang=en`);
-  const data = await res.json();
-  const time = data.isDay ? 'Day' : 'Night';
-  return embed('Cetus/Earth', time, getEndsIn(data.expiry), WORLD_ICON.cetus);
-};
-
-export const buildCambionDriftWorldCycleEmbed = async (): Promise<EmbedBuilder> => {
-  const res = await fetch(`${WARFRAME_API}/cambionCycle?lang=en`);
-  const data = await res.json();
-  const time = data.active.charAt(0).toUpperCase() + data.active.slice(1);
-  return embed('Cambion Drift', time, getEndsIn(data.expiry), WORLD_ICON.cambion);
-};
-
-export const buildOrbVallisWorldCycleEmbed = async (): Promise<EmbedBuilder> => {
-  const res = await fetch(`${WARFRAME_API}/vallisCycle?lang=en`);
-  const data = await res.json();
-  const time = data.state.charAt(0).toUpperCase() + data.state.slice(1);
-  return embed('Orb Vallis', time, getEndsIn(data.expiry), WORLD_ICON.vallis);
-};
+    .setThumbnail(icon)
+    .setFooter({ text: 'Cycle times are UTC-based and approximate to live state.' });
+}
 
 /**
  * Combined embed with optional filtering
@@ -76,12 +54,12 @@ export const buildWorldCyclesEmbed = async (filter?: string): Promise<EmbedBuild
   const vallisEnds = getEndsIn(vallisRes.expiry);
 
   const lcFilter = filter?.toLowerCase();
-  if (lcFilter === 'cetus') return embed('Cetus/Earth', cetusTime, cetusEnds, WORLD_ICON.cetus);
-  if (lcFilter === 'cambion') return embed('Cambion Drift', cambionTime, cambionEnds, WORLD_ICON.cambion);
-  if (lcFilter === 'vallis' || lcFilter === 'orb vallis') return embed('Orb Vallis', vallisTime, vallisEnds, WORLD_ICON.vallis);
+  if (lcFilter === 'cetus') return embed('Cetus/Earth', cetusTime, cetusEnds, WORLD_ICON.cetus, DISCORD_COLOR.orange);
+  if (lcFilter === 'cambion') return embed('Cambion Drift', cambionTime, cambionEnds, WORLD_ICON.cambion, DISCORD_COLOR.red);
+  if (lcFilter === 'vallis' || lcFilter === 'orb vallis') return embed('Orb Vallis', vallisTime, vallisEnds, WORLD_ICON.vallis, DISCORD_COLOR.blue);
 
   return new EmbedBuilder()
-    .setColor(DISCORD_COLOR.blue)
+    .setColor(DISCORD_COLOR.purple)
     .setTitle('World Cycles')
     .setDescription('Current day/night and weather cycles across open worlds')
     .addFields(
