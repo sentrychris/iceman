@@ -1,7 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { DISCORD_COLOR, DISCORD_ICON } from '../config';
-
-const DROPS_API_URL = 'https://drops.warframestat.us/data/all.json';
+import { DISCORD_COLOR, DISCORD_ICON, WARFRAME_DROPS_API } from '../config';
 
 interface MissionReward {
   itemName: string;
@@ -36,7 +34,7 @@ interface Match {
 }
 
 export const buildItemDropsEmbed = async (args: string[]): Promise<EmbedBuilder> => {
-  const res = await fetch(DROPS_API_URL);
+  const res = await fetch(WARFRAME_DROPS_API);
   const data = await res.json();
   const missionRewards: MissionRewards = data.missionRewards;
 

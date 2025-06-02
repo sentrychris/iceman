@@ -3,6 +3,7 @@ declare global {
     interface ProcessEnv {
       NODE_ENV: 'development' | 'production';
       WARFRAME_API: string;
+      WARFRAME_DROPS_API: string;
       WARFRAME_MARKET_API: string;
       CLAN_ICON: string;
       DISCORD_BOT_NAME: string;

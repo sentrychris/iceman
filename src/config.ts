@@ -13,6 +13,7 @@ const client = new Client({
 });
 
 const WARFRAME_API = <string>process.env.WARFRAME_API ?? 'https://api.warframestat.us/pc';
+const WARFRAME_DROPS_API = <string>process.env.WARFRAME_DROPS_API ?? 'https://drops.warframestat.us/data/all.json';
 const WARFRAME_MARKET_API = <string>process.env.WARFRAME_MARKET_API ?? 'https://api.warframe.market/v2';
 
 const DISCORD_BOT_NAME = <string>process.env.DISCORD_BOT_NAME ?? 'Warframe Helper';
@@ -44,6 +45,7 @@ const CLAN_ANNOUNCEMENTS_CHANNEL = <string>process.env.CLAN_ANNOUNCEMENTS_CHANNE
 export {
   client,
   WARFRAME_API,
+  WARFRAME_DROPS_API,
   WARFRAME_MARKET_API,
   DISCORD_BOT_NAME,
   DISCORD_COLOR,
