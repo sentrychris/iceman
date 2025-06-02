@@ -26,7 +26,8 @@ Use the prefix `!wf` before all commands:
 | `!wf world` or `!wf wc` | Show current world cycles (Cetus, Cambion Drift, Orb Vallis)                |
 | `!wf baro` or `!wf vt`                 | Show Baro Ki'Teer's current location and inventory                          |
 | `!wf teshin` or `!wf sp`  | Displays the current Steel Path Honors rotation from Teshin                  |
-| `!wf sortie` | Displays today\'s Sortie missions, boss, faction, and modifiers |
+| `!wf sortie` | Displays today's Sortie missions, boss, faction, and modifiers |
+| `!wf archon` | Displays this week`s Archon Hunt mission |
 | `!wf nightwave` or `!wf nw`           | Display Nightwave dailies and weeklies                                      |
 | `!wf fissures` or `!wf vf`            | List active Void Fissures                                                    |
 | `!wf buy <item>` or `!wf wtb <item>`          | Get the cheapest sell order for an item from warframe.market (e.g. `frost prime set`) |
