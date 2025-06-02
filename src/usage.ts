@@ -14,7 +14,7 @@ export const usage = async (message: Message) => {
         new EmbedBuilder()
           .setColor(DISCORD_COLOR.blue)
           .setTitle('Warframe Bot Usage')
-          .setDescription('Use the following commands with `!wf`')
+          .setDescription(`Use the following commands with \`${DISCORD_PREFIX.trim()}\``)
           .addFields(
             {
               name: '`!wf world`',
@@ -52,6 +52,11 @@ export const usage = async (message: Message) => {
               inline: false
             },
             {
+              name: '`!wf relics <item name>`',
+              value: 'Finds all Void Relics that drop a specific item.\nExample: `!wf relics trinity prime systems`\n-\n',
+              inline: false
+            },
+            {
               name: '`!wf buy <item name>` or `!wf wtb <item name>`',
               value: 'Gets the cheapest in-game sell order for a Warframe Market item.\nExample: `!wf buy frost prime set`\n-\n',
               inline: false
@@ -62,4 +67,4 @@ export const usage = async (message: Message) => {
       ]
     });
   }
-}
+};

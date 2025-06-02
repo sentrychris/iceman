@@ -10,6 +10,7 @@ import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
 import { client, DISCORD_PREFIX, FOUNDING_WARLORD_USER_ID, CLAN_ANNOUNCEMENTS_CHANNEL } from './config';
+import { buildRelicDropsEmbed } from './commands/relic-lookup';
   
 client.on('ready', () => {
   console.log('ready');
@@ -109,6 +110,17 @@ client.on('messageCreate', async (message: Message) => {
     await (channel as TextChannel).send({
       embeds: [await buildClanPrizeDrawEmbed()],
     });
+  }
+
+  // Show relics that drop a specific item
+  if (/^!wf\s+(relics|relic)\s+/i.test(message.content)) {
+    const query = message.content.replace(/^!wf\s+(relics|relic)\s+/i, '').trim();
+    if (!query) {
+      return message.reply('Specify the item you want to look up in relics. Example: `!wf relics trinity prime systems`');
+    }
+
+    const embed = await buildRelicDropsEmbed(query);
+    return message.reply({ embeds: [embed] });
   }
 });
   
