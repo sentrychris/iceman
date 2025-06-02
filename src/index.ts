@@ -32,6 +32,7 @@ client.on('messageCreate', async (message: Message) => {
         { name: '`!wf baro` or `!wf vt`', value: 'Displays Baro Ki\'Teer\'s current location and arrival/departure times.', inline: false },
         { name: '`!wf teshin` or `!wf sp`', value: 'Displays the current Steel Path Honors rotation from Teshin.', inline: false },
         { name: '`!wf sortie`', value: 'Displays today\'s Sortie missions, boss, faction, and modifiers.', inline: false },
+        { name: '`!wf archon`', value: 'Displays this week\'s Archon Hunt mission.', inline: false },
         { name: '`!wf nightwave` or `!wf nw`', value: 'Shows current Nightwave acts (daily and weekly).', inline: false },
         { name: '`!wf fissures` or `!wf vf`', value: 'Lists currently active Void Fissures.', inline: false },
         { name: '`!wf buy <item name>` or `!wf wtb <item name>`', value: 'Gets the cheapest in-game sell order for a Warframe Market item. Example: `!wf buy frost prime set`', inline: false },
