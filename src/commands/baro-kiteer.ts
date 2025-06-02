@@ -1,6 +1,8 @@
 import { EmbedBuilder } from 'discord.js';
 import { DISCORD_COLOR, WARFRAME_API } from '../config';
 
+const BARO_ICON = 'https://wiki.warframe.com/images/thumb/TennoCon2020BaroCropped.png/300px-TennoCon2020BaroCropped.png';
+
 /**
  * Fetches Baro Ki'Teer's location and returns an embed.
  */
@@ -9,16 +11,12 @@ export const getBaroKiteerLocation = async (): Promise<EmbedBuilder> => {
     const res = await fetch(`${WARFRAME_API}/voidTrader`);
     const data = await res.json();
 
-    const isActive = data.active;
-    const title = "Baro Ki'Teer - Void Trader";
-    const thumbnail = 'https://wiki.warframe.com/images/thumb/TennoCon2020BaroCropped.png/300px-TennoCon2020BaroCropped.png';
-
     const embed = new EmbedBuilder()
       .setColor(DISCORD_COLOR.orange)
-      .setTitle(title)
-      .setThumbnail(thumbnail);
+      .setTitle("Baro Ki'Teer - Void Trader")
+      .setThumbnail(BARO_ICON);
 
-    if (isActive) {
+    if (data.active) {
       embed.setDescription(`**Baro Ki'Teer** is currently at **${data.location}** and will depart in **${data.endString}**.`);
     } else {
       embed.setDescription(`**Baro Ki'Teer** will arrive at **${data.location}** in **${data.startString}**.`);
@@ -30,6 +28,7 @@ export const getBaroKiteerLocation = async (): Promise<EmbedBuilder> => {
     return new EmbedBuilder()
       .setColor(DISCORD_COLOR.red)
       .setTitle("Baro Ki'Teer - Void Trader")
-      .setDescription("Unable to fetch Baro Ki'Teer info right now.");
+      .setDescription("Unable to fetch Baro Ki'Teer info right now.")
+      .setThumbnail(BARO_ICON);
   }
 };

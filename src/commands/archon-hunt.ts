@@ -34,7 +34,6 @@ export const buildArchonHuntEmbed = async (): Promise<EmbedBuilder> => {
         .setColor(DISCORD_COLOR.red)
         .setTitle('Archon Hunt')
         .setDescription('No active Archon Hunt found.')
-        .setThumbnail('https://wiki.warframe.com/images/2/28/Nira.png');
     }
 
     const image = ARCHON_IMAGES[data.boss] ?? ARCHON_IMAGES['Archon Nira'];

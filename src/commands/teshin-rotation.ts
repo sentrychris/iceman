@@ -1,6 +1,8 @@
 import { EmbedBuilder } from 'discord.js';
 import { DISCORD_COLOR } from '../config';
 
+const TESHIN_ICON = 'https://wiki.warframe.com/images/Teshin.png';
+
 /**
  * Known 8-week Steel Path Honors shop rotation.
  */
@@ -60,6 +62,6 @@ export const buildTeshinRotationEmbed = (): EmbedBuilder => {
       { name: 'Resets On', value: nextReset, inline: true },
       { name: 'Next Item', value: nextItem, inline: false },
     )
-    .setThumbnail('https://wiki.warframe.com/images/Teshin.png')
+    .setThumbnail(TESHIN_ICON)
     .setFooter({ text: 'Rotation is based on known 8-week cycle. Resets every Sunday at 00:00 UTC.' });
 };

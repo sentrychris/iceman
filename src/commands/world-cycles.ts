@@ -1,7 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
 import { DISCORD_COLOR, WARFRAME_API } from '../config';
 
-const THUMBNAILS = {
+const WORLD_ICON = {
   cetus: 'https://wiki.warframe.com/images/thumb/Cetus.png/300px-Cetus.png',
   vallis: 'https://wiki.warframe.com/images/thumb/Orb_Vallis.png/300px-Orb_Vallis.png',
   cambion: 'https://wiki.warframe.com/images/thumb/CambionDrift.jpg/300px-CambionDrift.jpg',
@@ -42,7 +42,7 @@ export const buildCetusWorldCycleEmbed = async (): Promise<EmbedBuilder> => {
   const res = await fetch(`${WARFRAME_API}/cetusCycle`);
   const data = await res.json();
   const time = data.isDay ? 'Day' : 'Night';
-  return embed('Cetus/Earth', time, data.timeLeft, THUMBNAILS.cetus);
+  return embed('Cetus/Earth', time, data.timeLeft, WORLD_ICON.cetus);
 };
 
 /**
@@ -54,7 +54,7 @@ export const buildCambionDriftWorldCycleEmbed = async (): Promise<EmbedBuilder> 
   const res = await fetch(`${WARFRAME_API}/cambionCycle`);
   const data = await res.json();
   const time = data.active; // "fass" or "vome"
-  return embed('Cambion Drift', time.charAt(0).toUpperCase() + time.slice(1), data.timeLeft, THUMBNAILS.cambion);
+  return embed('Cambion Drift', time.charAt(0).toUpperCase() + time.slice(1), data.timeLeft, WORLD_ICON.cambion);
 };
 
 /**
@@ -65,7 +65,7 @@ export const buildOrbVallisWorldCycleEmbed = async (): Promise<EmbedBuilder> => 
   const res = await fetch(`${WARFRAME_API}/vallisCycle`);
   const data = await res.json();
   const time = data.state; // "warm" or "cold"
-  return embed('Orb Vallis', time.charAt(0).toUpperCase() + time.slice(1), data.timeLeft, THUMBNAILS.vallis);
+  return embed('Orb Vallis', time.charAt(0).toUpperCase() + time.slice(1), data.timeLeft, WORLD_ICON.vallis);
 };
 
 /**
