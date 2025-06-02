@@ -1,4 +1,5 @@
 import type { Message, TextChannel } from 'discord.js';
+
 import { usage } from './usage';
 import { buildBaroKiteerLocationEmbed } from './commands/baro-kiteer';
 import { buildNightwaveEmbed } from './commands/nightwave-alerts';
@@ -37,14 +38,14 @@ client.on('messageCreate', async (message: Message) => {
    * Show Baro Ki'Teer current location and arrival/departure times
    */
   if (message.content === `${DISCORD_PREFIX} baro` || message.content === `${DISCORD_PREFIX} vt`) {
-    message.reply({ embeds: [await buildBaroKiteerLocationEmbed()] });
+    return message.reply({ embeds: [await buildBaroKiteerLocationEmbed()] });
   }
 
   /**
    * Show Nightwave active daily and weekly alerts
    */
   if (message.content === `${DISCORD_PREFIX} nightwave` || message.content === `${DISCORD_PREFIX} nw`) {
-    message.reply({ embeds: [await buildNightwaveEmbed()] });
+    return message.reply({ embeds: [await buildNightwaveEmbed()] });
   }
 
   /**
@@ -57,8 +58,7 @@ client.on('messageCreate', async (message: Message) => {
     const knownTiers = ['Lith', 'Meso', 'Neo', 'Axi', 'Requiem'];
     const isTier = tierFilter && knownTiers.some(t => t.toLowerCase() === tierFilter.toLowerCase());
 
-    const embed = await buildVoidFissuresEmbed(isTier ? tierFilter : undefined);
-    message.reply({ embeds: [embed] });
+    return message.reply({ embeds: [await buildVoidFissuresEmbed(isTier ? tierFilter : undefined)] });
   }
 
   /**
@@ -90,7 +90,7 @@ client.on('messageCreate', async (message: Message) => {
    * Show active Archon Hunt mission
    */
   if (message.content === `${DISCORD_PREFIX} archon`) {
-    message.reply({ embeds: [await buildArchonHuntEmbed()] });
+    return message.reply({ embeds: [await buildArchonHuntEmbed()] });
   }
 
   /**
@@ -155,12 +155,6 @@ client.on('messageCreate', async (message: Message) => {
    */
   if (new RegExp(`^${PREFIX_REGEX}\\s+drops\\s+`, 'i').test(message.content)) {
     const args = message.content.trim().split(/\s+/).slice(2);
-
-    if (args.length === 0) {
-      return message.reply(`Usage:
-  • Item drops (default): \`${DISCORD_PREFIX} drops [item name]\`
-  • Mission rewards: \`${DISCORD_PREFIX} drops planet [planet] [mission]\``);
-    }
 
     return message.reply({ embeds: [await buildItemDropsEmbed(args)] });
   }
