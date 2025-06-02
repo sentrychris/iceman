@@ -33,13 +33,11 @@ Use the prefix `!wf` before all commands:
       <td align="center"><img src="./docs/wf-cycles.png" width="250"/><br/><code>!wf world</code></td>
       <td align="center"><img src="./docs/wf-archon.png" width="250"/><br/><code>!wf archon</code></td>
       <td align="center"><img src="./docs/wf-sortie.png" width="250"/><br/><code>!wf sortie</code></td>
-      <td></td>
     </tr>
     <tr>
       <td align="center"><img src="./docs/wf-nightwave.png" width="250"/><br/><code>!wf nightwave</code></td>
       <td align="center"><img src="./docs/wf-relics.png" width="250"/><br/><code>!wf relics {item}</code></td>
       <td align="center"><img src="./docs/wf-prize.png" width="250"/><br/><code>!wf prizedraw</code></td>
-      <td></td>
     </tr>
   </table>
 </p>
