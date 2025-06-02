@@ -39,7 +39,7 @@ const DISCORD_ICON = {
 const DISCORD_PREFIX = <string>process.env.DISCORD_PREFIX ?? '!wf';
 
 const FOUNDING_WARLORD_USER_ID = <string>process.env.FOUNDING_WARLORD_USER_ID; // shikaricm
-const CLAN_ANNOUNCEMENTS_CHANNEL_ID = <string>process.env.CLAN_ANNOUNCEMENTS_CHANNEL_ID;       // #nihil-vox-announcements
+const CLAN_ANNOUNCEMENTS_CHANNEL_ID = <string>process.env.CLAN_ANNOUNCEMENTS_CHANNEL_ID; // #nihil-vox-announcements
 
 export {
   client,
