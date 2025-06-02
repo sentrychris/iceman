@@ -3,11 +3,12 @@ import { getBaroKiteerLocation } from './commands/baro-kiteer';
 import { buildNightwaveEmbed } from './commands/nightwave-alerts';
 import { buildVoidFissuresEmbed } from './commands/void-fissures';
 import { buildWorldCyclesEmbed } from './commands/world-cycles';
+import { buildSortieEmbed } from './commands/sortie-mission';
+import { buildArchonHuntEmbed } from './commands/archon-hunt';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
 import { client, DISCORD_PREFIX, CLAN_ICON, CLAN_ANNOUNCEMENTS_CHANNEL, FOUNDING_WARLORD_USER_ID, DISCORD_COLOR } from './config';
-import { buildSortieEmbed } from './commands/sortie-mission';
   
 client.on('ready', () => {
   console.log('ready');
@@ -68,8 +69,18 @@ client.on('messageCreate', async (message: Message) => {
     message.reply({ embeds: await buildWorldCyclesEmbed() });
   }
 
+  /**
+   * Sortie missions
+   */
   if (message.content === `${DISCORD_PREFIX} sortie`) {
     return message.reply({ embeds: [await buildSortieEmbed()] });
+  }
+
+  /**
+   * Archon hunts
+   */
+  if (message.content === `${DISCORD_PREFIX} archon`) {
+    message.reply({ embeds: [await buildArchonHuntEmbed()] });
   }
 
   /**
