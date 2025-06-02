@@ -32,7 +32,7 @@ const timeRemaining = (expiryISO: string): string => {
 }
 
 export const buildNightwaveEmbed = async (): Promise<EmbedBuilder> => {
-  const res = await fetch(`${WARFRAME_API}/nightwave`);
+  const res = await fetch(`${WARFRAME_API}/nightwave?lang=en`);
   const data = await res.json();
 
   const challenges: NightwaveChallenge[] = data.activeChallenges || [];

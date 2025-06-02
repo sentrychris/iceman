@@ -58,7 +58,7 @@ function groupByTier(fissures: Fissure[]): Map<string, Fissure[]> {
  * Builds an embed showing active void fissures grouped by relic tier.
  */
 export const buildVoidFissuresEmbed = async (filterTier?: string): Promise<EmbedBuilder> => {
-  const res = await fetch(`${WARFRAME_API}/fissures`);
+  const res = await fetch(`${WARFRAME_API}/fissures?lang=en`);
   const fissures: Fissure[] = await res.json();
 
   if (!fissures.length) {

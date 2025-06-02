@@ -39,7 +39,7 @@ const embed = (
  * @returns 
  */
 export const buildCetusWorldCycleEmbed = async (): Promise<EmbedBuilder> => {
-  const res = await fetch(`${WARFRAME_API}/cetusCycle`);
+  const res = await fetch(`${WARFRAME_API}/cetusCycle?lang=en`);
   const data = await res.json();
   const time = data.isDay ? 'Day' : 'Night';
   return embed('Cetus/Earth', time, data.timeLeft, WORLD_ICON.cetus);
@@ -51,7 +51,7 @@ export const buildCetusWorldCycleEmbed = async (): Promise<EmbedBuilder> => {
  * @returns 
  */
 export const buildCambionDriftWorldCycleEmbed = async (): Promise<EmbedBuilder> => {
-  const res = await fetch(`${WARFRAME_API}/cambionCycle`);
+  const res = await fetch(`${WARFRAME_API}/cambionCycle?lang=en`);
   const data = await res.json();
   const time = data.active; // "fass" or "vome"
   return embed('Cambion Drift', time.charAt(0).toUpperCase() + time.slice(1), data.timeLeft, WORLD_ICON.cambion);
@@ -62,7 +62,7 @@ export const buildCambionDriftWorldCycleEmbed = async (): Promise<EmbedBuilder> 
  * @returns 
  */
 export const buildOrbVallisWorldCycleEmbed = async (): Promise<EmbedBuilder> => {
-  const res = await fetch(`${WARFRAME_API}/vallisCycle`);
+  const res = await fetch(`${WARFRAME_API}/vallisCycle?lang=en`);
   const data = await res.json();
   const time = data.state; // "warm" or "cold"
   return embed('Orb Vallis', time.charAt(0).toUpperCase() + time.slice(1), data.timeLeft, WORLD_ICON.vallis);

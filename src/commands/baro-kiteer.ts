@@ -8,7 +8,7 @@ const BARO_ICON = 'https://wiki.warframe.com/images/thumb/TennoCon2020BaroCroppe
  */
 export const getBaroKiteerLocation = async (): Promise<EmbedBuilder> => {
   try {
-    const res = await fetch(`${WARFRAME_API}/voidTrader`);
+    const res = await fetch(`${WARFRAME_API}/voidTrader?lang=en`);
     const data = await res.json();
 
     const embed = new EmbedBuilder()
