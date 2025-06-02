@@ -18,7 +18,7 @@ export const usage = async (message: Message) => {
           .addFields(
             {
               name: '`!wf baro`',
-              value: 'Displays Baro Ki\'Teer\'s location and arrival/departure times.\n⠀\n',
+              value: 'Displays Baro Ki\'Teer\'s current location and arrival/departure times.\n⠀\n',
               inline: false
             },
             {
@@ -38,7 +38,7 @@ export const usage = async (message: Message) => {
             },
             {
               name: '`!wf relics <item name>`',
-              value: 'Finds all Void Relics that drop a specific item.\nExample: `!wf relics trinity prime systems`\n⠀\n',
+              value: 'Finds all Void Relics that drop a specific item.\nExample: `!wf relics lex prime receiver`\n⠀\n',
               inline: false
             },
             {
@@ -48,12 +48,12 @@ export const usage = async (message: Message) => {
             },
             {
               name: '`!wf world`',
-              value: 'Shows world cycles for Cetus, Cambion Drift, Orb Vallis.\nOptional filter: `!wf world cetus`\n⠀\n',
+              value: 'Shows world cycles for Cetus, Cambion Drift and Orb Vallis.\nOptional filter: `!wf world cetus`\n⠀\n',
               inline: false
             },
             {
               name: '`!wf nightwave`',
-              value: 'Shows current Nightwave acts (daily and weekly).\n⠀\n',
+              value: 'Shows the currently active Nightwave daily and weekly acts.\n⠀\n',
               inline: false
             },
             {
@@ -63,7 +63,7 @@ export const usage = async (message: Message) => {
             },
             {
               name: '`!wf buy <item name>` or `!wf wtb <item name>`',
-              value: 'Finds the cheapest in-game sell order for a Warframe Market item.\nExample: `!wf buy frost prime set`',
+              value: 'Finds the cheapest sell order for a Warframe Market item.\nExample: `!wf buy frost prime set`',
               inline: false
             },
           )
