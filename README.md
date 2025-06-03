@@ -20,7 +20,7 @@ A lightweight and modular Discord bot for tracking world states, Nightwave, Baro
 
 Use the prefix `!wf` before all commands:
 
-![help](./docs/wf-help.png)
+![help](./docs/wf-help.png?=v=1.0)
 
 <p align="center">
   <table>
