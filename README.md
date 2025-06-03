@@ -87,7 +87,7 @@ pm2 start dist/index.js --name "wf-bot"
 
 ## Requirements
 
-* Node.js 18+
+* Node.js 20+
 * Discord bot token
 * Text channels with send/embed permissions
 
