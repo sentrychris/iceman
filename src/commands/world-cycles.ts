@@ -57,7 +57,7 @@ export const buildWorldCyclesEmbed = async (
   const cetusTime = cetusRes.isDay ? '☀️ ⠀Day' : '🌙 ⠀Night';
 
   const cambionRaw = cambionRes.active.toLowerCase();
-  const cambionTime = cambionRaw === 'fass' ? '🟠 ⠀Fass' : '🔵 ⠀Vome';
+  const cambionTime = cambionRaw === 'fass' ? '🔶 ⠀Fass' : '🔷 ⠀Vome';
 
   const vallisRaw = vallisRes.state.toLowerCase();
   const vallisTime = vallisRaw === 'cold' ? '❄️ ⠀Cold' : '🔥 ⠀Warm';
