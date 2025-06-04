@@ -19,6 +19,11 @@ const getFormattedTimestamp = (): string => {
   return `${day} ${month} ${hours}:${minutes}:${seconds}`;
 };
 
+const getDiscordTimestamp = (): string => {
+  const unixTime = Math.floor(Date.now() / 1000);
+  return `<t:${unixTime}:f> (local time)`;
+};
+
 export const setupWorldCycleLoop = (client: Client) => {
   client.once('ready', async () => {
     try {
@@ -45,7 +50,7 @@ export const setupWorldCycleLoop = (client: Client) => {
 
       if (!postedMessage) {
         const embed = await buildWorldCyclesEmbed({
-          footer: `Message updates every 1 minute. Last updated: ${getFormattedTimestamp()} UTC`
+          footer: `Message updates every 1 minute. Last updated: ${getDiscordTimestamp()} UTC`
         });
         postedMessage = await textChannel.send({
           embeds: Array.isArray(embed) ? embed : [embed],
@@ -65,7 +70,7 @@ const updateLoop = async () => {
 
   try {
     const newEmbed = await buildWorldCyclesEmbed({
-      footer: `Message updates every 1 minute. Last updated: ${getFormattedTimestamp()} UTC`
+      footer: `Message updates every 1 minute. Last updated: ${getDiscordTimestamp()} UTC`
     });
     await postedMessage.edit({
       embeds: Array.isArray(newEmbed) ? newEmbed : [newEmbed],
