@@ -87,9 +87,9 @@ export const buildWorldCyclesEmbed = async (
     .setTitle(embedTitle)
     .setDescription('Current day/night and weather cycles across open worlds')
     .addFields(
-      { name: 'Cetus (Earth)', value: `${cetusTime}\nEnds: ${cetusEnds}`, inline: true },
-      { name: 'Cambion Drift (Deimos)', value: `${cambionTime}\nEnds: ${cambionEnds}`, inline: true },
-      { name: 'Orb Vallis (Venus)', value: `${vallisTime}\nEnds: ${vallisEnds}`, inline: true }
+      { name: 'Cetus (Earth)', value: `${cetusTime}\nEnds in ${cetusEnds}`, inline: true },
+      { name: 'Cambion Drift (Deimos)', value: `${cambionTime}\nEnds in ${cambionEnds}`, inline: true },
+      { name: 'Orb Vallis (Venus)', value: `${vallisTime}\nEnds in ${vallisEnds}`, inline: true }
     )
     .setThumbnail(WORLD_ICON.cetus)
     .setFooter({ text: embedFooter });
