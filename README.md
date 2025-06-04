@@ -4,7 +4,18 @@
 
 # Warframe Discord Bot
 
-A lightweight and modular Discord bot for tracking world states, Nightwave, Baro Ki'Teer, void fissures, and Warframe Market prices. Built with `discord.js` and TypeScript.
+A lightweight and modular Discord bot for tracking world states, Nightwave, Baro Ki'Teer, void fissures, Warframe Market prices and more. Built with `discord.js` and TypeScript.
+
+Track world cycles:
+![looped world cycle tracking](./docs/wf-cycle-loop.png)
+
+Fetch cheapest sell orders:
+![wtb command](./docs/wf-wtb.png)
+
+Find out where Baro is:
+![wtb command](./docs/wf-baro.png)
+
+View a full list of commands with `!wf help`.
 
 ## Features
 
@@ -21,26 +32,6 @@ A lightweight and modular Discord bot for tracking world states, Nightwave, Baro
 Use the prefix `!wf` before all commands:
 
 ![help](./docs/wf-help.png?=v=1.0)
-
-<p align="center">
-  <table>
-    <tr>
-      <td align="center"><img src="./docs/wf-baro.png" width="250"/><br/><code>!wf baro</code></td>
-      <td align="center"><img src="./docs/wf-teshin.png" width="250"/><br/><code>!wf teshin</code></td>
-      <td align="center"><img src="./docs/wf-buy.png" width="250"/><br/><code>!wf wtb {item}</code></td>
-    </tr>
-    <tr>
-      <td align="center"><img src="./docs/wf-cycles.png" width="250"/><br/><code>!wf world</code></td>
-      <td align="center"><img src="./docs/wf-archon.png" width="250"/><br/><code>!wf archon</code></td>
-      <td align="center"><img src="./docs/wf-sortie.png" width="250"/><br/><code>!wf sortie</code></td>
-    </tr>
-    <tr>
-      <td align="center"><img src="./docs/wf-nightwave.png" width="250"/><br/><code>!wf nightwave</code></td>
-      <td align="center"><img src="./docs/wf-relics.png" width="250"/><br/><code>!wf relics {item}</code></td>
-      <td align="center"><img src="./docs/wf-prize.png" width="250"/><br/><code>!wf prizedraw</code></td>
-    </tr>
-  </table>
-</p>
 
 ## Setup
 
