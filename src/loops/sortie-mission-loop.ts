@@ -48,18 +48,18 @@ export const setupSortieMissionLoop = (client: Client) => {
 };
 
 const scheduleNextUpdate = () => {
-  const now = new Date();
-  const next = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 17, 5, 0, 0)); // 17:05 UTC
+  // const now = new Date();
+  // const next = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 17, 5, 0, 0)); // 17:05 UTC
 
-  if (now >= next) {
-    // If it's past 17:05 today, schedule for tomorrow
-    next.setUTCDate(next.getUTCDate() + 1);
-  }
+  // if (now >= next) {
+  //   // If it's past 17:05 today, schedule for tomorrow
+  //   next.setUTCDate(next.getUTCDate() + 1);
+  // }
 
-  const delay = next.getTime() - now.getTime();
-  console.log(`Next sortie update scheduled in ${(delay / 1000 / 60).toFixed(1)} minutes.`);
+  // const delay = next.getTime() - now.getTime();
+  // console.log(`Next sortie update scheduled in ${(delay / 1000 / 60).toFixed(1)} minutes.`);
 
-  setTimeout(updateSortieMessage, delay);
+  setTimeout(updateSortieMessage, 5 * 60 * 1000);
 };
 
 const updateSortieMessage = async () => {
