@@ -1,9 +1,9 @@
 import { Client, TextChannel, Message } from 'discord.js';
 import { WARFRAME_LIVE_INFO_CHANNEL_ID } from '../config';
 import { buildArchonHuntEmbed } from '../commands/archon-hunt';
+import { getFormattedTimestamp } from '../util';
 import fs from 'fs/promises';
 import path from 'path';
-import { getFormattedTimestamp } from 'src/util';
 
 const TRACKING_FILE_STORAGE_PATH = path.join(__dirname, '../../storage/tracking/archon-hunt-message.json');
 
