@@ -174,13 +174,7 @@ client.on('messageCreate', async (message: Message) => {
  * Setup self-updating messages
  */
 setupWorldCycleLoop(client);
-
-setTimeout(() => {
-  setupArchonHuntLoop(client);
-}, 1000);
-
-setTimeout(() => {
-  setupSortieMissionLoop(client);
-}, 2000);
+setupArchonHuntLoop(client);
+setupSortieMissionLoop(client);
   
 client.login(<string>process.env.DISCORD_AUTH_TOKEN);
