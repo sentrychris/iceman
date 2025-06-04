@@ -41,7 +41,7 @@ export const setupWorldCycleLoop = (client: Client) => {
 
       if (!postedMessage) {
         const embed = await buildWorldCyclesEmbed({
-          footer: `Cycles are UTC-based. This message updates every 1 minute. Last updated: ${getFormattedTimestamp()}`
+          footer: `Message updates every 1 minute. Last updated: ${getFormattedTimestamp()} UTC`
         });
         postedMessage = await textChannel.send({
           embeds: Array.isArray(embed) ? embed : [embed],
@@ -61,7 +61,7 @@ const updateLoop = async () => {
 
   try {
     const newEmbed = await buildWorldCyclesEmbed({
-      footer: `Cycles are UTC-based. This message updates every 1 minute. Last updated: ${getFormattedTimestamp()}`
+      footer: `Message updates every 1 minute. Last updated: ${getFormattedTimestamp()} UTC`
     });
     await postedMessage.edit({
       embeds: Array.isArray(newEmbed) ? newEmbed : [newEmbed],
