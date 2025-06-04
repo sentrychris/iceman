@@ -78,7 +78,7 @@ client.on('messageCreate', async (message: Message) => {
       else filter = undefined;
     }
 
-    const embed = await buildWorldCyclesEmbed(filter);
+    const embed = await buildWorldCyclesEmbed({ filter });
     return message.reply({ embeds: Array.isArray(embed) ? embed : [embed] });
   }
 

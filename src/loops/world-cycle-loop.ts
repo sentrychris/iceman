@@ -8,6 +8,13 @@ const TRACKING_FILE_STORAGE_PATH = path.join(__dirname, '../../storage/tracking/
 
 let postedMessage: Message | null = null;
 
+const getFormattedTimestamp = (): string => {
+  const now = new Date();
+  const pad = (n: number) => n.toString().padStart(2, '0');
+  return `${now.getUTCFullYear()}-${pad(now.getUTCMonth() + 1)}-${pad(now.getUTCDate())} ` +
+         `${pad(now.getUTCHours())}:${pad(now.getUTCMinutes())}:${pad(now.getUTCSeconds())}`;
+};
+
 export const setupWorldCycleLoop = (client: Client) => {
   client.once('ready', async () => {
     try {
@@ -33,7 +40,9 @@ export const setupWorldCycleLoop = (client: Client) => {
       }
 
       if (!postedMessage) {
-        const embed = await buildWorldCyclesEmbed();
+        const embed = await buildWorldCyclesEmbed({
+          footer: `Cycles are UTC-based. This message updates every 1 minute. Last updated: ${getFormattedTimestamp()}`
+        });
         postedMessage = await textChannel.send({
           embeds: Array.isArray(embed) ? embed : [embed],
         });
@@ -51,7 +60,9 @@ const updateLoop = async () => {
   if (!postedMessage) return;
 
   try {
-    const newEmbed = await buildWorldCyclesEmbed();
+    const newEmbed = await buildWorldCyclesEmbed({
+      footer: `Cycles are UTC-based. This message updates every 1 minute. Last updated: ${getFormattedTimestamp()}`
+    });
     await postedMessage.edit({
       embeds: Array.isArray(newEmbed) ? newEmbed : [newEmbed],
     });
