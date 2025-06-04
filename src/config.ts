@@ -40,6 +40,7 @@ const DISCORD_PREFIX = <string>process.env.DISCORD_PREFIX ?? '!wf';
 
 const FOUNDING_WARLORD_USER_ID = <string>process.env.FOUNDING_WARLORD_USER_ID; // shikaricm
 const CLAN_ANNOUNCEMENTS_CHANNEL_ID = <string>process.env.CLAN_ANNOUNCEMENTS_CHANNEL_ID; // #nihil-vox-announcements
+const WORLD_CYCLES_TRACKING_CHANNEL = <string>process.env.WORLD_CYCLES_TRACKING_CHANNEL; // #world-cycle-tracking
 
 export {
   client,
@@ -52,5 +53,6 @@ export {
   DISCORD_PREFIX,
   FOUNDING_WARLORD_USER_ID,
   CLAN_ANNOUNCEMENTS_CHANNEL_ID,
+  WORLD_CYCLES_TRACKING_CHANNEL
 };
  

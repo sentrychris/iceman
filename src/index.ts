@@ -1,6 +1,7 @@
 import type { Message, TextChannel } from 'discord.js';
 
 import { usage } from './usage';
+import { setupWorldCycleLoop } from './loops/world-cycle';
 import { buildBaroKiteerLocationEmbed } from './commands/baro-kiteer';
 import { buildNightwaveEmbed } from './commands/nightwave-alerts';
 import { buildVoidFissuresEmbed } from './commands/void-fissures';
@@ -166,5 +167,8 @@ client.on('messageCreate', async (message: Message) => {
     return message.reply({ embeds: [await buildMemeframeEmbed()] });
   }
 });
+
+
+setupWorldCycleLoop(client);
   
 client.login(<string>process.env.DISCORD_AUTH_TOKEN);
