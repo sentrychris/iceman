@@ -14,7 +14,6 @@ import { buildRelicDropsEmbed } from './commands/relic-lookup';
 import { buildItemDropsEmbed } from './commands/mission-drops';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
-import { buildMemeframeEmbed } from './commands/wf-memeframe';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
 import { client, DISCORD_PREFIX, FOUNDING_WARLORD_USER_ID, CLAN_ANNOUNCEMENTS_CHANNEL_ID } from './config';
   
@@ -160,13 +159,6 @@ client.on('messageCreate', async (message: Message) => {
     const args = message.content.trim().split(/\s+/).slice(2);
 
     return message.reply({ embeds: [await buildItemDropsEmbed(args)] });
-  }
-
-  /**
-   * Post a random meme from r/memeframe
-   */
-  if (message.content === `${DISCORD_PREFIX} memeframe`) {
-    return message.reply({ embeds: [await buildMemeframeEmbed()] });
   }
 });
 
