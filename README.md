@@ -7,12 +7,15 @@
 A lightweight and modular Discord bot for tracking world states, Nightwave, Baro Ki'Teer, void fissures, Warframe Market prices and more. Built with `discord.js` and TypeScript.
 
 Track world cycles:
+
 ![looped world cycle tracking](./docs/wf-cycle-loop.png)
 
 Fetch cheapest sell orders:
+
 ![wtb command](./docs/wf-wtb.png)
 
 Find out where Baro is:
+
 ![wtb command](./docs/wf-baro.png)
 
 View a full list of commands with `!wf help`.
