@@ -29,8 +29,8 @@ export const buildSortieEmbed = async (
     }));
 
     const embedTitle = title ?? 'Sortie — Daily Missions';
-    const sortieFooter = 'Source: warframestat.us — Resets daily at 16:00 UTC\n';
-    const embedFooter = footer ? sortieFooter + footer : sortieFooter;
+    const defaultFooter = 'Source: warframestat.us — Resets daily at 16:00 UTC\n';
+    const embedFooter = footer ? defaultFooter + footer : defaultFooter;
 
     return new EmbedBuilder()
       .setColor(DISCORD_COLOR.orange)

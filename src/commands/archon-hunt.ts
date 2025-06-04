@@ -41,8 +41,8 @@ export const buildArchonHuntEmbed = async (
     const image = ARCHON_IMAGES[data.boss] ?? ARCHON_IMAGES['Archon Nira'];
 
     const embedTitle = title ?? 'Archon Hunt';
-    const sortieFooter = 'Source: warframestat.us — Resets every Monday at 00:00 UTC\n';
-    const embedFooter = footer ? sortieFooter + footer : sortieFooter;
+    const defaultFooter = 'Source: warframestat.us — Resets every Monday at 00:00 UTC\n';
+    const embedFooter = footer ? defaultFooter + footer : defaultFooter;
 
     const embed = new EmbedBuilder()
       .setColor(DISCORD_COLOR.red)

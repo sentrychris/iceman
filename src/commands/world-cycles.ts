@@ -67,7 +67,8 @@ export const buildWorldCyclesEmbed = async (
   const vallisEnds = getEndsIn(vallisRes.expiry);
 
   const embedTitle = title ?? 'World Cycles';
-  const embedFooter = footer ?? 'Cycle times are UTC-based and approximate to live state.';
+  const defaultFooter = 'Source: warframestat.us — World cycle times are UTC-based.\n';
+  const embedFooter = footer ? defaultFooter + footer : defaultFooter;
 
   const lcFilter = filter?.toLowerCase();
   if (lcFilter === 'cetus') {
