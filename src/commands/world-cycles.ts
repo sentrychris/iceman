@@ -54,13 +54,13 @@ export const buildWorldCyclesEmbed = async (
     fetch(`${WARFRAME_API}/vallisCycle?lang=en`).then(res => res.json())
   ]);
 
-  const cetusTime = cetusRes.isDay ? '☀️ Day' : '🌙 Night';
+  const cetusTime = cetusRes.isDay ? '☀️ ⠀Day' : '🌙 ⠀Night';
 
   const cambionRaw = cambionRes.active.toLowerCase();
-  const cambionTime = cambionRaw === 'fass' ? '🟠 Fass' : '🔵 Vome';
+  const cambionTime = cambionRaw === 'fass' ? '🟠 ⠀Fass' : '🔵 ⠀Vome';
 
   const vallisRaw = vallisRes.state.toLowerCase();
-  const vallisTime = vallisRaw === 'cold' ? '❄️ Cold' : '🔥 Warm';
+  const vallisTime = vallisRaw === 'cold' ? '❄️ ⠀Cold' : '🔥 ⠀Warm';
 
   const cetusEnds = getEndsIn(cetusRes.expiry);
   const cambionEnds = getEndsIn(cambionRes.expiry);
