@@ -4,7 +4,7 @@ import { buildArchonHuntEmbed } from '../commands/archon-hunt';
 import fs from 'fs/promises';
 import path from 'path';
 
-const STORAGE_PATH = path.join(__dirname, '../../storage/tracking/archon-hunt-message.json');
+const TRACKING_FILE_STORAGE_PATH = path.join(__dirname, '../../storage/tracking/archon-hunt-message.json');
 
 let postedMessage: Message | null = null;
 
@@ -80,7 +80,7 @@ const updateArchonMessage = async () => {
 
 const loadStoredMessage = async (): Promise<{ channelId: string, messageId: string } | null> => {
   try {
-    const data = await fs.readFile(STORAGE_PATH, 'utf8');
+    const data = await fs.readFile(TRACKING_FILE_STORAGE_PATH, 'utf8');
     return JSON.parse(data);
   } catch {
     return null;
@@ -89,5 +89,5 @@ const loadStoredMessage = async (): Promise<{ channelId: string, messageId: stri
 
 const saveMessageReference = async (channelId: string, messageId: string): Promise<void> => {
   const data = { channelId, messageId };
-  await fs.writeFile(STORAGE_PATH, JSON.stringify(data, null, 2), 'utf8');
+  await fs.writeFile(TRACKING_FILE_STORAGE_PATH, JSON.stringify(data, null, 2), 'utf8');
 };
