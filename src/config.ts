@@ -38,9 +38,9 @@ const DISCORD_ICON = {
 
 const DISCORD_PREFIX = <string>process.env.DISCORD_PREFIX ?? '!wf';
 
-const FOUNDING_WARLORD_USER_ID = <string>process.env.FOUNDING_WARLORD_USER_ID; // shikaricm
+const FOUNDING_WARLORD_USER_ID = <string>process.env.FOUNDING_WARLORD_USER_ID;           // shikaricm
 const CLAN_ANNOUNCEMENTS_CHANNEL_ID = <string>process.env.CLAN_ANNOUNCEMENTS_CHANNEL_ID; // #nihil-vox-announcements
-const WORLD_CYCLES_TRACKING_CHANNEL = <string>process.env.WORLD_CYCLES_TRACKING_CHANNEL; // #world-cycle-tracking
+const WARFRAME_LIVE_INFO_CHANNEL_ID = <string>process.env.WARFRAME_LIVE_INFO_CHANNEL_ID; // #warframe-live-info-board
 
 export {
   client,
@@ -53,6 +53,6 @@ export {
   DISCORD_PREFIX,
   FOUNDING_WARLORD_USER_ID,
   CLAN_ANNOUNCEMENTS_CHANNEL_ID,
-  WORLD_CYCLES_TRACKING_CHANNEL
+  WARFRAME_LIVE_INFO_CHANNEL_ID
 };
  

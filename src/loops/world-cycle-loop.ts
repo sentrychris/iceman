@@ -1,18 +1,17 @@
 import { Client, TextChannel, Message } from 'discord.js';
-import { WORLD_CYCLES_TRACKING_CHANNEL } from '../config';
+import { WARFRAME_LIVE_INFO_CHANNEL_ID } from '../config';
 import { buildWorldCyclesEmbed } from '../commands/world-cycles';
 import fs from 'fs/promises';
 import path from 'path';
 
-const CYCLE_REFRESH_INTERVAL = 1 * 60 * 1000;
-const CYCLE_STORAGE_PATH = path.join(__dirname, '../../storage/world-cycles.json');
+const TRACKING_FILE_STORAGE_PATH = path.join(__dirname, '../../storage/tracking/world-cycles-message.json');
 
 let postedMessage: Message | null = null;
 
 export const setupWorldCycleLoop = (client: Client) => {
   client.once('ready', async () => {
     try {
-      const channel = await client.channels.fetch(WORLD_CYCLES_TRACKING_CHANNEL);
+      const channel = await client.channels.fetch(WARFRAME_LIVE_INFO_CHANNEL_ID);
       if (!channel || !channel.isTextBased()) {
         console.error('Channel is invalid or not text-based.');
         return;
@@ -60,12 +59,12 @@ const updateLoop = async () => {
     console.error('Failed to update world cycle message:', err);
   }
 
-  setTimeout(updateLoop, CYCLE_REFRESH_INTERVAL);
+  setTimeout(updateLoop, 1 * 60 * 1000);
 };
 
 const loadStoredMessage = async (): Promise<{ channelId: string, messageId: string } | null> => {
   try {
-    const data = await fs.readFile(CYCLE_STORAGE_PATH, 'utf8');
+    const data = await fs.readFile(TRACKING_FILE_STORAGE_PATH, 'utf8');
     return JSON.parse(data);
   } catch {
     return null;
@@ -74,5 +73,5 @@ const loadStoredMessage = async (): Promise<{ channelId: string, messageId: stri
 
 const saveMessageReference = async (channelId: string, messageId: string): Promise<void> => {
   const data = { channelId, messageId };
-  await fs.writeFile(CYCLE_STORAGE_PATH, JSON.stringify(data, null, 2), 'utf8');
+  await fs.writeFile(TRACKING_FILE_STORAGE_PATH, JSON.stringify(data, null, 2), 'utf8');
 };

@@ -11,7 +11,7 @@ declare global {
       DISCORD_AUTH_TOKEN: string;
       FOUNDING_WARLORD_USER_ID: string;
       CLAN_ANNOUNCEMENTS_CHANNEL_ID: string;
-      WORLD_CYCLES_TRACKING_CHANNEL: string;
+      WARFRAME_LIVE_INFO_CHANNEL_ID: string;
     }
   }
 }

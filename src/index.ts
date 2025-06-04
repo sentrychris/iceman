@@ -1,7 +1,8 @@
 import type { Message, TextChannel } from 'discord.js';
 
 import { usage } from './usage';
-import { setupWorldCycleLoop } from './loops/world-cycle';
+import { setupWorldCycleLoop } from './loops/world-cycle-loop';
+import { setupSortieMissionLoop } from './loops/sortie-mission-loop';
 import { buildBaroKiteerLocationEmbed } from './commands/baro-kiteer';
 import { buildNightwaveEmbed } from './commands/nightwave-alerts';
 import { buildVoidFissuresEmbed } from './commands/void-fissures';
@@ -15,6 +16,7 @@ import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
 import { buildMemeframeEmbed } from './commands/wf-memeframe';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
 import { client, DISCORD_PREFIX, FOUNDING_WARLORD_USER_ID, CLAN_ANNOUNCEMENTS_CHANNEL_ID } from './config';
+import { setupArchonHuntLoop } from './loops/archon-hunt-loop';
   
 client.on('ready', () => {
   console.log('ready');
@@ -168,7 +170,17 @@ client.on('messageCreate', async (message: Message) => {
   }
 });
 
-
+/**
+ * Setup self-updating messages
+ */
 setupWorldCycleLoop(client);
+
+setTimeout(() => {
+  setupArchonHuntLoop(client);
+}, 1000);
+
+setTimeout(() => {
+  setupSortieMissionLoop(client);
+}, 2000);
   
 client.login(<string>process.env.DISCORD_AUTH_TOKEN);
