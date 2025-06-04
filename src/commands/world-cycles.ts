@@ -46,7 +46,7 @@ const buildEmbed = (
  * Combined embed with optional filtering
  */
 export const buildWorldCyclesEmbed = async (
-  { filter, title, footer }: {filter?: string, title?: string, footer?: string}
+  { filter, title, footer }: {filter?: string, title?: string, footer?: string} = {}
 ): Promise<EmbedBuilder | EmbedBuilder[]> => {
   const [cetusRes, cambionRes, vallisRes] = await Promise.all([
     fetch(`${WARFRAME_API}/cetusCycle?lang=en`).then(res => res.json()),

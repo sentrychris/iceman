@@ -1,23 +1,13 @@
 import { Client, TextChannel, Message } from 'discord.js';
 import { WARFRAME_LIVE_INFO_CHANNEL_ID } from '../config';
 import { buildWorldCyclesEmbed } from '../commands/world-cycles';
+import { getFormattedTimestamp } from '../util';
 import fs from 'fs/promises';
 import path from 'path';
 
 const TRACKING_FILE_STORAGE_PATH = path.join(__dirname, '../../storage/tracking/world-cycles-message.json');
 
 let postedMessage: Message | null = null;
-
-const getFormattedTimestamp = (): string => {
-  const now = new Date();
-  const pad = (n: number) => n.toString().padStart(2, '0');
-  const day = pad(now.getUTCDate());
-  const month = now.toLocaleString('en-US', { month: 'long', timeZone: 'UTC' });
-  const hours = pad(now.getUTCHours());
-  const minutes = pad(now.getUTCMinutes());
-  const seconds = pad(now.getUTCSeconds());
-  return `${day} ${month} at ${hours}:${minutes}:${seconds}`;
-};
 
 export const setupWorldCycleLoop = (client: Client) => {
   client.once('ready', async () => {

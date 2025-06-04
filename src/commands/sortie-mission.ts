@@ -4,7 +4,9 @@ import { DISCORD_COLOR, DISCORD_ICON, WARFRAME_API } from '../config';
 /**
  * Builds an embed showing today's Sortie details.
  */
-export const buildSortieEmbed = async (): Promise<EmbedBuilder> => {
+export const buildSortieEmbed = async (
+  { title, footer }: { title?: string, footer?: string } = {}
+): Promise<EmbedBuilder> => {
   try {
     const res = await fetch(`${WARFRAME_API}/sortie?lang=en`);
     const data = await res.json();
@@ -26,9 +28,13 @@ export const buildSortieEmbed = async (): Promise<EmbedBuilder> => {
       inline: false
     }));
 
+    const embedTitle = title ?? 'Sortie — Daily Missions';
+    const sortieFooter = 'Source: warframestat.us — Resets daily at 16:00 UTC\n';
+    const embedFooter = footer ? sortieFooter + footer : sortieFooter;
+
     return new EmbedBuilder()
       .setColor(DISCORD_COLOR.orange)
-      .setTitle('Sortie — Daily Missions')
+      .setTitle(embedTitle)
       .setDescription(`🧟 **Boss**: ${boss}\n⚔️ **Faction**: ${faction}`)
       .setThumbnail(DISCORD_ICON.sortie)
       .addFields(
@@ -36,9 +42,7 @@ export const buildSortieEmbed = async (): Promise<EmbedBuilder> => {
         { name: 'Started', value: startString, inline: true },
         { name: 'Time Remaining', value: eta, inline: true }
       )
-      .setFooter({
-        text: 'Source: warframestat.us — Resets daily at 16:00 UTC',
-      });
+      .setFooter({ text: embedFooter });
   } catch (err) {
     console.error('Failed to fetch sortie:', err);
     return new EmbedBuilder()

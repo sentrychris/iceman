@@ -24,7 +24,9 @@ interface ArchonHuntData {
 /**
  * Fetches the current Archon Hunt and builds a Discord embed.
  */
-export const buildArchonHuntEmbed = async (): Promise<EmbedBuilder> => {
+export const buildArchonHuntEmbed = async (
+    { title, footer }: { title?: string, footer?: string } = {}
+): Promise<EmbedBuilder> => {
   try {
     const res = await fetch(`${WARFRAME_API}/archonHunt?lang=en`);
     const data: ArchonHuntData = await res.json();
@@ -38,9 +40,13 @@ export const buildArchonHuntEmbed = async (): Promise<EmbedBuilder> => {
 
     const image = ARCHON_IMAGES[data.boss] ?? ARCHON_IMAGES['Archon Nira'];
 
+    const embedTitle = title ?? 'Archon Hunt';
+    const sortieFooter = 'Source: warframestat.us — Resets every Monday at 00:00 UTC\n';
+    const embedFooter = footer ? sortieFooter + footer : sortieFooter;
+
     const embed = new EmbedBuilder()
       .setColor(DISCORD_COLOR.red)
-      .setTitle('Archon Hunt')
+      .setTitle(embedTitle)
       .setDescription(`This week's Archon Hunt is against **${data.boss}**`)
       .setThumbnail(image)
       .addFields(
@@ -48,7 +54,7 @@ export const buildArchonHuntEmbed = async (): Promise<EmbedBuilder> => {
         { name: 'Faction', value: data.faction, inline: true },
         { name: 'Time Remaining', value: data.eta, inline: true },
       )
-      .setFooter({ text: 'Source: warframestat.us — Resets every Monday at 00:00 UTC' });
+      .setFooter({ text: embedFooter });
 
     data.missions.forEach((mission, index) => {
       embed.addFields({

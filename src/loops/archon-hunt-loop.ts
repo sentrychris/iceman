@@ -3,6 +3,7 @@ import { WARFRAME_LIVE_INFO_CHANNEL_ID } from '../config';
 import { buildArchonHuntEmbed } from '../commands/archon-hunt';
 import fs from 'fs/promises';
 import path from 'path';
+import { getFormattedTimestamp } from 'src/util';
 
 const TRACKING_FILE_STORAGE_PATH = path.join(__dirname, '../../storage/tracking/archon-hunt-message.json');
 
@@ -33,7 +34,9 @@ export const setupArchonHuntLoop = (client: Client) => {
       }
 
       if (!postedMessage) {
-        const embed = await buildArchonHuntEmbed();
+        const embed = await buildArchonHuntEmbed({
+          footer: `Message updates every Monday. Last updated: ${getFormattedTimestamp()} UTC`
+        });
         postedMessage = await textChannel.send({
           embeds: [embed],
         });
@@ -68,7 +71,9 @@ const updateArchonMessage = async () => {
   if (!postedMessage) return;
 
   try {
-    const embed = await buildArchonHuntEmbed();
+    const embed = await buildArchonHuntEmbed({
+      footer: `Message updates every Monday. Last updated: ${getFormattedTimestamp()} UTC`
+    });
     await postedMessage.edit({ embeds: [embed] });
     console.log('Archon Hunt message updated.');
   } catch (err) {

@@ -1,6 +1,7 @@
 import { Client, TextChannel, Message } from 'discord.js';
 import { WARFRAME_LIVE_INFO_CHANNEL_ID } from '../config';
 import { buildSortieEmbed } from '../commands/sortie-mission';
+import { getFormattedTimestamp } from '../util';
 import fs from 'fs/promises';
 import path from 'path';
 
@@ -33,7 +34,9 @@ export const setupSortieMissionLoop = (client: Client) => {
       }
 
       if (!postedMessage) {
-        const embed = await buildSortieEmbed();
+        const embed = await buildSortieEmbed({
+          footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
+        });
         postedMessage = await textChannel.send({
           embeds: [embed],
         });
@@ -66,7 +69,9 @@ const updateSortieMessage = async () => {
   if (!postedMessage) return;
 
   try {
-    const newEmbed = await buildSortieEmbed();
+    const newEmbed = await buildSortieEmbed({
+      footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
+    });
     await postedMessage.edit({ embeds: [newEmbed] });
     console.log('Sortie message updated.');
   } catch (err) {
