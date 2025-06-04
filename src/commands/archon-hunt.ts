@@ -47,7 +47,8 @@ export const buildArchonHuntEmbed = async (): Promise<EmbedBuilder> => {
         { name: 'Boss', value: data.boss, inline: true },
         { name: 'Faction', value: data.faction, inline: true },
         { name: 'Time Remaining', value: data.eta, inline: true },
-      );
+      )
+      .setFooter({ text: 'Source: warframestat.us — Resets weekly at 00:00 UTC' })
 
     data.missions.forEach((mission, index) => {
       embed.addFields({
