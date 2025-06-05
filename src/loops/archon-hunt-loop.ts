@@ -51,20 +51,20 @@ export const setupArchonHuntLoop = (client: Client) => {
 };
 
 const scheduleNextUpdate = () => {
-  const now = new Date();
-  const next = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 5, 0, 0)); // 00:05 UTC Monday
+  // const now = new Date();
+  // const next = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 5, 0, 0)); // 00:05 UTC Monday
 
-  // Advance to next Monday if we're past the update time or today isn't Monday
-  const day = now.getUTCDay();
-  if (day !== 1 || now >= next) {
-    const daysUntilMonday = (8 - day) % 7;
-    next.setUTCDate(next.getUTCDate() + daysUntilMonday);
-  }
+  // // Advance to next Monday if we're past the update time or today isn't Monday
+  // const day = now.getUTCDay();
+  // if (day !== 1 || now >= next) {
+  //   const daysUntilMonday = (8 - day) % 7;
+  //   next.setUTCDate(next.getUTCDate() + daysUntilMonday);
+  // }
 
-  const delay = next.getTime() - now.getTime();
-  console.log(`Next Archon Hunt update scheduled in ${(delay / 1000 / 60).toFixed(1)} minutes.`);
+  // const delay = next.getTime() - now.getTime();
+  // console.log(`Next Archon Hunt update scheduled in ${(delay / 1000 / 60).toFixed(1)} minutes.`);
 
-  setTimeout(updateArchonMessage, delay);
+  setTimeout(updateArchonMessage, 5 * 60 * 1000);
 };
 
 const updateArchonMessage = async () => {
@@ -72,7 +72,7 @@ const updateArchonMessage = async () => {
 
   try {
     const embed = await buildArchonHuntEmbed({
-      footer: `Message updates every Monday. Last updated: ${getFormattedTimestamp()} UTC`
+      footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
     });
     await postedMessage.edit({ embeds: [embed] });
     console.log('Archon Hunt message updated.');
