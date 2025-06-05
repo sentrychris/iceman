@@ -35,7 +35,7 @@ export const setupArchonHuntLoop = (client: Client) => {
 
       if (!postedMessage) {
         const embed = await buildArchonHuntEmbed({
-          footer: `Message updates every Monday. Last updated: ${getFormattedTimestamp()} UTC`
+          footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
         });
         postedMessage = await textChannel.send({
           embeds: [embed],
