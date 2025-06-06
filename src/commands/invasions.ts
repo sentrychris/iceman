@@ -43,8 +43,7 @@ export const buildInvasionsEmbed = async (
       return new EmbedBuilder()
         .setColor(DISCORD_COLOR.purple)
         .setTitle(title ?? 'Invasions')
-        .setDescription('There are currently no active invasions.')
-        .setThumbnail(FACTION_ICONS['Corpus']); // fallback if none
+        .setDescription('There are currently no active invasions.');
     }
 
     // Use the first active invasion's attacking faction as the embed thumbnail
@@ -70,9 +69,9 @@ export const buildInvasionsEmbed = async (
       embed.addFields({
         name: `${invasion.node} — ${invasion.desc}`,
         value:
-          `🆚 **${attackerFaction} vs ${defenderFaction}**\n` +
-          `🎁 **Attacker**: ${attackerReward}\n` +
-          `🎁 **Defender**: ${defenderReward}\n` +
+          `**${attackerFaction} vs ${defenderFaction}**\n` +
+          `🎁 **${attackerFaction}**: ${attackerReward}\n` +
+          `🎁 **${defenderFaction}**: ${defenderReward}\n` +
           `⏱️ **ETA**: ${invasion.eta} | **Completion**: ${invasion.completion.toFixed(1)}%`,
         inline: false,
       });
