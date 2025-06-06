@@ -5,7 +5,7 @@ import { getFormattedTimestamp, loadStoredMessage, saveMessageReference } from '
 
 const TRACKING_FILE = path.join(__dirname, '../../storage/tracking/archon-hunt-message.json');
 
-let postedMessage: Message | null = null;
+let message: Message | null = null;
 
 export const setupArchonHuntLoop = async (channel: TextChannel) => {
   try {
@@ -15,7 +15,7 @@ export const setupArchonHuntLoop = async (channel: TextChannel) => {
       try {
         const existing = await channel.messages.fetch(stored.messageId);
         if (existing) {
-          postedMessage = existing;
+          message = existing;
           console.log('Reusing previously posted Archon Hunt message.');
         }
       } catch {
@@ -23,13 +23,13 @@ export const setupArchonHuntLoop = async (channel: TextChannel) => {
       }
     }
 
-    if (!postedMessage) {
-      postedMessage = await channel.send({
+    if (!message) {
+      message = await channel.send({
         embeds: [await buildArchonHuntEmbed({
           footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
         })],
       });
-      await saveMessageReference(TRACKING_FILE, channel.id, postedMessage.id);
+      await saveMessageReference(TRACKING_FILE, channel.id, message.id);
     }
 
     scheduleNextUpdate();
@@ -43,10 +43,10 @@ const scheduleNextUpdate = () => {
 };
 
 const updateArchonMessage = async () => {
-  if (!postedMessage) return;
+  if (!message) return;
 
   try {
-    await postedMessage.edit({
+    await message.edit({
       embeds: [await buildArchonHuntEmbed({
         footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
       })]

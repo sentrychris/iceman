@@ -5,7 +5,7 @@ import { getFormattedTimestamp, loadStoredMessage, saveMessageReference } from '
 
 const TRACKING_FILE = path.join(__dirname, '../../storage/tracking/world-cycles-message.json');
 
-let postedMessage: Message | null = null;
+let message: Message | null = null;
 
 export const setupWorldCycleLoop = async (channel: TextChannel) => {
   try {
@@ -15,7 +15,7 @@ export const setupWorldCycleLoop = async (channel: TextChannel) => {
       try {
         const existing = await channel.messages.fetch(stored.messageId);
         if (existing) {
-          postedMessage = existing;
+          message = existing;
           console.log('Reusing previously posted world cycle message.');
         }
       } catch {
@@ -23,14 +23,14 @@ export const setupWorldCycleLoop = async (channel: TextChannel) => {
       }
     }
 
-    if (!postedMessage) {
+    if (!message) {
       const embed = await buildWorldCyclesEmbed({
         footer: `Message updates every 1 minute. Last updated: ${getFormattedTimestamp()} UTC`
       });
-      postedMessage = await channel.send({
+      message = await channel.send({
         embeds: Array.isArray(embed) ? embed : [embed],
       });
-      await saveMessageReference(TRACKING_FILE, channel.id, postedMessage.id);
+      await saveMessageReference(TRACKING_FILE, channel.id, message.id);
     }
 
     updateLoop();
@@ -40,13 +40,13 @@ export const setupWorldCycleLoop = async (channel: TextChannel) => {
 };
 
 const updateLoop = async () => {
-  if (!postedMessage) return;
+  if (!message) return;
 
   try {
     const newEmbed = await buildWorldCyclesEmbed({
       footer: `Message updates every 1 minute. Last updated: ${getFormattedTimestamp()} UTC`
     });
-    await postedMessage.edit({
+    await message.edit({
       embeds: Array.isArray(newEmbed) ? newEmbed : [newEmbed],
     });
   } catch (err) {
