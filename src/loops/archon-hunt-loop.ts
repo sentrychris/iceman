@@ -1,4 +1,4 @@
-import { Client, TextChannel, Message } from 'discord.js';
+import type { Client, TextChannel, Message } from 'discord.js';
 import { WARFRAME_LIVE_INFO_CHANNEL_ID } from '../config';
 import { buildArchonHuntEmbed } from '../commands/archon-hunt';
 import { getFormattedTimestamp } from '../util';
@@ -9,61 +9,46 @@ const TRACKING_FILE_STORAGE_PATH = path.join(__dirname, '../../storage/tracking/
 
 let postedMessage: Message | null = null;
 
-export const setupArchonHuntLoop = (client: Client) => {
-  client.once('ready', async () => {
-    try {
-      const channel = await client.channels.fetch(WARFRAME_LIVE_INFO_CHANNEL_ID);
-      if (!channel || !channel.isTextBased()) {
-        console.error('Archon channel is invalid or not text-based.');
-        return;
-      }
-
-      const textChannel = channel as TextChannel;
-      const stored = await loadStoredMessage();
-
-      if (stored && stored.channelId === textChannel.id) {
-        try {
-          const existing = await textChannel.messages.fetch(stored.messageId);
-          if (existing) {
-            postedMessage = existing;
-            console.log('Reusing previously posted Archon Hunt message.');
-          }
-        } catch {
-          console.log('Stored Archon message not found; sending a new one.');
-        }
-      }
-
-      if (!postedMessage) {
-        const embed = await buildArchonHuntEmbed({
-          footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
-        });
-        postedMessage = await textChannel.send({
-          embeds: [embed],
-        });
-        await saveMessageReference(textChannel.id, postedMessage.id);
-      }
-
-      scheduleNextUpdate();
-    } catch (err) {
-      console.error('Error setting up Archon Hunt updater:', err);
+export const setupArchonHuntLoop = async (client: Client) => {
+  try {
+    const channel = await client.channels.fetch(WARFRAME_LIVE_INFO_CHANNEL_ID);
+    if (!channel || !channel.isTextBased()) {
+      console.error('Archon channel is invalid or not text-based.');
+      return;
     }
-  });
+
+    const textChannel = channel as TextChannel;
+    const stored = await loadStoredMessage();
+
+    if (stored && stored.channelId === textChannel.id) {
+      try {
+        const existing = await textChannel.messages.fetch(stored.messageId);
+        if (existing) {
+          postedMessage = existing;
+          console.log('Reusing previously posted Archon Hunt message.');
+        }
+      } catch {
+        console.log('Stored Archon message not found; sending a new one.');
+      }
+    }
+
+    if (!postedMessage) {
+      const embed = await buildArchonHuntEmbed({
+        footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
+      });
+      postedMessage = await textChannel.send({
+        embeds: [embed],
+      });
+      await saveMessageReference(textChannel.id, postedMessage.id);
+    }
+
+    scheduleNextUpdate();
+  } catch (err) {
+    console.error('Error setting up Archon Hunt updater:', err);
+  }
 };
 
 const scheduleNextUpdate = () => {
-  // const now = new Date();
-  // const next = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 5, 0, 0)); // 00:05 UTC Monday
-
-  // // Advance to next Monday if we're past the update time or today isn't Monday
-  // const day = now.getUTCDay();
-  // if (day !== 1 || now >= next) {
-  //   const daysUntilMonday = (8 - day) % 7;
-  //   next.setUTCDate(next.getUTCDate() + daysUntilMonday);
-  // }
-
-  // const delay = next.getTime() - now.getTime();
-  // console.log(`Next Archon Hunt update scheduled in ${(delay / 1000 / 60).toFixed(1)} minutes.`);
-
   setTimeout(updateArchonMessage, 5 * 60 * 1000);
 };
 

@@ -1,4 +1,4 @@
-import type { Message, TextChannel } from 'discord.js';
+import type { Client, Message, TextChannel } from 'discord.js';
 
 import { usage } from './usage';
 import { setupWorldCycleLoop } from './loops/world-cycle-loop';
@@ -17,8 +17,11 @@ import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
 import { client, DISCORD_PREFIX, FOUNDING_WARLORD_USER_ID, CLAN_ANNOUNCEMENTS_CHANNEL_ID } from './config';
   
-client.on('ready', () => {
-  console.log('ready');
+client.on('ready', async () => {
+  console.log('Client is ready. Setting up loops...');
+  await setupWorldCycleLoop(client);
+  await setupArchonHuntLoop(client);
+  await setupSortieMissionLoop(client);
 });
   
 client.on('messageCreate', async (message: Message) => {
@@ -161,12 +164,5 @@ client.on('messageCreate', async (message: Message) => {
     return message.reply({ embeds: [await buildItemDropsEmbed(args)] });
   }
 });
-
-/**
- * Setup self-updating messages
- */
-setupWorldCycleLoop(client);
-setupArchonHuntLoop(client);
-setupSortieMissionLoop(client);
   
 client.login(<string>process.env.DISCORD_AUTH_TOKEN);

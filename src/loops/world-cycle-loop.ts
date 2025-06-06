@@ -1,4 +1,4 @@
-import { Client, TextChannel, Message } from 'discord.js';
+import type { Client, TextChannel, Message } from 'discord.js';
 import { WARFRAME_LIVE_INFO_CHANNEL_ID } from '../config';
 import { buildWorldCyclesEmbed } from '../commands/world-cycles';
 import { getFormattedTimestamp } from '../util';
@@ -9,45 +9,43 @@ const TRACKING_FILE_STORAGE_PATH = path.join(__dirname, '../../storage/tracking/
 
 let postedMessage: Message | null = null;
 
-export const setupWorldCycleLoop = (client: Client) => {
-  client.once('ready', async () => {
-    try {
-      const channel = await client.channels.fetch(WARFRAME_LIVE_INFO_CHANNEL_ID);
-      if (!channel || !channel.isTextBased()) {
-        console.error('Channel is invalid or not text-based.');
-        return;
-      }
-      const textChannel = channel as TextChannel;
-
-      const stored = await loadStoredMessage();
-
-      if (stored && stored.channelId === textChannel.id) {
-        try {
-          const existing = await textChannel.messages.fetch(stored.messageId);
-          if (existing) {
-            postedMessage = existing;
-            console.log('Reusing previously posted world cycle message.');
-          }
-        } catch {
-          console.log('Stored message not found; sending a new one.');
-        }
-      }
-
-      if (!postedMessage) {
-        const embed = await buildWorldCyclesEmbed({
-          footer: `Message updates every 1 minute. Last updated: ${getFormattedTimestamp()} UTC`
-        });
-        postedMessage = await textChannel.send({
-          embeds: Array.isArray(embed) ? embed : [embed],
-        });
-        await saveMessageReference(textChannel.id, postedMessage.id);
-      }
-
-      updateLoop();
-    } catch (err) {
-      console.error('Error setting up world cycle updater:', err);
+export const setupWorldCycleLoop = async (client: Client) => {
+  try {
+    const channel = await client.channels.fetch(WARFRAME_LIVE_INFO_CHANNEL_ID);
+    if (!channel || !channel.isTextBased()) {
+      console.error('Channel is invalid or not text-based.');
+      return;
     }
-  });
+    const textChannel = channel as TextChannel;
+
+    const stored = await loadStoredMessage();
+
+    if (stored && stored.channelId === textChannel.id) {
+      try {
+        const existing = await textChannel.messages.fetch(stored.messageId);
+        if (existing) {
+          postedMessage = existing;
+          console.log('Reusing previously posted world cycle message.');
+        }
+      } catch {
+        console.log('Stored message not found; sending a new one.');
+      }
+    }
+
+    if (!postedMessage) {
+      const embed = await buildWorldCyclesEmbed({
+        footer: `Message updates every 1 minute. Last updated: ${getFormattedTimestamp()} UTC`
+      });
+      postedMessage = await textChannel.send({
+        embeds: Array.isArray(embed) ? embed : [embed],
+      });
+      await saveMessageReference(textChannel.id, postedMessage.id);
+    }
+
+    updateLoop();
+  } catch (err) {
+    console.error('Error setting up world cycle updater:', err);
+  }
 };
 
 const updateLoop = async () => {
