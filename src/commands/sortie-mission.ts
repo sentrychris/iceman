@@ -4,7 +4,7 @@ import { DISCORD_COLOR, DISCORD_ICON, WARFRAME_API } from '../config';
 /**
  * Builds an embed showing today's Sortie details.
  */
-export const buildSortieEmbed = async (
+export const buildSortieMissionEmbed = async (
   { title, footer }: { title?: string, footer?: string } = {}
 ): Promise<EmbedBuilder> => {
   try {

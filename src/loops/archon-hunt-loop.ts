@@ -1,5 +1,4 @@
-import type { Client, TextChannel, Message } from 'discord.js';
-import { WARFRAME_LIVE_INFO_CHANNEL_ID } from '../config';
+import type { TextChannel, Message } from 'discord.js';
 import { buildArchonHuntEmbed } from '../commands/archon-hunt';
 import { getFormattedTimestamp } from '../util';
 import fs from 'fs/promises';
@@ -9,20 +8,13 @@ const TRACKING_FILE_STORAGE_PATH = path.join(__dirname, '../../storage/tracking/
 
 let postedMessage: Message | null = null;
 
-export const setupArchonHuntLoop = async (client: Client) => {
+export const setupArchonHuntLoop = async (channel: TextChannel) => {
   try {
-    const channel = await client.channels.fetch(WARFRAME_LIVE_INFO_CHANNEL_ID);
-    if (!channel || !channel.isTextBased()) {
-      console.error('Archon channel is invalid or not text-based.');
-      return;
-    }
-
-    const textChannel = channel as TextChannel;
     const stored = await loadStoredMessage();
 
-    if (stored && stored.channelId === textChannel.id) {
+    if (stored && stored.channelId === channel.id) {
       try {
-        const existing = await textChannel.messages.fetch(stored.messageId);
+        const existing = await channel.messages.fetch(stored.messageId);
         if (existing) {
           postedMessage = existing;
           console.log('Reusing previously posted Archon Hunt message.');
@@ -33,12 +25,12 @@ export const setupArchonHuntLoop = async (client: Client) => {
     }
 
     if (!postedMessage) {
-      postedMessage = await textChannel.send({
+      postedMessage = await channel.send({
         embeds: [await buildArchonHuntEmbed({
           footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
         })],
       });
-      await saveMessageReference(textChannel.id, postedMessage.id);
+      await saveMessageReference(channel.id, postedMessage.id);
     }
 
     scheduleNextUpdate();

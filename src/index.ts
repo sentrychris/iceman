@@ -8,20 +8,33 @@ import { buildBaroKiteerLocationEmbed } from './commands/baro-kiteer';
 import { buildNightwaveEmbed } from './commands/nightwave-alerts';
 import { buildVoidFissuresEmbed } from './commands/void-fissures';
 import { buildWorldCyclesEmbed } from './commands/world-cycles';
-import { buildSortieEmbed } from './commands/sortie-mission';
+import { buildSortieMissionEmbed } from './commands/sortie-mission';
 import { buildArchonHuntEmbed } from './commands/archon-hunt';
 import { buildRelicDropsEmbed } from './commands/relic-lookup';
 import { buildItemDropsEmbed } from './commands/mission-drops';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
-import { client, DISCORD_PREFIX, FOUNDING_WARLORD_USER_ID, CLAN_ANNOUNCEMENTS_CHANNEL_ID } from './config';
+import {
+  client,
+  DISCORD_PREFIX,
+  FOUNDING_WARLORD_USER_ID,
+  CLAN_ANNOUNCEMENTS_CHANNEL_ID,
+  WARFRAME_LIVE_INFO_CHANNEL_ID
+} from './config';
   
 client.on('ready', async () => {
+  const channel = await client.channels.fetch(WARFRAME_LIVE_INFO_CHANNEL_ID);
+  if (!channel || !channel.isTextBased()) {
+    console.error('Warframe live info channel is invalid or not text-based.');
+    return;
+  }
+  const textChannel = channel as TextChannel;
+
   console.log('Client is ready. Setting up loops...');
-  await setupWorldCycleLoop(client);
-  await setupArchonHuntLoop(client);
-  await setupSortieMissionLoop(client);
+  await setupWorldCycleLoop(textChannel);
+  await setupSortieMissionLoop(textChannel);
+  await setupArchonHuntLoop(textChannel);
 });
   
 client.on('messageCreate', async (message: Message) => {
@@ -88,7 +101,7 @@ client.on('messageCreate', async (message: Message) => {
    * Show active Sortie mission
    */
   if (message.content === `${DISCORD_PREFIX} sortie`) {
-    return message.reply({ embeds: [await buildSortieEmbed()] });
+    return message.reply({ embeds: [await buildSortieMissionEmbed()] });
   }
 
   /**

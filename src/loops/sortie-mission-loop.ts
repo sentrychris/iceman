@@ -1,6 +1,5 @@
-import type { Client, TextChannel, Message } from 'discord.js';
-import { WARFRAME_LIVE_INFO_CHANNEL_ID } from '../config';
-import { buildSortieEmbed } from '../commands/sortie-mission';
+import type { TextChannel, Message } from 'discord.js';
+import { buildSortieMissionEmbed } from '../commands/sortie-mission';
 import { getFormattedTimestamp } from '../util';
 import fs from 'fs/promises';
 import path from 'path';
@@ -9,20 +8,13 @@ const TRACKING_FILE_STORAGE_PATH = path.join(__dirname, '../../storage/tracking/
 
 let postedMessage: Message | null = null;
 
-export const setupSortieMissionLoop = async (client: Client) => {
+export const setupSortieMissionLoop = async (channel: TextChannel) => {
   try {
-    const channel = await client.channels.fetch(WARFRAME_LIVE_INFO_CHANNEL_ID);
-    if (!channel || !channel.isTextBased()) {
-      console.error('Sortie channel is invalid or not text-based.');
-      return;
-    }
-
-    const textChannel = channel as TextChannel;
     const stored = await loadStoredMessage();
 
-    if (stored && stored.channelId === textChannel.id) {
+    if (stored && stored.channelId === channel.id) {
       try {
-        const existing = await textChannel.messages.fetch(stored.messageId);
+        const existing = await channel.messages.fetch(stored.messageId);
         if (existing) {
           postedMessage = existing;
           console.log('Reusing previously posted sortie message.');
@@ -33,12 +25,12 @@ export const setupSortieMissionLoop = async (client: Client) => {
     }
 
     if (!postedMessage) {
-      postedMessage = await textChannel.send({
-        embeds: [await buildSortieEmbed({
+      postedMessage = await channel.send({
+        embeds: [await buildSortieMissionEmbed({
           footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
         })],
       });
-      await saveMessageReference(textChannel.id, postedMessage.id);
+      await saveMessageReference(channel.id, postedMessage.id);
     }
 
     scheduleNextUpdate();
@@ -56,7 +48,7 @@ const updateSortieMessage = async () => {
 
   try {
     await postedMessage.edit({
-      embeds: [await buildSortieEmbed({
+      embeds: [await buildSortieMissionEmbed({
         footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
       })]
     });
