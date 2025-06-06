@@ -1,4 +1,4 @@
-import type { Client, Message, TextChannel } from 'discord.js';
+import type { Message, TextChannel } from 'discord.js';
 
 import { usage } from './usage';
 import { setupWorldCycleLoop } from './loops/world-cycle-loop';
@@ -15,6 +15,7 @@ import { buildRelicDropsEmbed } from './commands/relic-lookup';
 import { buildItemDropsEmbed } from './commands/mission-drops';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
 import { buildTeshinRotationEmbed } from './commands/teshin-rotation';
+import { buildConstructionProgressEmbed } from './commands/fleet-construction';
 import { buildMarketPriceEmbed, getWarframeMarketCheapestSellOrder } from './commands/waframe-market';
 import {
   client,
@@ -183,6 +184,13 @@ client.on('messageCreate', async (message: Message) => {
     const args = message.content.trim().split(/\s+/).slice(2);
 
     return message.reply({ embeds: [await buildItemDropsEmbed(args)] });
+  }
+
+  /**
+   * Show construction progress for the Formorian Fleet and Razorback Armada
+   */
+  if (message.content === `${DISCORD_PREFIX} construction` || message.content === `${DISCORD_PREFIX} fleets`) {
+    return message.reply({ embeds: [await buildConstructionProgressEmbed()] });
   }
 });
   
