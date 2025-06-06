@@ -33,11 +33,10 @@ export const setupSortieMissionLoop = async (client: Client) => {
     }
 
     if (!postedMessage) {
-      const embed = await buildSortieEmbed({
-        footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
-      });
       postedMessage = await textChannel.send({
-        embeds: [embed],
+        embeds: [await buildSortieEmbed({
+          footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
+        })],
       });
       await saveMessageReference(textChannel.id, postedMessage.id);
     }
@@ -56,11 +55,11 @@ const updateSortieMessage = async () => {
   if (!postedMessage) return;
 
   try {
-    const newEmbed = await buildSortieEmbed({
-      footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
+    await postedMessage.edit({
+      embeds: [await buildSortieEmbed({
+        footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
+      })]
     });
-    await postedMessage.edit({ embeds: [newEmbed] });
-    console.log('Sortie message updated.');
   } catch (err) {
     console.error('Failed to update sortie message:', err);
   }

@@ -33,11 +33,10 @@ export const setupArchonHuntLoop = async (client: Client) => {
     }
 
     if (!postedMessage) {
-      const embed = await buildArchonHuntEmbed({
-        footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
-      });
       postedMessage = await textChannel.send({
-        embeds: [embed],
+        embeds: [await buildArchonHuntEmbed({
+          footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
+        })],
       });
       await saveMessageReference(textChannel.id, postedMessage.id);
     }
@@ -56,11 +55,11 @@ const updateArchonMessage = async () => {
   if (!postedMessage) return;
 
   try {
-    const embed = await buildArchonHuntEmbed({
-      footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
+    await postedMessage.edit({
+      embeds: [await buildArchonHuntEmbed({
+        footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
+      })]
     });
-    await postedMessage.edit({ embeds: [embed] });
-    console.log('Archon Hunt message updated.');
   } catch (err) {
     console.error('Failed to update Archon Hunt message:', err);
   }
