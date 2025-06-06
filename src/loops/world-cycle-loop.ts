@@ -1,16 +1,15 @@
 import type { TextChannel, Message } from 'discord.js';
-import { buildWorldCyclesEmbed } from '../commands/world-cycles';
-import { getFormattedTimestamp } from '../util';
-import fs from 'fs/promises';
 import path from 'path';
+import { buildWorldCyclesEmbed } from '../commands/world-cycles';
+import { getFormattedTimestamp, loadStoredMessage, saveMessageReference } from '../util';
 
-const TRACKING_FILE_STORAGE_PATH = path.join(__dirname, '../../storage/tracking/world-cycles-message.json');
+const TRACKING_FILE = path.join(__dirname, '../../storage/tracking/world-cycles-message.json');
 
 let postedMessage: Message | null = null;
 
 export const setupWorldCycleLoop = async (channel: TextChannel) => {
   try {
-    const stored = await loadStoredMessage();
+    const stored = await loadStoredMessage(TRACKING_FILE);
 
     if (stored && stored.channelId === channel.id) {
       try {
@@ -31,7 +30,7 @@ export const setupWorldCycleLoop = async (channel: TextChannel) => {
       postedMessage = await channel.send({
         embeds: Array.isArray(embed) ? embed : [embed],
       });
-      await saveMessageReference(channel.id, postedMessage.id);
+      await saveMessageReference(TRACKING_FILE, channel.id, postedMessage.id);
     }
 
     updateLoop();
@@ -55,18 +54,4 @@ const updateLoop = async () => {
   }
 
   setTimeout(updateLoop, 1 * 60 * 1000);
-};
-
-const loadStoredMessage = async (): Promise<{ channelId: string, messageId: string } | null> => {
-  try {
-    const data = await fs.readFile(TRACKING_FILE_STORAGE_PATH, 'utf8');
-    return JSON.parse(data);
-  } catch {
-    return null;
-  }
-};
-
-const saveMessageReference = async (channelId: string, messageId: string): Promise<void> => {
-  const data = { channelId, messageId };
-  await fs.writeFile(TRACKING_FILE_STORAGE_PATH, JSON.stringify(data, null, 2), 'utf8');
 };

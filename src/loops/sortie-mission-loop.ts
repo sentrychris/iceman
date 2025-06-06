@@ -1,16 +1,15 @@
 import type { TextChannel, Message } from 'discord.js';
-import { buildSortieMissionEmbed } from '../commands/sortie-mission';
-import { getFormattedTimestamp } from '../util';
-import fs from 'fs/promises';
 import path from 'path';
+import { buildSortieMissionEmbed } from '../commands/sortie-mission';
+import { getFormattedTimestamp, loadStoredMessage, saveMessageReference } from '../util';
 
-const TRACKING_FILE_STORAGE_PATH = path.join(__dirname, '../../storage/tracking/sortie-mission-message.json');
+const TRACKING_FILE = path.join(__dirname, '../../storage/tracking/sortie-mission-message.json');
 
 let postedMessage: Message | null = null;
 
 export const setupSortieMissionLoop = async (channel: TextChannel) => {
   try {
-    const stored = await loadStoredMessage();
+    const stored = await loadStoredMessage(TRACKING_FILE);
 
     if (stored && stored.channelId === channel.id) {
       try {
@@ -30,7 +29,7 @@ export const setupSortieMissionLoop = async (channel: TextChannel) => {
           footer: `Message updates every 5 minutes. Last updated: ${getFormattedTimestamp()} UTC`
         })],
       });
-      await saveMessageReference(channel.id, postedMessage.id);
+      await saveMessageReference(TRACKING_FILE, channel.id, postedMessage.id);
     }
 
     scheduleNextUpdate();
@@ -57,18 +56,4 @@ const updateSortieMessage = async () => {
   }
 
   scheduleNextUpdate();
-};
-
-const loadStoredMessage = async (): Promise<{ channelId: string, messageId: string } | null> => {
-  try {
-    const data = await fs.readFile(TRACKING_FILE_STORAGE_PATH, 'utf8');
-    return JSON.parse(data);
-  } catch {
-    return null;
-  }
-};
-
-const saveMessageReference = async (channelId: string, messageId: string): Promise<void> => {
-  const data = { channelId, messageId };
-  await fs.writeFile(TRACKING_FILE_STORAGE_PATH, JSON.stringify(data, null, 2), 'utf8');
 };
