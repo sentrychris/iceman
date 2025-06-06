@@ -46,7 +46,6 @@ export const buildInvasionsEmbed = async (
         .setDescription('There are currently no active invasions.');
     }
 
-    // Use the first active invasion's attacking faction as the embed thumbnail
     const attackingFactionIcon = FACTION_ICONS[active[0].attackingFaction] ?? DISCORD_ICON.clan;
 
     const embed = new EmbedBuilder()
@@ -61,17 +60,20 @@ export const buildInvasionsEmbed = async (
       });
 
     for (const invasion of active) {
-      const attackerReward = invasion.attacker.reward?.asString ?? 'No reward';
-      const defenderReward = invasion.defender.reward?.asString ?? 'No reward';
       const attackerFaction = invasion.attacker.faction;
       const defenderFaction = invasion.defender.faction;
+
+      const attackerReward =
+        attackerFaction !== 'Infested' ? `🎁 **${attackerFaction}**: ${invasion.attacker.reward?.asString ?? 'No reward'}\n` : '';
+      const defenderReward =
+        defenderFaction !== 'Infested' ? `🎁 **${defenderFaction}**: ${invasion.defender.reward?.asString ?? 'No reward'}\n` : '';
 
       embed.addFields({
         name: `${invasion.node} — ${invasion.desc}`,
         value:
-          `**${attackerFaction} vs ${defenderFaction}**\n` +
-          `🎁 **${attackerFaction}**: ${attackerReward}\n` +
-          `🎁 **${defenderFaction}**: ${defenderReward}\n` +
+          `🆚 **${attackerFaction} vs ${defenderFaction}**\n` +
+          attackerReward +
+          defenderReward +
           `⏱️ **ETA**: ${invasion.eta} | **Completion**: ${invasion.completion.toFixed(1)}%`,
         inline: false,
       });
