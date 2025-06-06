@@ -32,6 +32,11 @@ export const usage = async (message: Message) => {
               inline: false
             },
             {
+              name: '`!wf invasions`',
+              value: 'Displays active invasions, factions, prizes, and completion progress.\n⠀\n',
+              inline: false
+            },
+            {
               name: '`!wf fissures`',
               value: 'Lists currently active Void Fissures grouped by relic era.\nOptional filter: `!wf fissures meso`\n⠀\n',
               inline: false

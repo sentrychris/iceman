@@ -10,6 +10,7 @@ import { buildVoidFissuresEmbed } from './commands/void-fissures';
 import { buildWorldCyclesEmbed } from './commands/world-cycles';
 import { buildSortieMissionEmbed } from './commands/sortie-mission';
 import { buildArchonHuntEmbed } from './commands/archon-hunt';
+import { buildInvasionsEmbed } from './commands/invasions';
 import { buildRelicDropsEmbed } from './commands/relic-lookup';
 import { buildItemDropsEmbed } from './commands/mission-drops';
 import { buildClanPrizeDrawEmbed } from './commands/clan-prizedraw';
@@ -109,6 +110,13 @@ client.on('messageCreate', async (message: Message) => {
    */
   if (message.content === `${DISCORD_PREFIX} archon`) {
     return message.reply({ embeds: [await buildArchonHuntEmbed()] });
+  }
+
+  /**
+   * Show active Invasions
+   */
+  if (message.content === `${DISCORD_PREFIX} invasion` || message.content === `${DISCORD_PREFIX} invasions`) {
+    return message.reply({ embeds: [await buildInvasionsEmbed()] });
   }
 
   /**
